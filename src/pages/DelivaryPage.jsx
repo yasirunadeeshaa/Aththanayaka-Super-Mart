@@ -11,31 +11,33 @@ export default function DeliveryPage() {
 
         .dv-root {
           font-family: 'DM Sans', sans-serif;
-          background: #f7f9ff; min-height: 100vh; padding-top: 105px;
+          background: #f5f7fa; min-height: 100vh; padding-top: 105px;
         }
 
         .dv-hero {
-          padding: 64px 48px 52px; text-align: center; position: relative; overflow: hidden;
-        }
+            border-bottom: 1px solid #dde3ef;
+            padding: 56px 48px 44px;
+            text-align: center;
+            background: #fff;
+            }
         .dv-hero::before {
           content: ''; position: absolute; inset: 0;
           background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
           background-size: 28px 28px;
         }
         .dv-hero-eyebrow {
-          font-size: 11px; font-weight: 600; letter-spacing: 3px;
-          text-transform: uppercase; color: rgba(255,255,255,0.65);
-          margin-bottom: 14px; position: relative;
+        font-size: 11px; font-weight: 700; letter-spacing: 3px;
+        text-transform: uppercase; color: #3a6bc4; margin-bottom: 14px;
         }
         .dv-hero-title {
-          font-family: 'DM Serif Display', serif;
-          font-size: clamp(34px, 4.5vw, 56px); color: white;
-          margin-bottom: 16px; position: relative;
+        font-family: 'DM Serif Display', serif;
+        font-size: clamp(34px, 4.5vw, 52px);
+        color: #1a2035; margin-bottom: 14px; line-height: 1.1;
         }
-        .dv-hero-title em { font-style: italic; color: #a8c4ff; }
+        .dv-hero-title em { font-style: italic; color: #3a6bc4; }
         .dv-hero-sub {
-          font-size: 16px; color: rgba(255,255,255,0.72); font-weight: 300;
-          max-width: 480px; margin: 0 auto; line-height: 1.8; position: relative;
+        font-size: 16px; color: #6b7a99; font-weight: 300;
+        max-width: 480px; margin: 0 auto; line-height: 1.75;
         }
 
         .dv-options {
@@ -108,7 +110,7 @@ export default function DeliveryPage() {
         .dv-btn-map:hover { background: rgba(255,255,255,0.2); }
 
         .dv-hours {
-          background: white; max-width: 1100px; margin: 40px auto 0;
+          max-width: 1100px; margin: 40px auto 0;
           padding: 0 48px;
         }
         .dv-hours-inner {
