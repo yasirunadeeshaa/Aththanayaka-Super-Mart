@@ -33,7 +33,7 @@ export default function AboutPage() {
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .ab-root { font-family: 'DM Sans', sans-serif; background: #f5f7fa; min-height: 100vh; padding-top: 105px; color: #1a2035; }
+        .ab-root { font-family: 'DM Sans', sans-serif; background: #f5f7fa; min-height: 100vh; color: #1a2035; }
 
         /* HERO */
         .ab-hero { border-bottom: 1px solid #dde3ef; padding: 56px 48px 44px; text-align: center; background: #fff; }
