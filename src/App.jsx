@@ -8,6 +8,7 @@ import Products from './pages/Products'
 import AboutUs from './pages/AboutUs'
 import Packaging from './pages/PackagingPage'
 import Wholesale from './pages/WholesalePage'
+import SesameRecipes from './pages/SesameRecipes'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <Products />
+      <SesameRecipes />
       <Packaging />
       <AboutUs />
       <Delivary />
