@@ -175,7 +175,7 @@ export default function Navbar() {
         }
         .nb-mobile-menu a:hover { color: #1e4fd8; }
         .nb-mobile-cta {
-          margin-top: 14px; text-align: center;
+          text-align: center;
           background: #1e4fd8 !important;
           color: white !important;
           border-radius: 6px; border-bottom: none !important;
@@ -190,7 +190,6 @@ export default function Navbar() {
         @media (max-width: 540px) {
           .nb-inner { padding: 0 20px; height: 60px; }
           .nb-logo-name { font-size: 16px; }
-          .nb-root { top: 34px; }
         }
       `}</style>
 
