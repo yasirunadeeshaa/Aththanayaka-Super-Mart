@@ -38,25 +38,9 @@ export default function Navbar() {
           overflow-x: hidden;
         }
 
-        .nb-announce {
-          width: 100%;
-          background: #1e4fd8;
-          color: #fff;
-          text-align: center;
-          padding: 9px 24px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 12px;
-          font-weight: 500;
-          letter-spacing: 0.3px;
-          position: fixed;
-          top: 0; left: 0;
-          z-index: 1000;
-        }
-        .nb-announce strong { font-weight: 700; }
 
         .nb-root {
           position: fixed;
-          top: 37px;
           left: 0;
           width: 100%;
           z-index: 999;
@@ -211,9 +195,9 @@ export default function Navbar() {
       `}</style>
 
       {/* Announcement bar */}
-      <div className="nb-announce">
+      {/* <div className="nb-announce">
         🎉 <strong>Weekend Sale:</strong> Up to 40% off fresh produce — Today only!
-      </div>
+      </div> */}
 
       {/* Main navbar */}
       <header
