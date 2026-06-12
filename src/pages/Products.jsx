@@ -4,6 +4,15 @@ import { Link } from "react-router-dom";
 const WHATSAPP = "94XXXXXXXXX";
 const PHONE = "+94 XX XXX XXXX";
 
+import blacksesami from "../../src/assets/sasemi6.jpg";
+import whiteseasami from "../../src/assets/sasemi15.jpg";
+import blackwhitesesami from "../../src/assets/sasemi7.jpg";
+
+import jaggery from "../../src/assets/jaggery.avif";
+import jaggery2 from "../../src/assets/jageery1.webp";
+import jaggery3 from "../../src/assets/jaggery2.jpg";
+import jaggery4 from "../../src/assets/jaggery3.avif";
+
 /* ─── SESAME PRODUCTS ─── */
 const PRODUCTS = [
   {
@@ -14,7 +23,7 @@ const PRODUCTS = [
     emoji: "⚫",
     name: "Black Sesame Seeds",
     tagline: "Deep flavor, maximum nutrition",
-    image: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=600&q=80",
+    image: blacksesami,
     desc: "Our black sesame seeds are carefully sourced and naturally dried. They carry a stronger, slightly bitter-nutty flavor compared to white sesame. Highly prized in Asian confectionery and traditional medicine.",
     uses: ["Sesame oil extraction", "Traditional sweets & brittle", "Health supplements", "Bakery toppings"],
     available: ["Raw / Uncleaned", "Sorted & Cleaned"],
@@ -33,7 +42,7 @@ const PRODUCTS = [
     emoji: "⚪",
     name: "White Sesame Seeds",
     tagline: "Mild taste, premium grade",
-    image: "https://images.unsplash.com/photo-1612204103590-b399e5b1a43a?w=600&q=80",
+    image: whiteseasami,
     desc: "High-quality hulled white sesame seeds with a clean, mild, nutty flavor. Ideal for high-volume sesame product manufacturing. Consistent quality ensures reliable production output.",
     uses: ["Sesame confectionery", "Baking & bread toppings", "Tahini production", "Cooking & garnishing"],
     available: ["Raw", "Hulled & Cleaned"],
@@ -52,7 +61,7 @@ const PRODUCTS = [
     emoji: "✨",
     name: "Cleaned Black Sesame",
     tagline: "Ready-to-use, sorted & processed",
-    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80",
+    image: blackwhitesesami,
     desc: "Thoroughly cleaned and machine-sorted black sesame seeds. Dust-free, stone-free, and ready for immediate use in food production. Saves processing time and reduces waste.",
     uses: ["Direct food production", "High-end confectionery", "Export-quality products", "Sesame oil (cold press)"],
     available: ["Cleaned & Sorted", "Vacuum Packed (on request)"],
@@ -68,19 +77,19 @@ const PRODUCTS = [
 /* ─── JAGGERY DATA ─── */
 const JG_SLIDES = [
   {
-    url: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=900&q=85",
+    url: jaggery,
     caption: "Farm-fresh organic jaggery blocks",
   },
   {
-    url: "https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=900&q=85",
+    url: jaggery4,
     caption: "Naturally processed, no additives",
   },
   {
-    url: "https://images.unsplash.com/photo-1559181567-c3190aa9dbe2?w=900&q=85",
+    url: jaggery3,
     caption: "Rich golden colour — pure sugarcane",
   },
   {
-    url: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=900&q=85",
+    url: jaggery2,
     caption: "Available in block and granule form",
   },
 ];
@@ -175,7 +184,6 @@ function ProductCard({ product }) {
       <div className="ss-card-image-wrap">
         <img src={product.image} alt={product.name} className="ss-card-image"
           onError={e => { e.target.style.display = "none"; }} />
-        <div className="ss-card-image-overlay" style={{ background: product.color }} />
         <div className="ss-card-image-badge"><span className="ss-card-emoji">{product.emoji}</span></div>
       </div>
       <div className="ss-card-header" style={{ background: product.color }}>
@@ -222,7 +230,6 @@ export default function ProductsPage() {
           font-family: 'DM Sans', sans-serif;
           background: #f7f9ff;
           min-height: 100vh;
-          padding-top: 105px;
         }
 
         /* ── HERO ── */
