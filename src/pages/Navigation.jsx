@@ -1,17 +1,28 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLang } from "../LanguageContext.jsx";
 
-const NAV_LINKS = [
-  { label: "Home", to: "/" },
-  { label: "Products", to: "/products" },
-  { label: "Offers", to: "/offers" },
-  { label: "About", to: "/about" },
-  { label: "Contact", to: "/contact" },
-];
+const NAV_LINKS = {
+  en: [
+    { label: "Home", to: "/" },
+    { label: "Products", to: "#products" },
+    { label: "Offers", to: "/offers" },
+    { label: "About", to: "/about" },
+    { label: "Contact", to: "/contact" },
+  ],
+  si: [
+    { label: "මුල් පිටුව", to: "/" },
+    { label: "නිෂ්පාදන", to: "#products" },
+    { label: "දීමනා", to: "/offers" },
+    { label: "අප ගැන", to: "/about" },
+    { label: "සම්බන්ධ වන්න", to: "/contact" },
+  ],
+};
 
-export default function Navbar() {
+export default function Navbar({ onShopNow }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { lang, setLang } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -19,25 +30,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navBg = scrolled ? "rgba(255,255,255,0.97)" : "transparent";
+  const navBg = scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.2)";
   const shadow = scrolled ? "0 2px 20px rgba(30,79,216,0.1)" : "none";
   const logoColor = scrolled ? "#1a1a2e" : "#1e4fd8";
   const subColor = scrolled ? "#8a9abf" : "#5a6a8a";
   const linkColor = scrolled ? "#5a6a8a" : "#1a1a2e";
+
+  const links = NAV_LINKS[lang];
 
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-        /* full-width reset */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html, body, #root {
           width: 100%;
           min-height: 100vh;
           overflow-x: hidden;
         }
-
 
         .nb-root {
           position: fixed;
@@ -145,6 +156,47 @@ export default function Navbar() {
           box-shadow: 0 6px 20px rgba(30,79,216,0.38);
         }
 
+        /* ── Language Toggle ── */
+        .nb-lang {
+          display: flex;
+          align-items: center;
+          background: #f0f4ff;
+          border: 1.5px solid #dde4f4;
+          border-radius: 8px;
+          padding: 3px;
+          gap: 2px;
+          flex-shrink: 0;
+        }
+        .nb-lang-btn {
+          font-size: 11.5px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          padding: 5px 11px;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          transition: background 0.18s, color 0.18s;
+          font-family: 'DM Sans', sans-serif;
+          line-height: 1;
+        }
+        .nb-lang-btn.active {
+          background: #1e4fd8;
+          color: #fff;
+          box-shadow: 0 2px 8px rgba(30,79,216,0.25);
+        }
+        .nb-lang-btn.inactive {
+          background: transparent;
+          color: #7a8aaa;
+        }
+        .nb-lang-btn.inactive:hover {
+          background: #e4ebff;
+          color: #1e4fd8;
+        }
+        .nb-lang-si {
+          font-size: 13px;
+          letter-spacing: 0;
+        }
+
         .nb-ham {
           display: none; flex-direction: column;
           justify-content: center; gap: 5px;
@@ -182,9 +234,22 @@ export default function Navbar() {
           padding: 13px !important; font-weight: 600 !important;
         }
 
+        /* Mobile lang row inside mobile menu */
+        .nb-mobile-lang {
+          display: flex; align-items: center; gap: 10px;
+          padding: 14px 0;
+          border-bottom: 1px solid #f0f4ff;
+        }
+        .nb-mobile-lang-label {
+          font-size: 12px; color: #a0aec0; font-weight: 500;
+          text-transform: uppercase; letter-spacing: 1px;
+          flex-shrink: 0;
+        }
+
         @media (max-width: 960px) {
           .nb-links { display: none; }
           .nb-cta { display: none; }
+          .nb-lang { display: none; }
           .nb-ham { display: flex; }
         }
         @media (max-width: 540px) {
@@ -193,12 +258,6 @@ export default function Navbar() {
         }
       `}</style>
 
-      {/* Announcement bar */}
-      {/* <div className="nb-announce">
-        🎉 <strong>Weekend Sale:</strong> Up to 40% off fresh produce — Today only!
-      </div> */}
-
-      {/* Main navbar */}
       <header
         className="nb-root"
         style={{ background: navBg, boxShadow: shadow, backdropFilter: scrolled ? "blur(14px)" : "none" }}
@@ -208,14 +267,14 @@ export default function Navbar() {
           <Link to="/" className="nb-logo">
             <div className="nb-logo-icon">🛒</div>
             <div>
-              <div className="nb-logo-name" style={{ color: logoColor }}> Aththanayaka</div>
+              <div className="nb-logo-name" style={{ color: logoColor }}>Aththanayaka</div>
               <span className="nb-logo-sub" style={{ color: subColor }}>Supermart</span>
             </div>
           </Link>
 
           {/* Desktop links */}
           <ul className="nb-links">
-            {NAV_LINKS.map((l) => (
+            {links.map((l) => (
               <li key={l.to}>
                 <Link to={l.to} style={{ color: linkColor }}>{l.label}</Link>
               </li>
@@ -224,12 +283,33 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="nb-actions">
+            {/* Language toggle */}
+            <div className="nb-lang" role="group" aria-label="Language switcher">
+              <button
+                className={`nb-lang-btn ${lang === "en" ? "active" : "inactive"}`}
+                onClick={() => setLang("en")}
+                aria-pressed={lang === "en"}
+              >
+                EN
+              </button>
+              <button
+                className={`nb-lang-btn nb-lang-si ${lang === "si" ? "active" : "inactive"}`}
+                onClick={() => setLang("si")}
+                aria-pressed={lang === "si"}
+              >
+                සි
+              </button>
+            </div>
+
             <Link to="/search" className="nb-icon-btn" title="Search">🔍</Link>
             <Link to="/cart" className="nb-icon-btn" title="Cart">
               🛒
               <span className="nb-badge">3</span>
             </Link>
-            <Link to="/shop" className="nb-cta">Shop Now →</Link>
+            {/* <Link to="/shop" className="nb-cta">
+              {lang === "en" ? "Shop Now →" : "බලන්න →"}
+            </Link> */}
+            <button className="nb-cta" onClick={onShopNow}>{lang === "en" ? "Shop Now →" : "බලන්න →"}</button>
 
             <button
               className="nb-ham"
@@ -246,11 +326,32 @@ export default function Navbar() {
         {/* Mobile dropdown */}
         {menuOpen && (
           <div className="nb-mobile-menu">
-            {NAV_LINKS.map((l) => (
+            {/* Language toggle in mobile menu */}
+            <div className="nb-mobile-lang">
+              <span className="nb-mobile-lang-label">
+                {lang === "en" ? "Language" : "භාෂාව"}
+              </span>
+              <div className="nb-lang" role="group" aria-label="Language switcher">
+                <button
+                  className={`nb-lang-btn ${lang === "en" ? "active" : "inactive"}`}
+                  onClick={() => setLang("en")}
+                >
+                  EN
+                </button>
+                <button
+                  className={`nb-lang-btn nb-lang-si ${lang === "si" ? "active" : "inactive"}`}
+                  onClick={() => setLang("si")}
+                >
+                  සි
+                </button>
+              </div>
+            </div>
+
+            {links.map((l) => (
               <Link key={l.to} to={l.to} onClick={() => setMenuOpen(false)}>{l.label}</Link>
             ))}
             <Link to="/shop" className="nb-mobile-cta" onClick={() => setMenuOpen(false)}>
-              Shop Now →
+              {lang === "en" ? "Shop Now →" : "බලන්න →"}
             </Link>
           </div>
         )}
