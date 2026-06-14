@@ -1,19 +1,10 @@
 import { Link } from "react-router-dom";
 
-const WHATSAPP = "94XXXXXXXXX";
-
 const STATS = [
-  { icon: "ti-calendar", num: "12", suffix: "+", label: "Years in Business" },
-  { icon: "ti-users",    num: "50", suffix: "+", label: "Regular Clients"   },
+  { icon: "ti-calendar", num: "30", suffix: "+", label: "Years in Business" },
+  { icon: "ti-users",    num: "100", suffix: "+", label: "Regular Customers"   },
   { icon: "ti-leaf",     num: "4",  suffix: "",  label: "Sesame Varieties"  },
   { icon: "ti-map-pin",  num: "100",suffix: "%", label: "Sri Lankan Sourced"},
-];
-
-const VALUES = [
-  { icon: "ti-shield-check", title: "Quality First",         desc: "Every batch of sesame seeds is carefully sourced and checked before supply. We never compromise on product quality." },
-  { icon: "ti-handshake",    title: "Trusted Relationships", desc: "We build long-term partnerships with sesame product manufacturers across Sri Lanka — not just one-time transactions." },
-  { icon: "ti-truck",        title: "Reliable Supply",       desc: "Consistent stock availability so your production never stops. We understand manufacturing deadlines." },
-  { icon: "ti-coin",         title: "Fair Pricing",          desc: "Transparent, competitive pricing for both retail and wholesale. No hidden charges, no surprises." },
 ];
 
 const FACTS = [
@@ -73,28 +64,6 @@ export default function AboutPage() {
         .ab-facts-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
         .ab-facts-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #8a9ac0; margin-bottom: 3px; }
         .ab-facts-val { font-size: 13.5px; color: #2952a3; font-weight: 600; }
-
-        /* VALUES */
-        .ab-values-section { padding: 0 48px 64px; max-width: 1180px; margin: 0 auto; }
-        .ab-values-title { font-family: 'DM Serif Display', serif; font-size: clamp(24px, 3vw, 36px); color: #1a2035; margin-bottom: 28px; line-height: 1.2; }
-        .ab-values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .ab-value-card { background: #fff; border-radius: 16px; border: 1px solid #dde3ef; box-shadow: 0 2px 16px rgba(58,107,196,0.05); padding: 28px; transition: box-shadow 0.3s, transform 0.3s; display: flex; flex-direction: column; }
-        .ab-value-card:hover { box-shadow: 0 10px 36px rgba(58,107,196,0.13); transform: translateY(-3px); }
-        .ab-value-icon { width: 44px; height: 44px; border-radius: 12px; background: #eef2fb; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-        .ab-value-icon i { font-size: 22px; color: #3a6bc4; }
-        .ab-value-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: #1a2035; margin-bottom: 10px; }
-        .ab-value-desc { font-size: 13px; color: #6b7a99; line-height: 1.75; font-weight: 300; }
-
-        /* CTA */
-        .ab-cta-bar { background: linear-gradient(135deg, #1d3d87 0%, #3a6bc4 100%); margin: 0 48px 60px; border-radius: 16px; padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-        .ab-cta-text h3 { font-family: 'DM Serif Display', serif; font-size: 26px; color: white; margin-bottom: 6px; }
-        .ab-cta-text p { font-size: 14px; color: rgba(255,255,255,0.7); }
-        .ab-cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-        .ab-btn-wa { padding: 13px 28px; background: #25D366; color: white; font-weight: 600; font-size: 14px; border-radius: 8px; text-decoration: none; transition: background 0.2s; }
-        .ab-btn-wa:hover { background: #1ebe5d; }
-        .ab-btn-products { padding: 13px 28px; background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.3); color: white; font-weight: 600; font-size: 14px; border-radius: 8px; text-decoration: none; transition: background 0.2s; }
-        .ab-btn-products:hover { background: rgba(255,255,255,0.22); }
-
         /* RESPONSIVE */
         @media (max-width: 900px) {
           .ab-story-section { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px; }
@@ -164,34 +133,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-
-        {/* VALUES */}
-        <div className="ab-values-section">
-          <div className="ab-section-eyebrow">Our Values</div>
-          <h2 className="ab-values-title">What We Stand For</h2>
-          <div className="ab-values-grid">
-            {VALUES.map(v => (
-              <div className="ab-value-card" key={v.title}>
-                <div className="ab-value-icon"><i className={`ti ${v.icon}`} aria-hidden="true" /></div>
-                <div className="ab-value-title">{v.title}</div>
-                <div className="ab-value-desc">{v.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA */}
-        {/* <div className="ab-cta-bar">
-          <div className="ab-cta-text">
-            <h3>Ready to Work With Us?</h3>
-            <p>Get in touch for bulk orders, pricing, or any questions about our supply.</p>
-          </div>
-          <div className="ab-cta-actions">
-            <a className="ab-btn-wa" href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer">WhatsApp Us</a>
-            <Link className="ab-btn-products" to="/products">View Products</Link>
-          </div>
-        </div> */}
-
       </div>
     </>
   );
