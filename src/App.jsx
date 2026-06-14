@@ -9,12 +9,25 @@ import AboutUs from './pages/AboutUs'
 import Packaging from './pages/PackagingPage'
 import Wholesale from './pages/WholesalePage'
 import SesameRecipes from './pages/SesameRecipes'
+import ProductDetails from './pages/ShopPage'
 
 export default function App() {
+  const [page, setPage] = useState('home')
+
+  if (page === 'shop') {
+    return (
+      <>
+        <Navbar />
+        <ProductDetails onBack={() => setPage('home')} />
+        <Footer />
+      </>
+    )
+  }
+
   return (
     <>
-      <Navbar />
-      <Hero />
+      <Navbar onShopNow={() => setPage('shop')} />
+      <Hero onShopNow={() => setPage('shop')} />
       <Products />
       <SesameRecipes />
       <Packaging />
