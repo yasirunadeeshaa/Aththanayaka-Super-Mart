@@ -10,8 +10,6 @@ const FOODS = [
   { name: "Bagel with Sesame", origin: "Global", img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=340&q=80" },
   { name: "Goma Tofu", origin: "Japan", img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=340&q=80" },
   { name: "Sesame Cookies", origin: "Global", img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=340&q=80" },
-  { name: "Halva", origin: "Middle East", img: "https://images.unsplash.com/photo-1571167366136-b57e23a4e4b7?w=340&q=80" },
-  { name: "Sesame Rice Balls", origin: "Korea / Japan", img: "https://images.unsplash.com/photo-1617196034182-06a83de28bde?w=340&q=80" },
   { name: "Black Sesame Soup", origin: "China", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=340&q=80" },
 ];
 
