@@ -5,7 +5,7 @@ import { useLang } from "../LanguageContext.jsx";
 const NAV_LINKS = {
   en: [
     { label: "Home", to: "/" },
-    { label: "Products", to: "#products" },
+    { label: "Products", to: "products", type: "scroll" },
     { label: "Offers", to: "/offers" },
     { label: "About", to: "/about" },
     { label: "Contact", to: "/contact" },
@@ -61,7 +61,6 @@ export default function Navbar({ onShopNow }) {
 
         .nb-inner {
           width: 100%;
-          max-width: 1280px;
           margin: 0 auto;
           padding: 0 48px;
           height: 68px;
