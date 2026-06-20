@@ -1,21 +1,30 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useLang } from "../LanguageContext.jsx";
 
 const NAV_LINKS = {
   en: [
-    { label: "Home", to: "/" },
-    { label: "Products", to: "products", type: "scroll" },
-    { label: "Offers", to: "/offers" },
-    { label: "About", to: "/about" },
-    { label: "Contact", to: "/contact" },
+    { label: "Home", to: "/", type: "route" },
+    { label: "Sesame Products", to: "products", type: "scroll" },
+    { label: "Jaggery", to: "jaggery", type: "scroll" },
+    { label: "Packaging Supplies", to: "packaging", type: "scroll" },
+    { label: "Whole Sale", to: "wholesale", type: "scroll" },
+    { label: "Delivery & Visit", to: "delivery", type: "scroll" },
+    { label: "Location", to: "location", type: "scroll" },
+    { label: "Contact", to: "delivery", type: "route" },
+    { label: "About Us", to: "about", type: "scroll" },
   ],
+
   si: [
-    { label: "මුල් පිටුව", to: "/" },
-    { label: "නිෂ්පාදන", to: "#products" },
-    { label: "දීමනා", to: "/offers" },
-    { label: "අප ගැන", to: "/about" },
-    { label: "සම්බන්ධ වන්න", to: "/contact" },
+    { label: "මුල් පිටුව", to: "/", type: "route" },
+    { label: "තල නිෂ්පාදන", to: "products", type: "scroll" },
+    { label: "හකුරු", to: "jaggery", type: "scroll" },
+    { label: "ඇසුරුම් ද්‍රව්‍ය", to: "about", type: "scroll" },
+    { label: "තොග ඇණවුම්", to: "wholesale", type: "scroll" },
+    { label: "බෙදාහැරීම", to: "delivery", type: "scroll" },
+    { label: "අපගේ ස්ථානය", to: "location", type: "scroll" },
+    { label: "සම්බන්ධ වන්න", to: "delivery", type: "route" },
+    { label: "අප ගැන", to: "about", type: "scroll" },
   ],
 };
 
@@ -23,6 +32,14 @@ export default function Navbar({ onShopNow }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { lang, setLang } = useLang();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const trackRef = useRef(null);
+  const linkRefs = useRef([]);
+  const [pill, setPill] = useState({ left: 0, width: 0, opacity: 0 });
+  const [pillReady, setPillReady] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -37,6 +54,63 @@ export default function Navbar({ onShopNow }) {
   const linkColor = scrolled ? "#5a6a8a" : "#1a1a2e";
 
   const links = NAV_LINKS[lang];
+
+  const activeIndex = links.findIndex((l) =>
+    l.type === "scroll"
+      ? false
+      : location.pathname === l.to || (l.to === "/" && location.pathname === "/")
+  );
+
+  const movePill = (index) => {
+    const el = linkRefs.current[index];
+    const track = trackRef.current;
+    if (!el || !track) return;
+    const elRect = el.getBoundingClientRect();
+    const trackRect = track.getBoundingClientRect();
+    setPill({ left: elRect.left - trackRect.left, width: elRect.width, opacity: 1 });
+    setPillReady(true);
+  };
+
+  const resetPill = () => {
+    if (activeIndex >= 0) movePill(activeIndex);
+    else setPill((p) => ({ ...p, opacity: 0 }));
+  };
+
+  // Position synchronously after layout, so the pill never flashes
+  // in the wrong spot before paint.
+  useLayoutEffect(() => {
+    resetPill();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang, location.pathname, scrolled]);
+
+  // Webfonts (DM Sans) often finish loading after first layout, which
+  // silently changes link widths. Re-measure once fonts are actually ready.
+  useEffect(() => {
+    if (document?.fonts?.ready) {
+      document.fonts.ready.then(resetPill);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+
+  // Track size changes on the nav itself (e.g. container resize, zoom,
+  // dynamic content) rather than only the window — more reliable than resize.
+  useEffect(() => {
+    if (!trackRef.current || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => resetPill());
+    ro.observe(trackRef.current);
+    return () => ro.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang, location.pathname]);
+
+  const handleScrollLink = (sectionId, e) => {
+    e.preventDefault();
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: sectionId } });
+      return;
+    }
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <>
@@ -91,26 +165,79 @@ export default function Navbar({ onShopNow }) {
           display: block; margin-top: 1px;
         }
 
-        .nb-links {
-          display: flex; align-items: center;
-          gap: 32px; list-style: none; flex: 1;
+        /* ── Middle nav: sliding pill indicator ── */
+        .nb-links-track {
+          position: relative;
+          flex: 1;
+          display: flex;
           justify-content: center;
         }
+
+        .nb-pill {
+          position: absolute;
+          top: 50%;
+          height: 32px;
+          transform: translateY(-50%);
+          background: linear-gradient(180deg, rgba(30, 79, 216, 0.09), rgba(30, 79, 216, 0.045));
+          border: 1px solid rgba(30, 79, 216, 0.14);
+          border-radius: 9px;
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.65),
+            0 1px 3px rgba(30, 79, 216, 0.07);
+          transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                      width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                      opacity 0.25s ease;
+          pointer-events: none;
+        }
+
+        .nb-links {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          list-style: none;
+          position: relative;
+          z-index: 1;
+        }
+
         .nb-links a {
-          font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
-          text-decoration: none; position: relative;
-          transition: color 0.25s;
-          padding-bottom: 2px;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.4px;
+          color: inherit;
+          text-decoration: none;
+          padding: 8px 16px;
+          border-radius: 8px;
+          transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      letter-spacing 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .nb-links a::after {
+
+        .nb-links a:hover { color: #1e4fd8 !important; letter-spacing: 0.6px; }
+
+        .nb-links a:focus-visible {
+          outline: 2px solid rgba(30, 79, 216, 0.45);
+          outline-offset: 2px;
+        }
+
+        /* current page: a soft gradient bar reads calmer than a hard dot */
+        .nb-links a.nb-link-active {
+          color: #1e4fd8 !important;
+          font-weight: 600;
+        }
+        .nb-links a.nb-link-active::after {
           content: '';
-          position: absolute; bottom: -2px; left: 0;
-          width: 0; height: 2px;
-          background: #1e4fd8; border-radius: 2px;
-          transition: width 0.25s;
+          display: block;
+          width: 18px;
+          height: 2px;
+          margin: 6px auto 0;
+          border-radius: 2px;
+          background: linear-gradient(90deg, transparent, #1e4fd8 50%, transparent);
         }
-        .nb-links a:hover::after { width: 100%; }
-        .nb-links a:hover { color: #1e4fd8 !important; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .nb-pill { transition: opacity 0.2s ease; }
+          .nb-links a { transition: color 0.2s ease; }
+        }
 
         .nb-actions {
           display: flex; align-items: center; gap: 10px; flex-shrink: 0;
@@ -246,7 +373,7 @@ export default function Navbar({ onShopNow }) {
         }
 
         @media (max-width: 960px) {
-          .nb-links { display: none; }
+          .nb-links-track { display: none; }
           .nb-cta { display: none; }
           .nb-lang { display: none; }
           .nb-ham { display: flex; }
@@ -271,14 +398,46 @@ export default function Navbar({ onShopNow }) {
             </div>
           </Link>
 
-          {/* Desktop links */}
-          <ul className="nb-links">
-            {links.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} style={{ color: linkColor }}>{l.label}</Link>
-              </li>
-            ))}
-          </ul>
+          {/* Desktop links with sliding pill indicator */}
+          <div className="nb-links-track" ref={trackRef} onMouseLeave={resetPill}>
+            <span
+              className="nb-pill"
+              style={{
+                left: pill.left,
+                width: pill.width,
+                opacity: pill.opacity,
+                transition: pillReady
+                  ? "left 0.5s cubic-bezier(0.16, 1, 0.3, 1), width 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease"
+                  : "none",
+              }}
+            />
+            <ul className="nb-links">
+              {links.map((l, i) =>
+                l.type === "scroll" ? (
+                  <li key={l.label} ref={(el) => (linkRefs.current[i] = el)} onMouseEnter={() => movePill(i)}>
+                    <a
+                      href={`#${l.to}`}
+                      onClick={(e) => handleScrollLink(l.to, e)}
+                      style={{ color: linkColor }}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ) : (
+                  <li key={l.to} ref={(el) => (linkRefs.current[i] = el)} onMouseEnter={() => movePill(i)}>
+                    <NavLink
+                      to={l.to}
+                      end={l.to === "/"}
+                      className={({ isActive }) => (isActive ? "nb-link-active" : "")}
+                      style={{ color: linkColor }}
+                    >
+                      {l.label}
+                    </NavLink>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
 
           {/* Actions */}
           <div className="nb-actions">
@@ -305,9 +464,6 @@ export default function Navbar({ onShopNow }) {
               🛒
               <span className="nb-badge">3</span>
             </Link>
-            {/* <Link to="/shop" className="nb-cta">
-              {lang === "en" ? "Shop Now →" : "බලන්න →"}
-            </Link> */}
             <button className="nb-cta" onClick={onShopNow}>{lang === "en" ? "Shop Now →" : "බලන්න →"}</button>
 
             <button
@@ -346,9 +502,22 @@ export default function Navbar({ onShopNow }) {
               </div>
             </div>
 
-            {links.map((l) => (
-              <Link key={l.to} to={l.to} onClick={() => setMenuOpen(false)}>{l.label}</Link>
-            ))}
+            {links.map((l) =>
+              l.type === "scroll" ? (
+                <a
+                  key={l.label}
+                  href={`#${l.to}`}
+                  onClick={(e) => {
+                    setMenuOpen(false);
+                    handleScrollLink(l.to, e);
+                  }}
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link key={l.to} to={l.to} onClick={() => setMenuOpen(false)}>{l.label}</Link>
+              )
+            )}
             <Link to="/shop" className="nb-mobile-cta" onClick={() => setMenuOpen(false)}>
               {lang === "en" ? "Shop Now →" : "බලන්න →"}
             </Link>
