@@ -475,15 +475,6 @@ export default function ProductsPage() {
         .jg-why-text-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 3px; }
         .jg-why-text-desc { font-size: 12px; color: #6a7a9a; line-height: 1.55; font-weight: 300; }
 
-        /* ── CTA BAR ── */
-        .prods-cta-bar {
-          background: linear-gradient(135deg, #1a1a2e 0%, #1e4fd8 100%);
-          margin: 0 48px 60px; border-radius: 16px;
-          padding: 40px 48px;
-          display: flex; align-items: center;
-          justify-content: space-between;
-          gap: 24px; flex-wrap: wrap;
-        }
         .prods-cta-text h3 { font-family: 'DM Serif Display', serif; font-size: 26px; color: white; margin-bottom: 6px; }
         .prods-cta-text p { font-size: 14px; color: rgba(255,255,255,0.7); }
         .prods-cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -512,7 +503,6 @@ export default function ProductsPage() {
           .ss-hero { padding: 40px 24px 36px; }
           .ss-intro { padding: 0 24px; }
           .ss-grid { padding: 32px 24px 40px; }
-          .prods-cta-bar { margin: 0 24px 48px; padding: 28px 24px; }
         }
         @media (max-width: 520px) {
           .jg-uses-grid { grid-template-columns: 1fr; }
@@ -533,14 +523,14 @@ export default function ProductsPage() {
         </div>
 
         {/* ── SESAME CARDS ── */}
-        <div className="ss-grid">
+        <div id="products" className="ss-grid">
           {PRODUCTS.map(p => <ProductCard key={p.id} product={p} />)}
         </div>
 
         {/* ══════════════════════════════════════
             JAGGERY SECTION
         ══════════════════════════════════════ */}
-        <div className="jg-section-wrapper">
+        <div id="jaggery" className="jg-section-wrapper">
 
           <div className="jg-section-header">
             <div className="jg-section-eyebrow">Aththanayaka Supermart</div>
@@ -637,21 +627,6 @@ export default function ProductsPage() {
             </div>
           </div>
         </div>
-
-        {/* ── CTA BAR ── */}
-        <div style={{ paddingTop: 60 }}>
-          <div className="prods-cta-bar">
-            <div className="prods-cta-text">
-              <h3>Need a bulk order or custom quote?</h3>
-              <p>Contact us directly — we handle wholesale, retail and special requirements.</p>
-            </div>
-            <div className="prods-cta-actions">
-              <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" className="prods-cta-wa">💬 WhatsApp Us</a>
-              <a href={`tel:${PHONE}`} className="prods-cta-call">📞 Call Now</a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </>
   );
