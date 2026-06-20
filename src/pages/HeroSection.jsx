@@ -11,17 +11,17 @@ import jaggery from "../../src/assets/jaggery.avif";
 const PRODUCTS = {
   en: [
     { image: blackwhitesesami, tag: "Black & White Sesame",  name: "Black & White Sesame Seeds",     desc: "A perfect blend of black and white sesame for a unique, rich taste." },
-    { image: blacksesami,      tag: "Black Sesame Seeds",    name: "Premium Black Sesame",            desc: "Rich in nutrients and bold flavor — a healthy daily essential." },
+    { image: blacksesami,      tag: "Black Sesame Seeds",    name: "Premium Black Sesame",            desc: "Rich in nutrients and bold flavor a healthy daily essential." },
     { image: whiteseasami,     tag: "White Sesame Seeds",    name: "White Sesame Seeds",              desc: "High-quality white sesame, rich in nutrients and delicate flavor." },
     { image: cleansesami,      tag: "Cleaned Sesame",        name: "Cleaned Black Sesame Seeds",      desc: "Carefully cleaned and sorted black sesame seeds, ready to use." },
-    { image: jaggery,          tag: "Organic Jaggery",       name: "Organic Jaggery",                 desc: "Unrefined jaggery made from fresh sugarcane juice — naturally sweet." },
+    { image: jaggery,          tag: "Organic Jaggery",       name: "Organic Jaggery",                 desc: "Unrefined jaggery made from fresh sugarcane juice naturally sweet." },
   ],
   si: [
     { image: blackwhitesesami, tag: "කළු සහ සුදු තල",       name: "කළු සහ සුදු තල ඇට",              desc: "අද්විතීය, පොහොසත් රසක් සඳහා කළු සහ සුදු තල වල පරිපූර්ණ මිශ්‍රණයකි." },
-    { image: blacksesami,      tag: "කළු තල ඇට",            name: "උසස් කළු තල",                    desc: "පෝෂ්‍ය පදාර්ථ හා ශක්තිමත් රසෙන් පිරුණු — දෛනික සෞඛ්‍ය අත්‍යවශ්‍යයකි." },
-    { image: whiteseasami,     tag: "සුදු තල ඇට",           name: "සුදු තල ඇට",                     desc: "ඉහළ ගුණාත්මක සුදු තල, පෝෂ්‍ය පදාර්ථ හා繊細 රසෙන් පිරුණු." },
-    { image: cleansesami,      tag: "පිරිසිදු කළ තල",       name: "පිරිසිදු කළ කළු තල ඇට",         desc: "ප්‍රවේශමෙන් පිරිසිදු කර වර්ග කළ කළු තල ඇට, භාවිතයට සූදානම්." },
-    { image: jaggery,          tag: "කාබනික හකුරු",         name: "කාබනික හකුරු",                   desc: "නැවුම් උක් යුෂ වලින් සාදන ලද නොපිරිසිදු හකුරු — ස්වාභාවිකව මිහිරිය." },
+    { image: blacksesami,      tag: "කළු තල ඇට",            name: "උසස් කළු තල",                    desc: "පෝෂ්‍ය පදාර්ථ හා ශක්තිමත් රසෙන් පිරුණු දෛනික සෞඛ්‍ය අත්‍යවශ්‍යයකි." },
+    { image: whiteseasami,     tag: "සුදු තල ඇට",           name: "සුදු තල ඇට",                     desc: "ඉහළ ගුණාත්මක සුදු තල, පෝෂ්‍ය පදාර්ථ සහ මෘදු රසයෙන් පිරුණු." },
+    { image: cleansesami,      tag: "පොත්ත ඉවත් කළ කළු තල",       name: "පොත්ත ඉවත් කළ කළු තල ඇට",         desc: "ප්‍රවේශමෙන් පිරිසිදු කර වර්ග කළ කළු තල ඇට, භාවිතයට සූදානම්." },
+    { image: jaggery,          tag: "කාබනික හකුරු",         name: "කාබනික හකුරු",                   desc: "නැවුම් උක් යුෂ වලින් සාදන ලද නොපිරිසිදු හකුරු ස්වාභාවිකව මිහිරිය." },
   ],
 };
 
@@ -39,8 +39,8 @@ const TICKER = {
   si: [
     ["🌾", "කළු තල ඇට",                 "අමු සහ පිරිසිදු"],
     ["⚪", "සුදු තල ඇට",                 "පීල් කළ සහ පිරිසිදු"],
-    ["✨", "පිරිසිදු කළ කළු තල",         "99.9% පිරිසිදුකම"],
-    ["🍯", "කාබනික හකුරු",              "කුට්ටි සහ ධාන්‍ය"],
+    ["✨", "පොත්ත ඉවත් කළ කළු තල",         "99.9% පිරිසිදුකම"],
+    ["🍯", "කාබනික හකුරු",              "කුට්ටි"],
     ["📦", "සිල්ලර ඇණවුම්",            "කි.ග්‍රෑ. 5 සිට"],
     ["🚚", "තොග ඇණවුම්",                "කි.ග්‍රෑ. 50 සිට"],
     ["🌿", "100% ස්වාභාවික",            "රසායනික නොමැත"],
@@ -49,12 +49,12 @@ const TICKER = {
 };
 
 const T = {
-  eyebrow:   { en: "Sri Lanka's Trusted Supermart",   si: "ශ්‍රී ලංකාවේ විශ්වාසනීය සුපිරි වෙළඳසැල" },
+  eyebrow:   { en: "Sri Lanka's Trusted Sesame Product Supermart",   si: "ශ්‍රී ලංකාවේ විශ්වාසනීයම තල අමුද්‍රව්‍ය වෙළඳසැල" },
   title1:    { en: "Everything You Need,",             si: "ඔබට අවශ්‍ය සෑම දෙයක්ම," },
   title2:    { en: "All in One Place.",                si: "එකම තැනකින්." },
   desc:      {
     en: "Premium sesame ingredients, raw materials, and production essentials sourced with quality and care. We provide everything you need for sesame-based food production, from carefully selected ingredients to trusted supplies, ensuring freshness, consistency, and excellence in every product.",
-    si: "උසස් තල අමුද්‍රව්‍ය, සහ නිෂ්පාදන අත්‍යවශ්‍ය ද්‍රව්‍ය ගුණාත්මකභාවය සහ සැලකිල්ලෙන් සපයනු ලැබේ. තල පදනම් ආහාර නිෂ්පාදනය සඳහා ඔබට අවශ්‍ය සෑම දෙයක්ම අපි සපයන්නෙමු.",
+    si: "උසස් තත්ත්වයේ තල, හකුරු, මූලික ද්‍රව්‍ය සහ නිෂ්පාදන අවශ්‍යතා ගුණාත්මකභාවය සහ සැලකිල්ල සමඟ ලබාදෙයි. තල ආශ්‍රිත ආහාර නිෂ්පාදනය සඳහා ඔබට අවශ්‍ය සියල්ල තෝරාගත් අමුද්‍රව්‍ය සහ විශ්වාසනීය සැපයුම් සමඟ සෑම නිෂ්පාදනයකම නැවුම් බව, ස්ථාවරත්වය සහ විශිෂ්ටත්වය අප විසින් සහතික කරයි.",
   },
   shopNow:   { en: "Shop Now →",   si: "දැන් බලන්න →" },
   viewOffers:{ en: "View Offers",  si: "දීමනා බලන්න" },
@@ -64,11 +64,11 @@ const T = {
   stat2lbl:  { en: "Years Trusted",si: "විශ්වාසනීය වසර" },
   stat3num:  { en: "99%",          si: "99%" },
   stat3lbl:  { en: "Happy Customers", si: "සතුටු පාරිභෝගිකයන්" },
-  dealLabel: { en: "Today's Deal", si: "අදේ දීමනාව" },
+  dealLabel: { en: "Today's Deal", si: "අද දීමනාව" },
   dealVal:   { en: "Up to 40%",    si: "40% දක්වා" },
   dealSub:   { en: "on fresh produce", si: "නැවුම් නිෂ්පාදන සඳහා" },
-  revLabel:  { en: "4.9 · 2,400+ reviews", si: "4.9 · සමාලෝචන 2,400+" },
-  revSub:    { en: "Free delivery Rs. 2000+", si: "රු. 2000+ නොමිලේ ගෙදර බෙදාහැරීම" },
+  revLabel:  { en: "4.9 · 2,400+ reviews", si: "4.9 ·  2,400+" },
+  revSub:    { en: "Free delivery Rs. 200000+", si: "රු. 200000+ නොමිලේ බෙදාහැරීම" },
   live:      { en: "Live",         si: "සජීවී" },
 };
 
