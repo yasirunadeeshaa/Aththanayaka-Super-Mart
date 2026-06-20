@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { FaWhatsapp } from "react-icons/fa";
 
-const WHATSAPP = "94XXXXXXXXX";
-const PHONE = "+94 XX XXX XXXX";
+const WHATSAPP = "0762873746";
+const PHONE = "+94 78 686 9743";
 
 const HOW_IT_WORKS = [
   { step: "01", title: "Contact Us", desc: "Call or WhatsApp us with the product name, quantity needed, and your delivery preference." },
@@ -32,7 +33,7 @@ export default function WholesalePage() {
 
         .ws-root {
           font-family: 'DM Sans', sans-serif;
-          background: #f7f9ff; min-height: 100vh; padding-top: 105px;
+          background: #f7f9ff; min-height: 100vh; padding-top: 5px;
         }
 
         .ws-hero {
@@ -64,13 +65,16 @@ export default function WholesalePage() {
         .ws-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
         .ws-btn-wa {
           padding: 13px 28px; background: #25D366; color: white;
-          font-weight: 600; font-size: 14px; border-radius: 8px; text-decoration: none;
+          font-weight: 600; font-size:16px; border-radius: 8px; text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
         }
         .ws-btn-wa:hover { background: #1ebe5d; }
         .ws-btn-call {
           padding: 13px 28px; border: 1.5px solid rgba(255,255,255,0.3);
           background: transparent; color: white;
-          font-weight: 600; font-size: 14px; border-radius: 8px; text-decoration: none;
+          font-weight: 600; font-size: 16px; border-radius: 8px; text-decoration: none;
         }
         .ws-btn-call:hover { background: rgba(255,255,255,0.1); }
 
@@ -120,76 +124,30 @@ export default function WholesalePage() {
           font-size: 18px; color: #1a1a2e; margin-bottom: 10px;
         }
         .ws-step-desc { font-size: 13.5px; color: #5a6a8a; line-height: 1.7; font-weight: 300; }
-
-        .ws-products {
-          background: white; padding: 64px 48px;
-          border-top: 1px solid #e8eef8;
-        }
-        .ws-products-inner { max-width: 1100px; margin: 0 auto; }
-        .ws-table {
-          width: 100%; border-collapse: collapse; margin-top: 32px;
-        }
-        .ws-table th {
-          text-align: left; padding: 12px 20px;
-          font-size: 11px; font-weight: 700; letter-spacing: 2px;
-          text-transform: uppercase; color: #8a9abf;
-          background: #f7f9ff; border-bottom: 2px solid #e8eef8;
-        }
-        .ws-table td {
-          padding: 16px 20px; border-bottom: 1px solid #f0f4ff;
-          font-size: 14px; color: #3a4a6a;
-        }
-        .ws-table tr:last-child td { border-bottom: none; }
-        .ws-table tr:hover td { background: #f7f9ff; }
-        .ws-table td:first-child { font-weight: 500; color: #1a1a2e; }
-        .ws-min-qty {
-          display: inline-block; background: #e8eeff; color: #1e4fd8;
-          font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
-        }
-
-        .ws-note {
-          background: #fff8e6; border-left: 4px solid #f5a623;
-          border-radius: 10px; padding: 16px 20px; margin-top: 24px;
-          font-size: 13.5px; color: #7a5500; line-height: 1.6;
-        }
-
-        .ws-cta {
-          max-width: 700px; margin: 60px auto; padding: 0 48px; text-align: center;
-        }
-        .ws-cta h3 {
-          font-family: 'DM Serif Display', serif;
-          font-size: 34px; color: #1a1a2e; margin-bottom: 14px;
-        }
-        .ws-cta p { font-size: 15px; color: #5a6a8a; margin-bottom: 28px; line-height: 1.8; }
-        .ws-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .ws-cta-wa {
-          padding: 14px 32px; background: #25D366; color: white;
-          font-weight: 600; font-size: 14px; border-radius: 8px; text-decoration: none;
-        }
-        .ws-cta-wa:hover { background: #1ebe5d; }
-        .ws-cta-call {
-          padding: 14px 32px; border: 2px solid #c2d0fa;
-          background: transparent; color: #1e4fd8;
-          font-weight: 600; font-size: 14px; border-radius: 8px; text-decoration: none;
-        }
-        .ws-cta-call:hover { background: #e8eeff; }
-
         @media (max-width: 900px) {
           .ws-hero { grid-template-columns: 1fr; padding: 48px 24px 44px; }
           .ws-how { padding: 48px 24px; }
-          .ws-products { padding: 48px 24px; }
           .ws-cta { padding: 0 24px; margin: 48px auto; }
         }
       `}</style>
 
-      <div className="ws-root">
+      <div id="wholesale" className="ws-root">
         <div className="ws-hero">
           <div className="ws-hero-left">
             <div className="ws-hero-eyebrow">Wholesale Ordering</div>
             <h1 className="ws-hero-title">Buy in Bulk,<br /><em>Save More</em></h1>
             <p className="ws-hero-sub">We supply sesame seeds, jaggery, and packaging materials in wholesale quantities to manufacturers, retailers and businesses across Sri Lanka.</p>
             <div className="ws-hero-btns">
-              <a href={`https://wa.me/${WHATSAPP}?text=${waMsg}`} target="_blank" rel="noreferrer" className="ws-btn-wa">💬 WhatsApp for Quote</a>
+              {/* <a href={`https://wa.me/${WHATSAPP}?text=${waMsg}`} target="_blank" rel="noreferrer" className="ws-btn-wa">💬 WhatsApp for Quote</a> */}
+              <a
+                href={`https://wa.me/${WHATSAPP}?text=${waMsg}`}
+                target="_blank"
+                rel="noreferrer"
+                className="ws-btn-wa"
+              >
+                <FaWhatsapp size={26}/>
+                <span>WhatsApp for Quote</span>
+              </a>
               <a href={`tel:${PHONE}`} className="ws-btn-call">📞 Call Us</a>
             </div>
           </div>
@@ -225,53 +183,6 @@ export default function WholesalePage() {
                 <p className="ws-step-desc">{s.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-
-        <div className="ws-products">
-          <div className="ws-products-inner">
-            <div className="ws-section-label">Products</div>
-            <h2 className="ws-section-title">Minimum Wholesale Quantities</h2>
-            <table className="ws-table">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Min. Order Qty</th>
-                  <th>Unit</th>
-                  <th>Inquiry</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PRODUCTS_LIST.map(p => {
-                  const waMsg2 = encodeURIComponent(`Hi! I'd like to order *${p.name}* (wholesale). Minimum ${p.min}. Please advise on pricing.`);
-                  return (
-                    <tr key={p.name}>
-                      <td>{p.name}</td>
-                      <td><span className="ws-min-qty">{p.min}</span></td>
-                      <td>{p.unit}</td>
-                      <td>
-                        <a href={`https://wa.me/${WHATSAPP}?text=${waMsg2}`} target="_blank" rel="noreferrer"
-                          style={{ color: "#25D366", fontWeight: 600, fontSize: 13, textDecoration: "none" }}>
-                          💬 Inquire
-                        </a>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            <div className="ws-note">
-              ⚠️ <strong>Note:</strong> Minimum quantities are guidelines. Contact us — we're flexible for regular customers and can discuss custom arrangements based on your needs.
-            </div>
-          </div>
-        </div>
-
-        <div className="ws-cta">
-          <h3>Start Your Wholesale Inquiry</h3>
-          <p>Tell us what you need and how much. We'll get back to you quickly with pricing and availability.</p>
-          <div className="ws-cta-btns">
-            <a href={`https://wa.me/${WHATSAPP}?text=${waMsg}`} target="_blank" rel="noreferrer" className="ws-cta-wa">💬 WhatsApp Us</a>
-            <a href={`tel:${PHONE}`} className="ws-cta-call">📞 Call Now</a>
           </div>
         </div>
       </div>
