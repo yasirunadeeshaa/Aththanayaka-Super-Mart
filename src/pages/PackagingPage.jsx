@@ -393,7 +393,7 @@ export default function PackagingPage() {
         }
       `}</style>
 
-      <div className="pkg-root">
+      <div id="packaging" className="pkg-root">
 
         {/* ── HERO ── */}
         <div className="pkg-hero">
