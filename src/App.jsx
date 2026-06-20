@@ -11,6 +11,8 @@ import Wholesale from './pages/WholesalePage'
 import SesameRecipes from './pages/SesameRecipes'
 import ProductDetails from './pages/ShopPage'
 
+import WhatsAppButton from './components/WhatsAppButton'
+
 export default function App() {
   const [page, setPage] = useState('home')
 
@@ -20,6 +22,7 @@ export default function App() {
         <Navbar />
         <ProductDetails onBack={() => setPage('home')} />
         <Footer />
+        <WhatsAppButton phone="94771234567" message="Hi! I'd like to ask about your sesame seeds and jaggery." />
       </>
     )
   }
@@ -31,10 +34,11 @@ export default function App() {
       <Products />
       <SesameRecipes />
       <Packaging />
-      <AboutUs />
-      <Delivary />
       <Wholesale />
+      <Delivary />
+      <AboutUs />
       <Footer />
+      <WhatsAppButton phone="94771234567" message="Hi! I'd like to ask about your sesame seeds and jaggery." />
     </>
   )
 }
