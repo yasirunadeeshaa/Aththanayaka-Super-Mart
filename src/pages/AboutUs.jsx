@@ -81,7 +81,7 @@ export default function AboutPage() {
         }
       `}</style>
 
-      <div className="ab-root">
+      <div className="ab-root" id="about">
 
         {/* HERO */}
         <div className="ab-hero">
