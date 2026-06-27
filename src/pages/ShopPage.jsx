@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { FaWhatsapp} from "react-icons/fa";
 
 /* ─── IMAGE IMPORTS ─── */
 // Sesame
@@ -15,8 +16,9 @@ import papersImg        from "../../src/assets/pati.webp";
 import heroBg           from "../../src/assets/back.png";
 
 /* ─── WHATSAPP / PHONE ─── */
-const WHATSAPP = "94XXXXXXXXX";
-const PHONE = "+94 XX XXX XXXX";
+const WHATSAPP = "94726969743";
+const PHONE = "+94 78 686 9743";
+const LANDLINE = "+94 34 225 6054";
 
 /* ─── PRODUCT DATA ─── */
 const CATEGORIES = [
@@ -911,6 +913,7 @@ export default function ShopPage({ onBack }) {
           padding: 14px 32px; background: #25D366; color: #fff;
           font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px;
           border-radius: 10px; text-decoration: none; transition: background 0.2s;
+          width: 250px; display: inline-flex; align-items: center; gap: 8px; justify-content: center;
         }
         .shop-cta-wa:hover { background: #1ebe5d; }
         .shop-cta-call {
@@ -1005,12 +1008,12 @@ export default function ShopPage({ onBack }) {
             justifyContent: "center", marginBottom: "40px"
         }}>
             {[
-            "🌿 Sun-Dried & Natural",
-            "🔬 Batch Lab Tested",
-            "📦 Retail to Wholesale",
+            "Sun-Dried & Natural",
+            "Batch Lab Tested",
+            "Retail to Wholesale",
             "🇱🇰 Sourced from Sri Lanka",
-            "✅ No Additives",
-            "🚚 Island-wide Supply",
+            "No Additives",
+            "Island-wide Supply",
             ].map(pill => (
             <span key={pill} style={{
                 background: "rgba(255,255,255,0.10)",
@@ -1101,9 +1104,10 @@ export default function ShopPage({ onBack }) {
             <p>We supply retail to wholesale. Contact us directly for quotes, samples, and custom requirements.</p>
           </div>
           <div className="shop-cta-actions">
-            <a href={`https://wa.me/${WHATSAPP}?text=${waGeneral}`} target="_blank" rel="noreferrer" className="shop-cta-wa">
+            {/* <a href={`https://wa.me/${WHATSAPP}?text=${waGeneral}`} target="_blank" rel="noreferrer" className="shop-cta-wa">
               💬 WhatsApp Us
-            </a>
+            </a> */}
+            <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi! I'd like to arrange *delivery* for my order. Can you help?")}`} target="_blank" rel="noreferrer" className="shop-cta-wa"><FaWhatsapp size={20} /> Arrange Delivery</a>
             <a href={`tel:${PHONE}`} className="shop-cta-call">
               📞 Call Now
             </a>

@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom";
+import {
+  FiCalendar,
+  FiUsers,
+  FiMapPin,
+} from "react-icons/fi";
+import { GiWheat } from "react-icons/gi";
+import {
+  MdOutlineVerified,
+  MdOutlineHandshake,
+  MdLocalShipping,
+  MdOutlinePayments,
+} from "react-icons/md";
 
 const STATS = [
-  { icon: "ti-calendar", num: "30", suffix: "+", label: "Years in Business" },
-  { icon: "ti-users",    num: "100", suffix: "+", label: "Regular Customers"   },
-  { icon: "ti-leaf",     num: "4",  suffix: "",  label: "Sesame Varieties"  },
-  { icon: "ti-map-pin",  num: "100",suffix: "%", label: "Sri Lankan Sourced"},
+  { Icon: FiCalendar, num: "30", suffix: "+", label: "Years in Business" },
+  { Icon: FiUsers,    num: "100", suffix: "+", label: "Regular Customers" },
+  { Icon: GiWheat,    num: "4",  suffix: "",  label: "Sesame Varieties" },
+  { Icon: FiMapPin,   num: "100",suffix: "%", label: "Sri Lankan Sourced" },
 ];
 
 const FACTS = [
-  { emoji: "🌾", label: "Speciality",           val: "Sesame Seeds & Production Supplies" },
-  { emoji: "✅", label: "Quality First",         val: "Every batch carefully sourced & checked. No compromise on product quality." },
-  { emoji: "🤝", label: "Trusted Relationships", val: "Long-term partnerships with manufacturers across Sri Lanka." },
-  { emoji: "🚚", label: "Reliable Supply",       val: "Consistent stock so your production never stops." },
-  { emoji: "💰", label: "Fair Pricing",          val: "Transparent, competitive pricing. No hidden charges, no surprises." },
+  { Icon: GiWheat,            label: "Speciality",           val: "Sesame Seeds & Production Supplies" },
+  { Icon: MdOutlineVerified,  label: "Quality First",         val: "Every batch carefully sourced & checked. No compromise on product quality." },
+  { Icon: MdOutlineHandshake, label: "Trusted Relationships", val: "Long-term partnerships with manufacturers across Sri Lanka." },
+  { Icon: MdLocalShipping,    label: "Reliable Supply",       val: "Consistent stock so your production never stops." },
+  { Icon: MdOutlinePayments,  label: "Fair Pricing",          val: "Transparent, competitive pricing. No hidden charges, no surprises." },
 ];
 
 export default function AboutPage() {
@@ -20,7 +32,6 @@ export default function AboutPage() {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
-        @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -40,7 +51,7 @@ export default function AboutPage() {
         .ab-stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #3a6bc4, #6b9df5); }
         .ab-stat-card:hover { box-shadow: 0 10px 32px rgba(58,107,196,0.13); transform: translateY(-3px); }
         .ab-stat-icon { width: 38px; height: 38px; border-radius: 10px; background: #eef2fb; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
-        .ab-stat-icon i { font-size: 18px; color: #3a6bc4; }
+        .ab-stat-icon svg { font-size: 18px; color: #3a6bc4; }
         .ab-stat-num { font-family: 'DM Serif Display', serif; font-size: 42px; font-weight: 400; color: #1a2035; line-height: 1; margin-bottom: 6px; }
         .ab-stat-num span { color: #3a6bc4; }
         .ab-stat-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #8a9ac0; }
@@ -61,7 +72,7 @@ export default function AboutPage() {
         .ab-facts-panel-body { padding: 8px 24px 16px; }
         .ab-facts-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f3fa; }
         .ab-facts-row:last-child { border-bottom: none; }
-        .ab-facts-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+        .ab-facts-icon { font-size: 18px; color: #3a6bc4; flex-shrink: 0; margin-top: 2px; }
         .ab-facts-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #8a9ac0; margin-bottom: 3px; }
         .ab-facts-val { font-size: 13.5px; color: #2952a3; font-weight: 600; }
         /* RESPONSIVE */
@@ -95,7 +106,7 @@ export default function AboutPage() {
           <div className="ab-stats-inner">
             {STATS.map(s => (
               <div className="ab-stat-card" key={s.label}>
-                <div className="ab-stat-icon"><i className={`ti ${s.icon}`} aria-hidden="true" /></div>
+                <div className="ab-stat-icon"><s.Icon aria-hidden="true" /></div>
                 <div className="ab-stat-num"><span>{s.num}</span>{s.suffix}</div>
                 <div className="ab-stat-label">{s.label}</div>
               </div>
@@ -123,7 +134,7 @@ export default function AboutPage() {
             <div className="ab-facts-panel-body">
               {FACTS.map(f => (
                 <div className="ab-facts-row" key={f.label}>
-                  <div className="ab-facts-emoji">{f.emoji}</div>
+                  <div className="ab-facts-icon"><f.Icon aria-hidden="true" /></div>
                   <div>
                     <div className="ab-facts-label">{f.label}</div>
                     <div className="ab-facts-val">{f.val}</div>

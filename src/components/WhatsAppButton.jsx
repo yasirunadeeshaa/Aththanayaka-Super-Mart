@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
+function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
+}
 export default function WhatsAppButton({
-  phone = "94770000000",       // country code + number, no + or spaces
-  message = "Hi! I'd like to ask about your sesame seeds and jaggery.",
+  phone = "94726969743",       // country code + number, no + or spaces
+  message = `Hi! ${getGreeting()}. I'd like to ask about your sesame seeds and jaggery.`,
 }) {
   const [visible, setVisible] = useState(false);
 
@@ -14,7 +20,7 @@ export default function WhatsAppButton({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  const href = `https://wa.me/94726969743?text=${encodeURIComponent(message)}`;
 
   return (
     <>

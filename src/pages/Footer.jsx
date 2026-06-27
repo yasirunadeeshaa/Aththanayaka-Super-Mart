@@ -665,11 +665,11 @@ export default function Footer() {
               </div>
               <div className="ft-contact-row">
                 <div className="ft-contact-icon"><i className="ti ti-phone" /></div>
-                <div className="ft-contact-val"><a href="tel:+94770000000">+94 77 000 0000</a></div>
+                <div className="ft-contact-val"><a href="tel:+94786869743">+94 78 686 9743</a></div>
               </div>
               <div className="ft-contact-row">
                 <div className="ft-contact-icon"><i className="ti ti-mail" /></div>
-                <div className="ft-contact-val"><a href="mailto:hello@aththanayaka.lk">hello@aththanayaka.lk</a></div>
+                <div className="ft-contact-val"><a href="mailto:aththanayakasupermart@gmail.com">aththanayakasupermart@gmail.com</a></div>
               </div>
               <div className="ft-contact-row">
                 <div className="ft-contact-icon"><i className="ti ti-clock" /></div>

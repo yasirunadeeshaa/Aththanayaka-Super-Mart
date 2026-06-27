@@ -64,10 +64,12 @@ const T = {
   stat2lbl:  { en: "Years Trusted",si: "විශ්වාසනීය වසර" },
   stat3num:  { en: "99%",          si: "99%" },
   stat3lbl:  { en: "Happy Customers", si: "සතුටු පාරිභෝගිකයන්" },
-  dealLabel: { en: "Today's Deal", si: "අද දීමනාව" },
-  dealVal:   { en: "Up to 40%",    si: "40% දක්වා" },
-  dealSub:   { en: "on fresh produce", si: "නැවුම් නිෂ්පාදන සඳහා" },
-  revLabel:  { en: "4.9 · 2,400+ reviews", si: "4.9 ·  2,400+" },
+  qualityLabel:  { en: "Purity Guaranteed",   si: "පිරිසිදුකම සහතිකයි" },
+  qualityVal:    { en: "99.9%",               si: "99.9%" },
+  qualitySub:    { en: "High quality Production",  si: "උසස් ගුණාත්මක නිෂ්පාදනය" },
+  deliveryLabel: { en: "Island-Wide Delivery", si: "දිවයින පුරා බෙදාහැරීම" },
+  deliveryVal:   { en: "PickMe & Speed Post",  si: "PickMe & Speed Post" },
+  revSub:        { en: "Free delivery Rs. 200000+", si: "රු. 200000+ නොමිලේ බෙදාහැරීම" },
   revSub:    { en: "Free delivery Rs. 200000+", si: "රු. 200000+ නොමිලේ බෙදාහැරීම" },
   live:      { en: "Live",         si: "සජීවී" },
 };
@@ -286,6 +288,8 @@ export default function Hero({ onShopNow }) {
           box-shadow:0 4px 20px rgba(30,79,216,0.1),0 1px 4px rgba(0,0,0,0.05); z-index:4; }
         .h-float-a { top:-16px; right:-28px; animation:hfloatA 4s ease-in-out infinite; }
         .h-float-b { bottom:5px; left:-84px; animation:hfloatB 5s ease-in-out infinite; }
+        .h-float-c { bottom:-30px; right:-28px; animation:hfloatC 4.5s ease-in-out infinite; }
+        @keyframes hfloatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
         @keyframes hfloatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
         @keyframes hfloatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
         .h-fl-label { font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#9aaac8; margin-bottom:3px; }
@@ -413,9 +417,9 @@ export default function Hero({ onShopNow }) {
             <ProductCard lang={lang} />
 
             <div className="h-float h-float-a">
-              <div className="h-fl-label">{t("dealLabel", lang)}</div>
-              <div className="h-fl-val">{t("dealVal", lang)}</div>
-              <div className="h-fl-sub">{t("dealSub", lang)}</div>
+              <div className="h-fl-label">{t("qualityLabel", lang)}</div>
+              <div className="h-fl-val">{t("qualityVal", lang)}</div>
+              <div className="h-fl-sub">{t("qualitySub", lang)}</div>
             </div>
 
             <div className="h-float h-float-b">
@@ -423,6 +427,12 @@ export default function Hero({ onShopNow }) {
               <div className="h-fl-label">{t("revLabel", lang)}</div>
               <div className="h-fl-sub-sm">{t("revSub", lang)}</div>
             </div>
+
+            <div className="h-float h-float-c">
+              <div className="h-fl-label">{t("deliveryLabel", lang)}</div>
+              <div className="h-fl-val">{t("deliveryVal", lang)}</div>
+            </div>
+
           </div>
         </div>
 

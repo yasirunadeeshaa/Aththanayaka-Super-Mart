@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
+import { MdOutlinePayments, MdOutlineInventory2, MdLocalShipping, MdOutlineAutorenew } from "react-icons/md";
 
-const WHATSAPP = "0762873746";
+const WHATSAPP = "94726969743";
 const PHONE = "+94 78 686 9743";
 
 const HOW_IT_WORKS = [
@@ -9,6 +10,13 @@ const HOW_IT_WORKS = [
   { step: "02", title: "Get a Quote", desc: "We'll confirm stock availability and share wholesale pricing based on your order quantity." },
   { step: "03", title: "Confirm Order", desc: "Agree on price and delivery date. Advance payment or COD options available." },
   { step: "04", title: "Receive Your Order", desc: "We deliver to your location or you collect from our shop — whichever suits you best." },
+];
+
+const BENEFITS = [
+  { Icon: MdOutlinePayments,   title: "Better Pricing",        desc: "Wholesale rates significantly lower than retail for qualifying quantities." },
+  { Icon: MdOutlineInventory2, title: "Bulk Stock Available",   desc: "Large quantities ready for immediate dispatch or scheduled delivery." },
+  { Icon: MdLocalShipping,     title: "Delivery Available",     desc: "We deliver large orders to your location anywhere in Sri Lanka." },
+  { Icon: MdOutlineAutorenew,  title: "Repeat Orders",          desc: "Regular customers get priority service and consistent supply." },
 ];
 
 const PRODUCTS_LIST = [
@@ -92,7 +100,13 @@ export default function WholesalePage() {
           padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         .ws-benefit:last-child { border-bottom: none; }
-        .ws-benefit-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+        .ws-benefit-icon {
+          width: 38px; height: 38px; border-radius: 10px;
+          background: rgba(255,255,255,0.08);
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+        }
+        .ws-benefit-icon svg { font-size: 18px; color: #7aa3ff; }
         .ws-benefit-title { font-size: 14px; font-weight: 600; color: white; margin-bottom: 3px; }
         .ws-benefit-desc { font-size: 12.5px; color: rgba(255,255,255,0.6); line-height: 1.6; }
 
@@ -138,7 +152,6 @@ export default function WholesalePage() {
             <h1 className="ws-hero-title">Buy in Bulk,<br /><em>Save More</em></h1>
             <p className="ws-hero-sub">We supply sesame seeds, jaggery, and packaging materials in wholesale quantities to manufacturers, retailers and businesses across Sri Lanka.</p>
             <div className="ws-hero-btns">
-              {/* <a href={`https://wa.me/${WHATSAPP}?text=${waMsg}`} target="_blank" rel="noreferrer" className="ws-btn-wa">💬 WhatsApp for Quote</a> */}
               <a
                 href={`https://wa.me/${WHATSAPP}?text=${waMsg}`}
                 target="_blank"
@@ -154,14 +167,9 @@ export default function WholesalePage() {
           <div className="ws-hero-right">
             <div className="ws-hero-card">
               <div className="ws-hero-card-title">Wholesale Benefits</div>
-              {[
-                { icon: "💰", title: "Better Pricing", desc: "Wholesale rates significantly lower than retail for qualifying quantities." },
-                { icon: "📦", title: "Bulk Stock Available", desc: "Large quantities ready for immediate dispatch or scheduled delivery." },
-                { icon: "🚚", title: "Delivery Available", desc: "We deliver large orders to your location anywhere in Sri Lanka." },
-                { icon: "🔄", title: "Repeat Orders", desc: "Regular customers get priority service and consistent supply." },
-              ].map(b => (
+              {BENEFITS.map(b => (
                 <div key={b.title} className="ws-benefit">
-                  <span className="ws-benefit-icon">{b.icon}</span>
+                  <span className="ws-benefit-icon"><b.Icon aria-hidden="true" /></span>
                   <div>
                     <div className="ws-benefit-title">{b.title}</div>
                     <div className="ws-benefit-desc">{b.desc}</div>

@@ -7,7 +7,6 @@ import {
   FiDollarSign,
   FiCalendar,
   FiPackage,
-  FiMessageCircle,
   FiPhone,
   FiPhoneCall,
   FiShoppingBag,
@@ -15,7 +14,7 @@ import {
   FiCreditCard,
   FiNavigation,
 } from "react-icons/fi";
-import { FaWhatsapp, FaMapMarkerAlt, } from "react-icons/fa";
+import { FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -25,8 +24,9 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function DeliveryPage() {
-  const WHATSAPP = "94XXXXXXXXX";
-  const PHONE = "+94 XX XXX XXXX";
+  const WHATSAPP = "94726969743";
+  const PHONE = "+94 78 686 9743";
+  const LANDLINE = "+94 34 225 6054";
   const ADDRESS = "No 48, Horana Road Handapangoda, Sri Lanka";
   const MAPS_URL = "https://maps.app.goo.gl/EeovDF4ANUDnX9gz8";
   const LAT = 6.7902992;
@@ -76,7 +76,7 @@ export default function DeliveryPage() {
         .dv-option:first-child { border-radius: 16px 0 0 16px; border-right: none; }
         .dv-option:last-child { border-radius: 0 16px 16px 0; background: #1a1a2e; border-color: #1a1a2e; }
 
-        /* ── Option Header Icons (Truck / Shop) ── */
+        /* Option Header Icons (Truck / Shop) */
         .dv-option-icon-wrap {
           width: 60px;
           height: 60px;
@@ -86,11 +86,7 @@ export default function DeliveryPage() {
           border-radius: 16px;
           margin-bottom: 24px;
           transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .dv-option-icon-wrap svg {
-          width: 26px;
-          height: 26px;
-          stroke-width: 1.75;
+          flex-shrink: 0;
         }
         .dv-option:first-child .dv-option-icon-wrap {
           background: linear-gradient(135deg, #eef2fd 0%, #dfe7fb 100%);
@@ -128,7 +124,7 @@ export default function DeliveryPage() {
         .dv-option:first-child .dv-detail { background: #f7f9ff; }
         .dv-option:last-child .dv-detail { background: rgba(255,255,255,0.06); }
 
-        /* ── Detail Row Icons ── */
+        /* Detail Row Icons */
         .dv-detail-icon-wrap {
           width: 34px;
           height: 34px;
@@ -138,11 +134,6 @@ export default function DeliveryPage() {
           justify-content: center;
           flex-shrink: 0;
           transition: transform 0.2s ease;
-        }
-        .dv-detail-icon-wrap svg {
-          width: 16px;
-          height: 16px;
-          stroke-width: 2;
         }
         .dv-option:first-child .dv-detail-icon-wrap {
           background: #ffffff;
@@ -168,18 +159,10 @@ export default function DeliveryPage() {
         .dv-option:first-child .dv-detail-val { color: #1a1a2e; }
         .dv-option:last-child .dv-detail-val { color: white; }
 
-        /* ── Button Icons ── */
+        /* Button Icons */
         .dv-btn-wa, .dv-btn-call, .dv-btn-map,
         .dv-map-btn-primary, .dv-map-btn-secondary {
           gap: 9px;
-        }
-        .dv-btn-wa svg, .dv-btn-call svg, .dv-btn-map svg,
-        .dv-map-btn-primary svg, .dv-map-btn-secondary svg {
-          width: 26px;
-          height: 26px;
-          flex-shrink: 0;
-          stroke-width: 2;
-          transition: transform 0.2s ease;
         }
         .dv-btn-map:hover svg,
         .dv-map-btn-primary:hover svg {
@@ -191,6 +174,11 @@ export default function DeliveryPage() {
         }
         .dv-btn-call:hover svg {
           transform: rotate(12deg);
+        }
+        .dv-btn-wa svg, .dv-btn-call svg, .dv-btn-map svg,
+        .dv-map-btn-primary svg, .dv-map-btn-secondary svg {
+          transition: transform 0.2s ease;
+          flex-shrink: 0;
         }
 
         .dv-btn-wa {
@@ -245,7 +233,7 @@ export default function DeliveryPage() {
         .dv-schedule-time { color: #1a1a2e; font-weight: 600; }
         .dv-schedule-closed { color: #e74c3c; font-weight: 500; }
 
-        /* ── Elegant Map Section ── */
+        /* Elegant Map Section */
         .dv-map-section {
           max-width: 1100px;
           margin: 40px auto 60px;
@@ -309,7 +297,7 @@ export default function DeliveryPage() {
         }
         .dv-map-row:last-child { border-bottom: none; }
 
-        /* ── Map Row Icons ── */
+        /* Map Row Icons */
         .dv-map-row-icon {
           width: 36px;
           height: 36px;
@@ -321,13 +309,8 @@ export default function DeliveryPage() {
           margin-top: 1px;
           background: linear-gradient(135deg, #eef2fd 0%, #e0e9fc 100%);
           box-shadow: 0 3px 10px rgba(30, 79, 216, 0.12);
-          transition: transform 0.2s ease;
-        }
-        .dv-map-row-icon svg {
-          width: 16px;
-          height: 16px;
           color: #1e4fd8;
-          stroke-width: 2;
+          transition: transform 0.2s ease;
         }
         .dv-map-row:hover .dv-map-row-icon {
           transform: scale(1.1) rotate(-3deg);
@@ -419,15 +402,15 @@ export default function DeliveryPage() {
 
         <div className="dv-options">
           <div className="dv-option">
-            <span className="dv-option-icon-wrap"><FiTruck /></span>
+            <span className="dv-option-icon-wrap"><FiTruck size={26} strokeWidth={1.75} /></span>
             <div className="dv-option-title">Home Delivery</div>
             <p className="dv-option-desc">We deliver sesame seeds, jaggery and packaging supplies directly to your location. Call or WhatsApp us to arrange delivery after confirming your order.</p>
             <div className="dv-details">
               {[
-                { icon: <FiMapPin />, label: "Coverage", val: "Available — contact us to confirm your area" },
-                { icon: <FiDollarSign />, label: "Delivery Charges", val: "Discussed based on location & order size" },
-                { icon: <FiCalendar />, label: "Delivery Time", val: "Agreed upon order confirmation" },
-                { icon: <FiPackage />, label: "Order Minimum", val: "No strict minimum — contact us" },
+                { icon: <FiMapPin size={16} strokeWidth={2} />, label: "Coverage", val: "Available — contact us to confirm your area" },
+                { icon: <FiDollarSign size={16} strokeWidth={2} />, label: "Delivery Charges", val: "Discussed based on location & order size" },
+                { icon: <FiCalendar size={16} strokeWidth={2} />, label: "Delivery Time", val: "Agreed upon order confirmation" },
+                { icon: <FiPackage size={16} strokeWidth={2} />, label: "Order Minimum", val: "No strict minimum — contact us" },
               ].map(d => (
                 <div key={d.label} className="dv-detail">
                   <span className="dv-detail-icon-wrap">{d.icon}</span>
@@ -438,20 +421,20 @@ export default function DeliveryPage() {
                 </div>
               ))}
             </div>
-            <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi! I'd like to arrange *delivery* for my order. Can you help?")}`} target="_blank" rel="noreferrer" className="dv-btn-wa"><FaWhatsapp size={50} /> Arrange Delivery</a>
-            <a href={`tel:${PHONE}`} className="dv-btn-call"><FiPhone /> Call</a>
+            <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi! I'd like to arrange *delivery* for my order. Can you help?")}`} target="_blank" rel="noreferrer" className="dv-btn-wa"><FaWhatsapp size={20} /> Arrange Delivery</a>
+            <a href={`tel:${PHONE}`} className="dv-btn-call"><FiPhone size={18} strokeWidth={2} /> Call</a>
           </div>
 
           <div className="dv-option">
-            <span className="dv-option-icon-wrap"><FiShoppingBag /></span>
+            <span className="dv-option-icon-wrap"><FiShoppingBag size={26} strokeWidth={1.75} /></span>
             <div className="dv-option-title">Visit Our Shop</div>
             <p className="dv-option-desc">You're always welcome to visit us in person. See the products, pick exactly what you need, and take it with you. No appointment needed.</p>
             <div className="dv-details">
               {[
-                { icon: <FiMapPin />, label: "Address", val: ADDRESS },
-                { icon: <FiClock />, label: "Open Hours", val: "Tue–Sun: 9:00 AM – 6:00 PM" },
-                { icon: <FiPhoneCall />, label: "Before You Visit", val: "Call ahead to confirm stock availability" },
-                { icon: <FiCreditCard />, label: "Payment", val: "Cash accepted · Bank transfer available" },
+                { icon: <FiMapPin size={16} strokeWidth={2} />, label: "Address", val: ADDRESS },
+                { icon: <FiClock size={16} strokeWidth={2} />, label: "Open Hours", val: "Tue–Sun: 9:00 AM – 6:00 PM" },
+                { icon: <FiPhoneCall size={16} strokeWidth={2} />, label: "Before You Visit", val: "Call ahead to confirm stock availability" },
+                { icon: <FiCreditCard size={16} strokeWidth={2} />, label: "Payment", val: "Cash accepted · Bank transfer available" },
               ].map(d => (
                 <div key={d.label} className="dv-detail">
                   <span className="dv-detail-icon-wrap">{d.icon}</span>
@@ -462,7 +445,7 @@ export default function DeliveryPage() {
                 </div>
               ))}
             </div>
-            <a href={MAPS_URL} target="_blank" rel="noreferrer" className="dv-btn-map"><FiNavigation /> Open in Maps</a>
+            <a href={MAPS_URL} target="_blank" rel="noreferrer" className="dv-btn-map"><FiNavigation size={18} strokeWidth={2} /> Open in Maps</a>
           </div>
         </div>
 
@@ -495,7 +478,7 @@ export default function DeliveryPage() {
           </div>
         </div>
 
-        {/* ── Elegant Map Section ── */}
+        {/* Elegant Map Section */}
         <div id="location" className="dv-map-section">
           <div className="dv-map-card">
 
@@ -508,24 +491,31 @@ export default function DeliveryPage() {
 
                 <div className="dv-map-rows">
                   <div className="dv-map-row">
-                    <div className="dv-map-row-icon"><FiMapPin /></div>
+                    <div className="dv-map-row-icon"><FiMapPin size={16} strokeWidth={2} /></div>
                     <div>
                       <div className="dv-map-row-label">Address</div>
                       <div className="dv-map-row-val">{ADDRESS}</div>
                     </div>
                   </div>
                   <div className="dv-map-row">
-                    <div className="dv-map-row-icon"><FiClock /></div>
+                    <div className="dv-map-row-icon"><FiClock size={16} strokeWidth={2} /></div>
                     <div>
                       <div className="dv-map-row-label">Open Hours</div>
                       <div className="dv-map-row-val">Tue – Sun · 9:00 AM to 6:00 PM</div>
                     </div>
                   </div>
                   <div className="dv-map-row">
-                    <div className="dv-map-row-icon"><FiPhone /></div>
+                    <div className="dv-map-row-icon"><FiPhone size={16} strokeWidth={2} /></div>
                     <div>
                       <div className="dv-map-row-label">Call Ahead</div>
                       <div className="dv-map-row-val">{PHONE}</div>
+                    </div>
+                  </div>
+                  <div className="dv-map-row">
+                    <div className="dv-map-row-icon"><FiPhoneCall size={16} strokeWidth={2} /></div>
+                    <div>
+                      <div className="dv-map-row-label">Landline</div>
+                      <div className="dv-map-row-val">{LANDLINE}</div>
                     </div>
                   </div>
                 </div>
@@ -533,14 +523,7 @@ export default function DeliveryPage() {
 
               <div className="dv-map-actions">
                 <a href={MAPS_URL} target="_blank" rel="noreferrer" className="dv-map-btn-primary">
-                  <FaMapMarkerAlt /> Get Directions
-                </a>
-                <a
-                  href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi! I'd like to visit the shop. Can you confirm your address?")}`}
-                  target="_blank" rel="noreferrer"
-                  className="dv-map-btn-secondary"
-                >
-                  <FaWhatsapp /> Confirm Before Visit
+                  <FaMapMarkerAlt size={16} /> Get Directions
                 </a>
               </div>
             </div>

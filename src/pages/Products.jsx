@@ -1,5 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { FiBox, FiCheckCircle } from "react-icons/fi";
+import { FaHandshake } from "react-icons/fa";
+import {
+  GiHoneypot,
+  GiCandyCanes,
+  GiBreadSlice,
+  GiMilkCarton,
+  GiHerbsBundle,
+  GiLeafSwirl,
+} from "react-icons/gi";
 
 const WHATSAPP = "94XXXXXXXXX";
 const PHONE = "+94 XX XXX XXXX";
@@ -20,7 +30,6 @@ const PRODUCTS = [
     color: "#1a1a2e",
     accent: "#3a3a5e",
     light: "#f0f0f8",
-    emoji: "⚫",
     name: "Black Sesame Seeds",
     tagline: "Deep flavor, maximum nutrition",
     image: blacksesami,
@@ -39,7 +48,6 @@ const PRODUCTS = [
     color: "#1e4fd8",
     accent: "#2d63f0",
     light: "#e8eeff",
-    emoji: "⚪",
     name: "White Sesame Seeds",
     tagline: "Mild taste, premium grade",
     image: whiteseasami,
@@ -58,7 +66,6 @@ const PRODUCTS = [
     color: "#0a7a4a",
     accent: "#0d9a60",
     light: "#e6f7f0",
-    emoji: "✨",
     name: "Cleaned Black Sesame",
     tagline: "Ready-to-use, sorted & processed",
     image: blackwhitesesami,
@@ -95,10 +102,10 @@ const JG_SLIDES = [
 ];
 
 const JG_USES = [
-  { icon: "🍬", title: "Sesame Sweets & Brittle", desc: "The primary binding sweetener for traditional sesame candy and gingelly brittle." },
-  { icon: "🍞", title: "Confectionery & Baking", desc: "Adds deep caramel complexity to baked goods, cookies, and artisan breads." },
-  { icon: "🥛", title: "Traditional Beverages", desc: "Used in herbal drinks, rice-based porridges, and Ayurvedic preparations." },
-  { icon: "🌿", title: "Health & Wellness", desc: "Rich in iron, magnesium and potassium. A preferred alternative to refined sugar." },
+  { Icon: GiCandyCanes, color: "#7a4a00", light: "#fff4e6", title: "Sesame Sweets & Brittle", desc: "The primary binding sweetener for traditional sesame candy and gingelly brittle." },
+  { Icon: GiBreadSlice, color: "#a06010", light: "#fdf2e2", title: "Confectionery & Baking", desc: "Adds deep caramel complexity to baked goods, cookies, and artisan breads." },
+  { Icon: GiMilkCarton, color: "#8c5a2b", light: "#f8efe4", title: "Traditional Beverages", desc: "Used in herbal drinks, rice-based porridges, and Ayurvedic preparations." },
+  { Icon: GiHerbsBundle, color: "#5a7a2b", light: "#f1f6e6", title: "Health & Wellness", desc: "Rich in iron, magnesium and potassium. A preferred alternative to refined sugar." },
 ];
 
 const JG_VARIANTS = [
@@ -123,10 +130,10 @@ const JG_QUICK = [
 ];
 
 const JG_WHY = [
-  { icon: "🌿", title: "100% Natural, No Additives", desc: "No chemicals, no artificial colour, no preservatives. Pure cane goodness from farm to your production line." },
-  { icon: "⚖️", title: "Consistent Quality", desc: "Batch-tested for moisture and sucrose content. Every order meets the same standard." },
-  { icon: "📦", title: "Flexible Pack Sizes", desc: "Retail 250 g blocks to 50 kg wholesale sacks — we supply what you need at the scale you need." },
-  { icon: "🤝", title: "Direct Supplier Pricing", desc: "No middlemen. Buy directly from us for the best rate on both retail and wholesale quantities." },
+  { Icon: GiLeafSwirl, title: "100% Natural, No Additives", desc: "No chemicals, no artificial colour, no preservatives. Pure cane goodness from farm to your production line." },
+  { Icon: FiCheckCircle, title: "Consistent Quality", desc: "Batch-tested for moisture and sucrose content. Every order meets the same standard." },
+  { Icon: FiBox, title: "Flexible Pack Sizes", desc: "Retail 250 g blocks to 50 kg wholesale sacks — we supply what you need at the scale you need." },
+  { Icon: FaHandshake, title: "Direct Supplier Pricing", desc: "No middlemen. Buy directly from us for the best rate on both retail and wholesale quantities." },
 ];
 
 /* ─── SLIDESHOW ─── */
@@ -184,7 +191,6 @@ function ProductCard({ product }) {
       <div className="ss-card-image-wrap">
         <img src={product.image} alt={product.name} className="ss-card-image"
           onError={e => { e.target.style.display = "none"; }} />
-        <div className="ss-card-image-badge"><span className="ss-card-emoji">{product.emoji}</span></div>
       </div>
       <div className="ss-card-header" style={{ background: product.color }}>
         <div>
@@ -350,7 +356,16 @@ export default function ProductsPage() {
           max-width: 300px; margin: 0 auto 48px;
         }
         .jg-divider-line { flex: 1; height: 1px; background: #e8d5b0; }
-        .jg-divider-icon { font-size: 20px; }
+        .jg-divider-icon-chip {
+          width: 38px; height: 38px;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          background: #fff4e6;
+          border: 1.5px solid #e8d5b0;
+          color: #7a4a00;
+          flex-shrink: 0;
+        }
+        .jg-divider-icon-chip svg { display: block; }
 
         /* Two-column layout */
         .jg-body {
@@ -447,8 +462,30 @@ export default function ProductsPage() {
           background: white; border-radius: 12px;
           border: 1px solid #e8eef8; padding: 16px;
           box-shadow: 0 2px 8px rgba(122,74,0,0.04);
+          transition: box-shadow 0.25s ease, transform 0.25s ease;
         }
-        .jg-use-icon { font-size: 24px; margin-bottom: 8px; }
+        .jg-use-card:hover {
+          box-shadow: 0 8px 22px rgba(122,74,0,0.1);
+          transform: translateY(-2px);
+        }
+        .jg-use-icon-chip {
+          width: 36px; height: 36px;
+          border-radius: 10px;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 10px;
+          background: var(--jg-use-light);
+          border: 1.5px solid color-mix(in srgb, var(--jg-use-accent) 25%, transparent);
+          color: var(--jg-use-accent);
+          transition: background 0.35s ease, border-color 0.35s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+        }
+        .jg-use-icon-chip svg { display: block; }
+        .jg-use-card:hover .jg-use-icon-chip {
+          background: var(--jg-use-accent);
+          border-color: var(--jg-use-accent);
+          color: white;
+          transform: rotate(-5deg) scale(1.07);
+          box-shadow: 0 6px 16px color-mix(in srgb, var(--jg-use-accent) 35%, transparent);
+        }
         .jg-use-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 5px; }
         .jg-use-desc { font-size: 12px; color: #6a7a9a; line-height: 1.6; font-weight: 300; }
 
@@ -466,11 +503,28 @@ export default function ProductsPage() {
           display: flex; align-items: flex-start; gap: 12px;
           background: white; border-radius: 10px;
           border: 1px solid #e8eef8; padding: 14px 16px;
+          transition: box-shadow 0.25s ease, transform 0.25s ease;
         }
-        .jg-why-icon {
-          width: 32px; height: 32px; border-radius: 8px;
-          background: #fff4e6; display: flex; align-items: center;
-          justify-content: center; font-size: 16px; flex-shrink: 0;
+        .jg-why-item:hover {
+          box-shadow: 0 8px 22px rgba(122,74,0,0.1);
+          transform: translateY(-2px);
+        }
+        .jg-why-icon-chip {
+          width: 34px; height: 34px; border-radius: 10px;
+          background: #fff4e6;
+          border: 1.5px solid #e8d5b0;
+          display: flex; align-items: center;
+          justify-content: center; flex-shrink: 0;
+          color: #7a4a00;
+          transition: background 0.35s ease, border-color 0.35s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+        }
+        .jg-why-icon-chip svg { display: block; }
+        .jg-why-item:hover .jg-why-icon-chip {
+          background: #7a4a00;
+          border-color: #7a4a00;
+          color: white;
+          transform: rotate(-5deg) scale(1.07);
+          box-shadow: 0 6px 16px rgba(122,74,0,0.35);
         }
         .jg-why-text-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 3px; }
         .jg-why-text-desc { font-size: 12px; color: #6a7a9a; line-height: 1.55; font-weight: 300; }
@@ -540,7 +594,7 @@ export default function ProductsPage() {
 
           <div className="jg-divider">
             <div className="jg-divider-line" />
-            <div className="jg-divider-icon">🍯</div>
+            <div className="jg-divider-icon-chip"><GiHoneypot size={19} /></div>
             <div className="jg-divider-line" />
           </div>
 
@@ -600,8 +654,8 @@ export default function ProductsPage() {
                 <div className="jg-info-label">Common Uses</div>
                 <div className="jg-uses-grid">
                   {JG_USES.map(u => (
-                    <div key={u.title} className="jg-use-card">
-                      <div className="jg-use-icon">{u.icon}</div>
+                    <div key={u.title} className="jg-use-card" style={{ "--jg-use-accent": u.color, "--jg-use-light": u.light }}>
+                      <div className="jg-use-icon-chip"><u.Icon size={18} /></div>
                       <div className="jg-use-title">{u.title}</div>
                       <div className="jg-use-desc">{u.desc}</div>
                     </div>
@@ -614,7 +668,7 @@ export default function ProductsPage() {
                 <div className="jg-why-list">
                   {JG_WHY.map(w => (
                     <div key={w.title} className="jg-why-item">
-                      <div className="jg-why-icon">{w.icon}</div>
+                      <div className="jg-why-icon-chip"><w.Icon size={17} /></div>
                       <div>
                         <div className="jg-why-text-title">{w.title}</div>
                         <div className="jg-why-text-desc">{w.desc}</div>

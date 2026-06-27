@@ -1,4 +1,13 @@
 import { Link } from "react-router-dom";
+import {
+  FiPackage,
+  FiLayers,
+  FiFileText,
+  FiPrinter,
+  FiDisc,
+  FiTag,
+  FiShoppingBag,
+} from "react-icons/fi";
 import polytheneImg from "../assets/polythene.webp";
 import tissueImg from "../assets/tissue.jpg";
 import papersImg from "../assets/pati.webp";
@@ -7,7 +16,7 @@ import papersImg from "../assets/pati.webp";
 const MAIN_ITEMS = [
   {
     id: "polythene",
-    emoji: "🛍️",
+    Icon: FiPackage,
     name: "Polythene Rolls",
     tagline: "Food-safe sealing rolls for sesame packaging",
     color: "#1e4fd8",
@@ -24,13 +33,12 @@ const MAIN_ITEMS = [
   },
   {
     id: "tissue",
-    emoji: "🧻",
+    Icon: FiLayers,
     name: "Tissue Sheets",
     tagline: "Food-grade wrapping sheets, sold by bundle",
     color: "#0a7a4a",
     accent: "#0d9a60",
     light: "#e6f7f0",
-    // image: tissueImg,
     image: tissueImg,
     desc: "Soft food-grade tissue sheets for wrapping sesame sweets, brittle, and traditional confectionery. Available in plain white. Sold as bundles — ideal for both small producers and high-volume manufacturing.",
     variants: ["Standard sheet size", "Half-sheet", "Custom cut (on request)", "Bundle of 500 sheets", "Bundle of 1,000 sheets"],
@@ -38,13 +46,12 @@ const MAIN_ITEMS = [
   },
   {
     id: "papers",
-    emoji: "📄",
+    Icon: FiFileText,
     name: "Packaging Papers",
     tagline: "Multi-size kraft & wrap papers",
     color: "#7a4a00",
     accent: "#a06010",
     light: "#fff4e6",
-    // image: papersImg,
     image: papersImg,
     desc: "Kraft and food-wrap papers available in a wide range of width and height combinations. The most popular size is 4 inch wide × 20 inch long — ideal for wrapping sesame rolls and brittle bars. All sizes sold as bundles.",
     variants: [
@@ -61,29 +68,37 @@ const MAIN_ITEMS = [
 
 const SECONDARY_ITEMS = [
   {
-    emoji: "🖨️",
+    Icon: FiPrinter,
     name: "Printed Covers",
+    color: "#1e4fd8",
+    light: "#eef2fc",
     desc: "Pre-printed polythene or laminated covers for branded packaging. Plain printed, logo printed, or multi-colour custom prints.",
     variants: ["Plain printed", "Logo printed", "Multi-colour custom"],
     unit: "Per pack / Custom order",
   },
   {
-    emoji: "🔩",
+    Icon: FiDisc,
     name: "Sealing Rolls",
+    color: "#0a7a4a",
+    light: "#eaf8f1",
     desc: "Polythene sealing rolls for heat-sealing machines. Food-safe, consistent thickness for reliable seals on any production line.",
     variants: ["6 cm width", "10 cm width", "15 cm width", "Custom width"],
     unit: "Per roll",
   },
   {
-    emoji: "🏷️",
+    Icon: FiTag,
     name: "Labels & Stickers",
+    color: "#a0470d",
+    light: "#fbf0e8",
     desc: "Blank and pre-printed self-adhesive label sheets for product identification and branding. Compatible with standard label printers.",
     variants: ["Blank white", "Pre-printed", "Custom designed"],
     unit: "Per sheet / Per pack",
   },
   {
-    emoji: "📦",
+    Icon: FiShoppingBag,
     name: "Paper Bags",
+    color: "#7a3a8c",
+    light: "#f4ecf8",
     desc: "Kraft paper bags for retail gifting and eco-friendly product packaging. Brown or white kraft, with or without handles.",
     variants: ["Small", "Medium", "Large", "Handle bags"],
     unit: "Per pack (50 pcs) / Bulk",
@@ -92,6 +107,7 @@ const SECONDARY_ITEMS = [
 
 /* ─── MAIN ITEM CARD (hero style, like sesame product card) ─── */
 function MainItemCard({ item }) {
+  const { Icon } = item;
   return (
     <div className="pkg-main-card" style={{ "--pkg-accent": item.color, "--pkg-light": item.light }}>
       {/* Image area */}
@@ -105,12 +121,13 @@ function MainItemCard({ item }) {
           />
         ) : (
           <div className="pkg-main-img-placeholder" style={{ background: item.color }}>
-            <span className="pkg-main-placeholder-emoji">{item.emoji}</span>
+            <Icon size={38} className="pkg-main-placeholder-icon" />
             <span className="pkg-main-placeholder-hint">Add image: src/assets/{item.id}.jpg</span>
           </div>
         )}
-        <div className="pkg-main-img-badge">
-          <span>{item.emoji}</span>
+        <div className="pkg-main-img-badge" style={{ "--pkg-accent": item.color }}>
+          <span className="pkg-main-img-badge-ring" />
+          <Icon size={18} strokeWidth={2} />
         </div>
       </div>
 
@@ -247,20 +264,48 @@ export default function PackagingPage() {
           width: 100%; height: 100%;
           display: flex; flex-direction: column;
           align-items: center; justify-content: center;
-          gap: 8px;
+          gap: 10px;
         }
-        .pkg-main-placeholder-emoji { font-size: 48px; opacity: 0.5; }
+        .pkg-main-placeholder-icon {
+          color: rgba(255,255,255,0.85);
+        }
         .pkg-main-placeholder-hint {
           font-size: 11px; color: rgba(255,255,255,0.6);
           font-family: monospace; letter-spacing: 0.3px;
         }
+
+        /* Floating icon badge on image — layered glow ring */
         .pkg-main-img-badge {
           position: absolute; bottom: 14px; right: 16px;
-          background: white; border-radius: 50%;
-          width: 44px; height: 44px;
+          width: 46px; height: 46px;
+          border-radius: 14px;
           display: flex; align-items: center; justify-content: center;
-          box-shadow: 0 2px 12px rgba(0,0,0,0.18); font-size: 22px;
+          background: rgba(255,255,255,0.92);
+          backdrop-filter: blur(6px);
+          box-shadow:
+            0 6px 18px rgba(20,30,60,0.18),
+            0 0 0 1px rgba(255,255,255,0.6) inset;
+          color: var(--pkg-accent);
+          transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
         }
+        .pkg-main-img-badge-ring {
+          position: absolute; inset: -5px;
+          border-radius: 16px;
+          border: 1.5px solid var(--pkg-accent);
+          opacity: 0.35;
+          transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .pkg-main-card:hover .pkg-main-img-badge {
+          transform: translateY(-3px) scale(1.08) rotate(-4deg);
+          box-shadow:
+            0 10px 26px rgba(20,30,60,0.26),
+            0 0 0 1px rgba(255,255,255,0.7) inset;
+        }
+        .pkg-main-card:hover .pkg-main-img-badge-ring {
+          opacity: 0.7;
+          transform: scale(1.08);
+        }
+        .pkg-main-img-badge svg { display: block; }
 
         /* Header */
         .pkg-main-header { padding: 16px 24px 14px; }
@@ -320,7 +365,27 @@ export default function PackagingPage() {
           box-shadow: 0 10px 36px rgba(30,79,216,0.12);
           transform: translateY(-3px);
         }
-        .pkg-sec-icon { font-size: 34px; margin-bottom: 14px; display: block; }
+
+        /* Icon chip — soft tinted ring, fills with colour on hover */
+        .pkg-sec-icon-chip {
+          width: 46px; height: 46px;
+          border-radius: 13px;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 16px;
+          background: var(--pkg-sec-light);
+          border: 1.5px solid color-mix(in srgb, var(--pkg-sec-accent) 22%, transparent);
+          color: var(--pkg-sec-accent);
+          transition: background 0.35s ease, border-color 0.35s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+        }
+        .pkg-sec-icon-chip svg { display: block; }
+        .pkg-sec-card:hover .pkg-sec-icon-chip {
+          background: var(--pkg-sec-accent);
+          border-color: var(--pkg-sec-accent);
+          color: white;
+          transform: translateY(-2px) rotate(-5deg) scale(1.06);
+          box-shadow: 0 8px 18px color-mix(in srgb, var(--pkg-sec-accent) 35%, transparent);
+        }
+
         .pkg-sec-name {
           font-family: 'DM Serif Display', serif;
           font-size: 18px; color: #1a2035; margin-bottom: 8px;
@@ -400,7 +465,7 @@ export default function PackagingPage() {
           <Link to="/products" className="pkg-hero-back">← Back to Products</Link>
           <div className="pkg-hero-eyebrow">Aththanayaka Supermart</div>
           <h1 className="pkg-hero-title">Packaging <em>Supplies</em></h1>
-          <p className="pkg-hero-sub">Everything you need to package, brand, and deliver your sesame products — tissue sheets, polythene covers, papers, sealing rolls and more.</p>
+          <p className="pkg-hero-sub">Everything you need to package, brand, and deliver your sesame products tissue sheets, polythene covers, papers, sealing rolls and more.</p>
         </div>
 
         {/* ── BANNER ── */}
@@ -421,20 +486,25 @@ export default function PackagingPage() {
         <div className="pkg-secondary-wrap">
           <div className="pkg-secondary-eyebrow">Also Available</div>
           <div className="pkg-secondary-grid">
-            {SECONDARY_ITEMS.map(item => (
-              <div className="pkg-sec-card" key={item.name}>
-                <span className="pkg-sec-icon">{item.emoji}</span>
-                <div className="pkg-sec-name">{item.name}</div>
-                <p className="pkg-sec-desc">{item.desc}</p>
-                <div className="pkg-sec-label">Variants</div>
-                <div className="pkg-sec-variants">
-                  {item.variants.map(v => (
-                    <span key={v} className="pkg-sec-chip">{v}</span>
-                  ))}
+            {SECONDARY_ITEMS.map(item => {
+              const { Icon } = item;
+              return (
+                <div className="pkg-sec-card" key={item.name} style={{ "--pkg-sec-accent": item.color, "--pkg-sec-light": item.light }}>
+                  <div className="pkg-sec-icon-chip">
+                    <Icon size={20} strokeWidth={2} />
+                  </div>
+                  <div className="pkg-sec-name">{item.name}</div>
+                  <p className="pkg-sec-desc">{item.desc}</p>
+                  <div className="pkg-sec-label">Variants</div>
+                  <div className="pkg-sec-variants">
+                    {item.variants.map(v => (
+                      <span key={v} className="pkg-sec-chip">{v}</span>
+                    ))}
+                  </div>
+                  <div className="pkg-sec-unit">Unit: <span>{item.unit}</span></div>
                 </div>
-                <div className="pkg-sec-unit">Unit: <span>{item.unit}</span></div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
