@@ -2,29 +2,33 @@ import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useLang } from "../LanguageContext.jsx";
 
+// "to" is the in-page anchor id used for smooth-scroll when already on
+// the homepage. "path" is the real, standalone, indexable route used
+// when the visitor lands directly on that page (e.g. from Google, or
+// clicking the link from another page).
 const NAV_LINKS = {
   en: [
     { label: "Home", to: "/", type: "route" },
-    { label: "Sesame Products", to: "products", type: "scroll" },
-    { label: "Jaggery", to: "jaggery", type: "scroll" },
-    { label: "Packaging Supplies", to: "packaging", type: "scroll" },
-    { label: "Whole Sale", to: "wholesale", type: "scroll" },
-    { label: "Delivery & Visit", to: "delivery", type: "scroll" },
-    { label: "Location", to: "location", type: "scroll" },
-    { label: "Contact", to: "delivery", type: "route" },
-    { label: "About Us", to: "about", type: "scroll" },
+    { label: "Sesame Products", to: "products", type: "scroll", path: "/products" },
+    { label: "Jaggery", to: "jaggery", type: "scroll", path: "/products" },
+    { label: "Packaging Supplies", to: "packaging", type: "scroll", path: "/packaging" },
+    { label: "Whole Sale", to: "wholesale", type: "scroll", path: "/wholesale" },
+    { label: "Delivery & Visit", to: "delivery", type: "scroll", path: "/delivery" },
+    { label: "Location", to: "location", type: "scroll", path: "/delivery" },
+    { label: "Contact", to: "/delivery", type: "route" },
+    { label: "About Us", to: "about", type: "scroll", path: "/about" },
   ],
 
   si: [
     { label: "මුල් පිටුව", to: "/", type: "route" },
-    { label: "තල නිෂ්පාදන", to: "products", type: "scroll" },
-    { label: "හකුරු", to: "jaggery", type: "scroll" },
-    { label: "ඇසුරුම් ද්‍රව්‍ය", to: "about", type: "scroll" },
-    { label: "තොග ඇණවුම්", to: "wholesale", type: "scroll" },
-    { label: "බෙදාහැරීම", to: "delivery", type: "scroll" },
-    { label: "අපගේ ස්ථානය", to: "location", type: "scroll" },
-    { label: "සම්බන්ධ වන්න", to: "delivery", type: "route" },
-    { label: "අප ගැන", to: "about", type: "scroll" },
+    { label: "තල නිෂ්පාදන", to: "products", type: "scroll", path: "/products" },
+    { label: "හකුරු", to: "jaggery", type: "scroll", path: "/products" },
+    { label: "ඇසුරුම් ද්‍රව්‍ය", to: "about", type: "scroll", path: "/about" },
+    { label: "තොග ඇණවුම්", to: "wholesale", type: "scroll", path: "/wholesale" },
+    { label: "බෙදාහැරීම", to: "delivery", type: "scroll", path: "/delivery" },
+    { label: "අපගේ ස්ථානය", to: "location", type: "scroll", path: "/delivery" },
+    { label: "සම්බන්ධ වන්න", to: "/delivery", type: "route" },
+    { label: "අප ගැන", to: "about", type: "scroll", path: "/about" },
   ],
 };
 
@@ -102,10 +106,13 @@ export default function Navbar({ onShopNow }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, location.pathname]);
 
-  const handleScrollLink = (sectionId, e) => {
+  // On the homepage: smooth-scroll to the section (fast, no page reload).
+  // Anywhere else: go to that section's own real URL, so the link still
+  // works from a direct visit, a shared link, or a search result.
+  const handleScrollLink = (sectionId, path, e) => {
     e.preventDefault();
     if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: sectionId } });
+      navigate(path || "/");
       return;
     }
     const el = document.getElementById(sectionId);
@@ -415,9 +422,13 @@ export default function Navbar({ onShopNow }) {
               {links.map((l, i) =>
                 l.type === "scroll" ? (
                   <li key={l.label} ref={(el) => (linkRefs.current[i] = el)} onMouseEnter={() => movePill(i)}>
+                    {/* href points at the real route (not just "#id") so
+                        search engines can discover and crawl each section
+                        as its own page. onClick still gives logged-in
+                        visitors the fast in-page scroll on the homepage. */}
                     <a
-                      href={`#${l.to}`}
-                      onClick={(e) => handleScrollLink(l.to, e)}
+                      href={l.path || `#${l.to}`}
+                      onClick={(e) => handleScrollLink(l.to, l.path, e)}
                       style={{ color: linkColor }}
                     >
                       {l.label}
@@ -506,10 +517,10 @@ export default function Navbar({ onShopNow }) {
               l.type === "scroll" ? (
                 <a
                   key={l.label}
-                  href={`#${l.to}`}
+                  href={l.path || `#${l.to}`}
                   onClick={(e) => {
                     setMenuOpen(false);
-                    handleScrollLink(l.to, e);
+                    handleScrollLink(l.to, l.path, e);
                   }}
                 >
                   {l.label}
