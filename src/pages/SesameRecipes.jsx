@@ -4,13 +4,21 @@ const FOODS = [
   { name: "Sesame Brittle", origin: "Sri Lanka / South Asia", img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=340&q=80" },
   { name: "Tahini", origin: "Middle East", img: "https://images.unsplash.com/photo-1541014741259-de529411b96a?w=340&q=80" },
   { name: "Sesame Oil", origin: "East & South Asia", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=340&q=80" },
-  { name: "Til Ladoo", origin: "India", img: "https://images.unsplash.com/photo-1606836591695-4d58a73eba1e?w=340&q=80" },
   { name: "Hummus", origin: "Middle East", img: "https://images.unsplash.com/photo-1613987245117-50933bcb3240?w=340&q=80" },
   { name: "Sesame Noodles", origin: "China", img: "https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=340&q=80" },
   { name: "Bagel with Sesame", origin: "Global", img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=340&q=80" },
   { name: "Goma Tofu", origin: "Japan", img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=340&q=80" },
   { name: "Sesame Cookies", origin: "Global", img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=340&q=80" },
-  { name: "Black Sesame Soup", origin: "China", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=340&q=80" },
+  { name: "Sesame With Cake", origin: "China", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=340&q=80" },
+  { name: "Sesame Laddu", origin: "India / South Asia", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=340&q=80" },
+  { name: "Sesame Halwa", origin: "Middle East / South Asia", img: "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=340&q=80" },
+  { name: "Sesame Chikki", origin: "India", img: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=340&q=80" },
+  { name: "Sesame Bread", origin: "Global", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=340&q=80" },
+  { name: "Sesame Chicken", origin: "China / Global", img: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=340&q=80" },
+  { name: "Sesame Rice", origin: "South & East Asia", img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=340&q=80" },
+  { name: "Sesame Mochi", origin: "Japan", img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=340&q=80" },
+  { name: "Sesame Pudding", origin: "Asia / Global", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=340&q=80" },
+  { name: "Sesame Sauce", origin: "East Asia", img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=340&q=80" },
 ];
 
 /* Duplicate list for seamless infinite loop */
