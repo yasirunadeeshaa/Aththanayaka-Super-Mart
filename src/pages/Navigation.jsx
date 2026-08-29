@@ -2,6 +2,8 @@ import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useLang } from "../LanguageContext.jsx";
 
+import logo from "../../src/assets/logo-watermark.png"; // adjust path/filename to match where you save the logo
+
 // "to" is the in-page anchor id used for smooth-scroll when already on
 // the homepage. "path" is the real, standalone, indexable route used
 // when the visitor lands directly on that page (e.g. from Google, or
@@ -156,11 +158,16 @@ export default function Navbar({ onShopNow }) {
           text-decoration: none; flex-shrink: 0;
         }
         .nb-logo-icon {
-          width: 40px; height: 40px;
-          background: #1e4fd8; border-radius: 10px;
+          width: 44px; height: 44px;
+          border-radius: 10px;
           display: flex; align-items: center; justify-content: center;
-          font-size: 20px;
-          box-shadow: 0 4px 12px rgba(30,79,216,0.3);
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+        .nb-logo-icon img {
+          width: 100%; height: 100%;
+          object-fit: contain;
+          display: block;
         }
         .nb-logo-name {
           font-family: 'DM Serif Display', serif;
@@ -274,7 +281,8 @@ export default function Navbar({ onShopNow }) {
 
         .nb-cta {
           font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
-          color: #fff; background: #1e4fd8;
+          color: #fff;
+          background: linear-gradient(135deg, #0f1729 50%, #1e4fd8 150%);
           border: 2px solid #1e4fd8;
           padding: 10px 22px; border-radius: 6px;
           cursor: pointer; text-decoration: none;
@@ -284,7 +292,8 @@ export default function Navbar({ onShopNow }) {
           white-space: nowrap;
         }
         .nb-cta:hover {
-          background: #1538a8; border-color: #1538a8;
+          background: linear-gradient(135deg, #0f1729 30%, #1538a8 150%);
+          border-color: #1538a8;
           transform: translateY(-1px);
           box-shadow: 0 6px 20px rgba(30,79,216,0.38);
         }
@@ -361,7 +370,7 @@ export default function Navbar({ onShopNow }) {
         .nb-mobile-menu a:hover { color: #1e4fd8; }
         .nb-mobile-cta {
           text-align: center;
-          background: #1e4fd8 !important;
+          background: linear-gradient(135deg, #0f1729 50%, #1e4fd8 150%) !important;
           color: white !important;
           border-radius: 6px; border-bottom: none !important;
           padding: 13px !important; font-weight: 600 !important;
@@ -382,12 +391,12 @@ export default function Navbar({ onShopNow }) {
         @media (max-width: 960px) {
           .nb-links-track { display: none; }
           .nb-cta { display: none; }
-          .nb-lang { display: none; }
           .nb-ham { display: flex; }
         }
         @media (max-width: 540px) {
           .nb-inner { padding: 0 20px; height: 60px; }
           .nb-logo-name { font-size: 16px; }
+          .nb-logo-icon { width: 38px; height: 38px; }
         }
       `}</style>
 
@@ -398,7 +407,9 @@ export default function Navbar({ onShopNow }) {
         <div className="nb-inner">
           {/* Logo */}
           <Link to="/" className="nb-logo">
-            <div className="nb-logo-icon">🛒</div>
+            <div className="nb-logo-icon">
+              <img src={logo} alt="Aththanayaka Supermart logo" />
+            </div>
             <div>
               <div className="nb-logo-name" style={{ color: logoColor }}>Aththanayaka</div>
               <span className="nb-logo-sub" style={{ color: subColor }}>Supermart</span>
@@ -492,26 +503,6 @@ export default function Navbar({ onShopNow }) {
         {/* Mobile dropdown */}
         {menuOpen && (
           <div className="nb-mobile-menu">
-            {/* Language toggle in mobile menu */}
-            <div className="nb-mobile-lang">
-              <span className="nb-mobile-lang-label">
-                {lang === "en" ? "Language" : "භාෂාව"}
-              </span>
-              <div className="nb-lang" role="group" aria-label="Language switcher">
-                <button
-                  className={`nb-lang-btn ${lang === "en" ? "active" : "inactive"}`}
-                  onClick={() => setLang("en")}
-                >
-                  EN
-                </button>
-                <button
-                  className={`nb-lang-btn nb-lang-si ${lang === "si" ? "active" : "inactive"}`}
-                  onClick={() => setLang("si")}
-                >
-                  සි
-                </button>
-              </div>
-            </div>
 
             {links.map((l) =>
               l.type === "scroll" ? (
