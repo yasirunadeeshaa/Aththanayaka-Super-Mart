@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "../LanguageContext.jsx";
+import { FaTruck, FaMapMarkerAlt, FaPhoneAlt, FaWhatsapp , FaFacebook} from "react-icons/fa";
 
 import blacksesami from "../../src/assets/black-sesame-seeds.webp";
 import whiteseasami from "../../src/assets/white.jpg";
@@ -65,7 +66,7 @@ const T = {
   readLess:  { en: "Show less", si: "අඩුවෙන් පෙන්වන්න" },
   shopNow:   { en: "Shop Now", si: "දැන් බලන්න" },
   shopNowSub:{ en: "See products", si: "නිෂ්පාදන බලන්න" },
-  viewOffers:{ en: "View offers →", si: "දීමනා බලන්න →" },
+  followUs: { en: "Follow us", si: "අප සමඟ සම්බන්ධ වන්න" },
   ctaReassure: { en: "Free island-wide delivery on orders over Rs. 200,000", si: "රු. 200,000+ ඇණවුම් සඳහා දිවයින පුරා නොමිලේ බෙදාහැරීම" },
   stat1num:  { en: "10+",          si: "10+" },
   stat1lbl:  { en: "Products",     si: "නිෂ්පාදන" },
@@ -79,6 +80,7 @@ const T = {
   noChemNote:    { en: "No chemicals used in the cleaning process", si: "පිරිසිදු කිරීමේ ක්‍රියාවලියේදී රසායනික ද්‍රව්‍ය භාවිතා නොකරයි" },
   deliveryLabel: { en: "Island-Wide Delivery", si: "දිවයින පුරා බෙදාහැරීම" },
   deliveryVal:   { en: "PickMe & Speed Post",  si: "PickMe & Speed Post" },
+  freeDeliveryNote: { en: "Free on orders over Rs. 200,000", si: "රු. 200,000+ ඇණවුම් සඳහා නොමිලේ" },
   revLabel:  { en: "Customer Rating", si: "පාරිභෝගික ඇගයීම" },
   revSub:    { en: "Free delivery Rs. 200,000+", si: "රු. 200,000+ නොමිලේ බෙදාහැරීම" },
   live:      { en: "Live",         si: "සජීවී" },
@@ -92,6 +94,16 @@ const T = {
   playTicker:   { en: "Play ticker", si: "ටිකර් ක්‍රියාත්මක කරන්න" },
   pauseCarousel:{ en: "Pause slideshow", si: "රූප වෙනස් වීම නවත්වන්න" },
   playCarousel: { en: "Play slideshow", si: "රූප වෙනස් වීම ආරම්භ කරන්න" },
+  // New "how to reach us" cards
+  visitLabel: { en: "Visit Our Store", si: "අපගේ වෙළඳසැල වෙත පැමිණෙන්න" },
+  visitVal:   { en: "Handapangoda, Horana", si: "හඳපාන්ගොඩ, හොරණ" },
+  visitSub:   { en: "Tue–Sun, 9am–6pm", si: "අඟහ–ඉරිදා, උදේ 9–සවස 6" },
+  callLabel:  { en: "Call Us", si: "අමතන්න" },
+  callVal:    { en: "078 686 9743", si: "078 686 9743" },
+  callSub:    { en: "Quick response guaranteed", si: "ඔබගේ පණිවිඩයට ඉක්මනින් ප්‍රතිචාර දක්වන්නෙමු!" },
+    quoteLabel: { en: "Get a Quotation", si: "මිල ගණන් ලබාගන්න" },
+  quoteVal:   { en: "Via WhatsApp", si: "WhatsApp හරහා" },
+  quoteSub:   { en: "Quick reply, no waiting", si: "අප සමඟ සම්බන්ධ වන්න" },
 };
 
 const t = (key, lang) => T[key]?.[lang] ?? T[key]?.en ?? key;
@@ -363,6 +375,37 @@ export default function Hero({ onShopNow }) {
           color:#526080; background:transparent; border:none; padding:8px 2px; min-height:44px;
           cursor:pointer; text-decoration:none; border-bottom:1.5px solid transparent; transition:all 0.2s; }
         .h-btn-secondary:hover { color:#1e4fd8; border-bottom-color:#1e4fd8; }
+        .h-btn-follow {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 13.5px;
+          font-weight: 600;
+          color: #1877F2;
+          background: rgba(24,119,242,0.08);
+          border: 1.5px solid rgba(24,119,242,0.25);
+          padding: 11px 22px;
+          border-radius: 100px;
+          cursor: pointer;
+          text-decoration: none;
+          min-height: 44px;
+          transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .h-btn-follow:hover {
+          background: #1877F2;
+          border-color: #1877F2;
+          color: #fff;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(24,119,242,0.28);
+        }
+        .h-btn-follow:active {
+          transform: translateY(0);
+        }
+        .h-btn-follow-icon {
+          width: 24px;
+          height: 24px;
+          flex-shrink: 0;
+        }
         .h-reassure { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:700;
           color:#1538a8; background:rgba(30,79,216,0.08); border:1px solid rgba(30,79,216,0.18);
           padding:7px 14px; border-radius:100px; }
@@ -383,16 +426,27 @@ export default function Hero({ onShopNow }) {
         .h-float { position:absolute; background:#fff; border:1px solid rgba(30,79,216,0.1);
           border-radius:14px; padding:12px 16px;
           box-shadow:0 4px 20px rgba(30,79,216,0.1),0 1px 4px rgba(0,0,0,0.05); z-index:4; max-width:190px; }
+        .h-fl-icon { width:17px; height:17px; margin-bottom:5px; display:block; }
+        .h-fl-icon-map   { color:#e02424; } /* red — location pin */
+        .h-fl-icon-truck { color:#1e4fd8; } /* blue — delivery */
+        .h-fl-icon-wa    { color:#25D366; } /* WhatsApp green */
+        .h-fl-icon-call  { color:#1e88e5; } /* phone blue */
         .h-float-a { top:-16px; right:-28px; animation:hfloatA 4s ease-in-out infinite; }
         .h-float-a .h-fl-sub-chem { background:rgba(30,79,216,0.08); border-radius:6px;
           padding:4px 7px; margin-top:6px; display:inline-block; }
-        .h-float-b { bottom:5px; left:-84px; animation:hfloatB 5s ease-in-out infinite; }
+        /* Rating card: right side of the product image, vertically centered */
+        .h-float-b { top:42%; right:-84px; bottom:auto; left:auto; animation:hfloatB 5s ease-in-out infinite; }
         .h-float-c { bottom:-30px; right:-28px; animation:hfloatC 4.5s ease-in-out infinite; }
+        /* New "reach us" cards: left side of the product image */
+        .h-float-d { top:6%; left:-90px; animation:hfloatD 4.2s ease-in-out infinite; }
+        .h-float-e { bottom:10%; left:-90px; animation:hfloatE 4.8s ease-in-out infinite; }
         @keyframes hfloatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
         @keyframes hfloatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-        @keyframes hfloatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+        @keyframes hfloatB { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(calc(-50% + 6px))} }
+        @keyframes hfloatD { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        @keyframes hfloatE { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
         @media (prefers-reduced-motion: reduce) {
-          .h-float-a, .h-float-b, .h-float-c { animation: none; }
+          .h-float-a, .h-float-b, .h-float-c, .h-float-d, .h-float-e { animation: none; }
         }
         .h-fl-label { font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#9aaac8; margin-bottom:3px; }
         .h-fl-val { font-family:'DM Serif Display',serif; font-size:17px; color:#1e4fd8; line-height:1; }
@@ -604,7 +658,15 @@ export default function Hero({ onShopNow }) {
                   <span>{t("shopNow", lang)}</span>
                   <span className="h-btn-primary-sub">{t("shopNowSub", lang)}</span>
                 </button>
-                <Link to="/offers" className="h-btn-secondary">{t("viewOffers", lang)}</Link>
+                <a
+                  href="https://facebook.com/aththanayakasupermart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-btn-follow"
+                >
+                  <FaFacebook className="h-btn-follow-icon" aria-hidden="true" />
+                  {t("followUs", lang)}
+                </a>
               </div>
               <div className="h-reassure">{t("ctaReassure", lang)}</div>
             </div>
@@ -622,14 +684,31 @@ export default function Hero({ onShopNow }) {
             </div>
 
             <div className="h-float h-float-b">
-              <div className="h-fl-stars">★★★★★</div>
-              <div className="h-fl-label">{t("revLabel", lang)}</div>
-              <div className="h-fl-sub-sm">{t("revSub", lang)}</div>
+              <FaMapMarkerAlt className="h-fl-icon h-fl-icon-map" aria-hidden="true" />
+              <div className="h-fl-label">{t("visitLabel", lang)}</div>
+              <div className="h-fl-val">{t("visitVal", lang)}</div>
+              <div className="h-fl-sub">{t("visitSub", lang)}</div>
             </div>
 
             <div className="h-float h-float-c">
+              <FaTruck className="h-fl-icon h-fl-icon-truck" aria-hidden="true" />
               <div className="h-fl-label">{t("deliveryLabel", lang)}</div>
               <div className="h-fl-val">{t("deliveryVal", lang)}</div>
+              <div className="h-fl-sub h-fl-sub-chem">{t("freeDeliveryNote", lang)}</div>
+            </div>
+
+            <div className="h-float h-float-d">
+              <FaWhatsapp className="h-fl-icon h-fl-icon-wa" aria-hidden="true" />
+              <div className="h-fl-label">{t("quoteLabel", lang)}</div>
+              <div className="h-fl-val">{t("quoteVal", lang)}</div>
+              <div className="h-fl-sub">{t("quoteSub", lang)}</div>
+            </div>
+
+            <div className="h-float h-float-e">
+              <FaPhoneAlt className="h-fl-icon h-fl-icon-call" aria-hidden="true" />
+              <div className="h-fl-label">{t("callLabel", lang)}</div>
+              <div className="h-fl-val">{t("callVal", lang)}</div>
+              <div className="h-fl-sub">{t("callSub", lang)}</div>
             </div>
           </div>
 
