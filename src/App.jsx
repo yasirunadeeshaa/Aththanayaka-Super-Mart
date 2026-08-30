@@ -13,10 +13,13 @@ import SesameRecipes from './pages/SesameRecipes'
 import ShopPage from './pages/ShopPage'
 
 import WhatsAppButton from './components/WhatsAppButton'
+import FacebookButton from './components/FacebookButton'
+import CallButton from './components/CallButton'
 
 const WA_PHONE = '94771234567'
 const WA_MESSAGE = "Hi! I'd like to ask about your sesame seeds and jaggery."
 const SITE_URL = 'https://aththanayakasupermart.com'
+const FB_PAGE_USERNAME = 'aththanayakasupermart'
 
 // Real business details, matching what's shown on the Delivery page —
 // keep these two places in sync if the address/hours/phone ever change.
@@ -225,6 +228,8 @@ export default function App() {
 
       <Footer />
       <WhatsAppButton phone={WA_PHONE} message={WA_MESSAGE} />
+      <FacebookButton pageUsername={FB_PAGE_USERNAME} />
+      <CallButton phone={`+${BUSINESS.phone.replace('+', '')}`} />
     </>
   )
 }
