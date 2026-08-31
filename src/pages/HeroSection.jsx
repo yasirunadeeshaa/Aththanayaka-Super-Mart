@@ -10,6 +10,8 @@ import cleansesami from "../../src/assets/cleansesami.webp";
 import jaggery from "../../src/assets/jaggery.avif";
 import logoWatermark from "../../src/assets/logo-watermark.png";
 
+import mobileHeroImg  from "../../src/assets/productbackgroundrotate2.png";
+
 const PRODUCTS = {
   en: [
     { image: blackwhitesesami, tag: "Black & White Sesame",  name: "Black & White Sesame Seeds",     desc: "A perfect blend of black and white sesame for a unique, rich taste." },
@@ -86,10 +88,10 @@ const T = {
   live:      { en: "Live",         si: "සජීවී" },
   // Buyer-type segmented toggle
   buyerLabel:   { en: "I'm here to buy…", si: "මම මෙතැනට පැමිණියේ…" },
-  buyerRetail:  { en: "Shopping for home", si: "ගෙදර භාවිතයට" },
+  buyerRetail:  { en: "Buying in retail", si: "සිල්ලර මිලදී ගැනීමකට" },
   buyerBulk:    { en: "Buying in bulk", si: "තොග ඇණවුමකට" },
   moqRetail:    { en: "Retail orders from 5 kg", si: "සිල්ලර ඇණවුම් කි.ග්‍රෑ. 5 සිට" },
-  moqBulk:      { en: "Wholesale orders from 50 kg, direct supplier pricing", si: "තොග ඇණවුම් කි.ග්‍රෑ. 50 සිට, කෙළින්ම සැපයුම්කරු මිල" },
+  moqBulk:      { en: "Wholesale orders from 50 kg, with special offers!", si: "තොග ඇණවුම් කි.ග්‍රෑ. 50 සිට, විශේෂ දීමනා සමඟ!" },
   pauseTicker:  { en: "Pause ticker", si: "ටිකර් නවත්වන්න" },
   playTicker:   { en: "Play ticker", si: "ටිකර් ක්‍රියාත්මක කරන්න" },
   pauseCarousel:{ en: "Pause slideshow", si: "රූප වෙනස් වීම නවත්වන්න" },
@@ -293,6 +295,15 @@ export default function Hero({ onShopNow }) {
           font-family: 'DM Sans', sans-serif;
           margin-left: calc(-50vw + 50%);
         }
+          .h-content {
+  position: relative;
+  flex: 1;                 /* keeps desktop flex layout behaving the same */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+}
+          .h-mobile-hero-img { display: none; }
         /* Below desktop the stacked layout needs its natural height back —
            fixed 100vh only applies at web/desktop sizes, per request. */
         @media (max-width:960px) { .hero-root { height:auto; min-height:100vh; } }
@@ -523,9 +534,26 @@ export default function Hero({ onShopNow }) {
           /* Explicit stacking order per request: header, then the product image,
              then description/CTA, then the floating cards, then the stat cards. */
           .h-inner{grid-template-columns:1fr;
-            grid-template-areas: "header" "visual" "body" "floats" "stats";
-            padding-top:120px; row-gap:32px; align-content:start;}
+            grid-template-areas: "mobileimg" "header" "visual" "body" "floats" "stats";
+            padding-top:24px; row-gap:32px; align-content:start;}
+
+  .h-mobile-hero-img {
+    display: block;
+    position: relative;
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+    /* no aspect-ratio here — remove the guess entirely */
+  }
+  .h-mobile-hero-img img {
+    width: 100%;
+    height: auto;           /* ← image sets its own height based on its real ratio */
+    display: block;
+    object-fit: cover;      /* harmless now since there's no fixed box to crop against */
+  }
+
           .h-arc-panel{display:none;}
+          
           .pc-card{width:100%;max-width:390px;height:auto;border-radius:20px;overflow:hidden;
             box-shadow:0 1px 2px rgba(0,0,0,0.04),0 8px 32px rgba(30,79,216,0.1),0 24px 64px rgba(30,79,216,0.06);
             background:#fff;border:1px solid rgba(30,79,216,0.1);padding:24px;}
@@ -554,7 +582,7 @@ export default function Hero({ onShopNow }) {
             padding:6px 0 20px;cursor:pointer;min-height:44px;}
         }
         @media (max-width:640px) {
-          .h-inner{padding:96px 20px 48px;} .h-cats{padding:14px 20px;}
+          .h-inner{padding:2px 20px 48px;} .h-cats{padding:14px 20px;}
           .h-stats{flex-wrap:wrap;gap:16px 20px;}
           .h-stat{border-right:none;padding-right:0;margin-right:0;}
           .h-actions-row{flex-direction:column;align-items:stretch;gap:12px;}
@@ -566,6 +594,10 @@ export default function Hero({ onShopNow }) {
       `}</style>
 
       <section className="hero-root" lang={lang} ref={heroRef}>
+          <div className="h-mobile-hero-img" data-reveal>
+    <img src={mobileHeroImg} alt="" aria-hidden="true" />
+  </div>
+        <div className="h-content">
         <ParticleCanvas reducedMotion={reducedMotion} />
         <div className="h-grain" />
         <div className="h-mesh">
@@ -591,6 +623,8 @@ export default function Hero({ onShopNow }) {
         <div className="h-watermark"><span>Aththanayaka</span><span>Super Mart</span></div>
 
         <div className="h-inner">
+
+          
           {/* HEADER — eyebrow + title, its own grid area so it can be reordered on mobile */}
           <div className="h-area-header">
             <div className="h-eyebrow" data-reveal>
@@ -726,6 +760,7 @@ export default function Hero({ onShopNow }) {
               <div className="h-stat-lbl">{t("stat3lbl", lang)}</div>
             </div>
           </div>
+        </div>
         </div>
 
         {/* TICKER */}
