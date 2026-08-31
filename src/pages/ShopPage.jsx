@@ -12,8 +12,10 @@ import jaggery          from "../../src/assets/jaggery.avif";
 import polytheneImg     from "../../src/assets/polythene.webp";
 import tissueImg        from "../../src/assets/tissue.jpg";
 import papersImg        from "../../src/assets/pati.webp";
+import oilPaperImg      from "../../src/assets/oil-papers.jpg"; 
 // Hero background
-import heroBg           from "../../src/assets/back.png";
+import heroBg           from "../../src/assets/productbackground6.png";
+import heroBgMobile from "../../src/assets/productbackgroundrotate2.png";
 
 /* ─── WHATSAPP / PHONE ─── */
 const WHATSAPP = "94726969743";
@@ -92,69 +94,193 @@ const PRODUCTS = [
     ],
     details: "High-quality hulled white sesame seeds with a clean, mild, nutty flavour. Consistent quality ensures reliable production output for food manufacturers. Our white sesame is sourced seasonally and stored in climate-controlled conditions to preserve freshness. Both raw and hulled varieties are available — minimum processing to maximum shelf life.",
   },
-  {
-    id: "cleaned-sesame",
+    {
+    id: "cleaned-sesame-sun-dried",
     category: "sesame",
-    badge: "Ready to Use",
+    badge: "Sun-Dried",
     badgeColor: "#7a4a00",
-    emoji: "✨",
+    emoji: "☀️",
     image: blackwhitesesami,
-    name: "Cleaned Black Sesame",
-    tagline: "Zero waste · Production-ready",
-    shortDesc: "Machine-sorted, dust-free, stone-free black sesame. Saves processing time and reduces production waste.",
-    accentColor: "#0a7a4a",
-    lightColor: "#e6f7f0",
-    price: "Contact for pricing",
-    minOrder: "5 kg retail · 50 kg wholesale",
-    specs: [
-      { label: "Moisture",       value: "≤ 5.5%" },
-      { label: "Purity",         value: "≥ 99.9%" },
-      { label: "Foreign Matter", value: "< 0.1%" },
-      { label: "Oil Content",    value: "52–56%" },
-      { label: "Shelf Life",     value: "12 months (sealed)" },
-      { label: "Process",        value: "Machine Sorted + Hand Checked" },
-    ],
-    variants: ["Cleaned & Sorted", "Vacuum Packed (on request)", "Bulk 50 kg sacks"],
-    uses: ["Direct food production", "High-end confectionery", "Export-quality products", "Sesame oil (cold press)", "Specialty bakery"],
-    highlights: [
-      { icon: "🤖", title: "Machine Sorted", desc: "Optical and gravity sorting for zero foreign matter." },
-      { icon: "⏱️", title: "Saves Time", desc: "No pre-processing needed — use directly in production." },
-      { icon: "💎", title: "Premium Grade", desc: "Highest purity specification we offer." },
-    ],
-    details: "Thoroughly cleaned and machine-sorted black sesame seeds with a purity specification of ≥ 99.9%. Dust-free, stone-free, and ready for immediate use in food production. Ideal for manufacturers who require the highest consistency without in-house cleaning infrastructure. Vacuum packing available on request for export and long-distance shipments.",
-  },
-
-  /* ── JAGGERY ── */
-  {
-    id: "organic-jaggery",
-    category: "jaggery",
-    badge: "Organic",
-    badgeColor: "#7a4a00",
-    emoji: "🍯",
-    image: jaggery,
-    name: "Organic Block Jaggery",
-    tagline: "Unrefined · Naturally sweet",
-    shortDesc: "Fresh sugarcane juice boiled and set into golden blocks. The authentic sweetener for sesame brittle, confectionery, and Ayurvedic preparations.",
+    name: "Cleaned Black Sesame — Sun-Dried",
+    tagline: "Naturally sun-dried · Production-ready",
+    shortDesc: "Machine-sorted, dust-free black sesame dried naturally under the sun. Slower drying preserves aroma and natural oil character.",
     accentColor: "#7a4a00",
     lightColor: "#fff4e6",
     price: "Contact for pricing",
     minOrder: "5 kg retail · 50 kg wholesale",
     specs: [
-      { label: "Type",           value: "Unrefined / Natural" },
+      { label: "Drying Method",  value: "Natural Sun-Dried" },
+      { label: "Moisture",       value: "≤ 5.5%" },
+      { label: "Purity",         value: "≥ 99.9%" },
+      { label: "Foreign Matter", value: "< 0.1%" },
+      { label: "Oil Content",    value: "52–56%" },
+      { label: "Shelf Life",     value: "12 months (sealed)" },
+    ],
+    variants: ["Cleaned & Sorted", "Vacuum Packed (on request)", "Bulk 50 kg sacks"],
+    uses: ["Direct food production", "High-end confectionery", "Export-quality products", "Sesame oil (cold press)", "Specialty bakery"],
+    highlights: [
+      { icon: "☀️", title: "Sun-Dried Naturally", desc: "Slow, natural drying process with no artificial heat." },
+      { icon: "🤖", title: "Machine Sorted", desc: "Optical and gravity sorting for zero foreign matter." },
+      { icon: "💎", title: "Premium Grade", desc: "Highest purity specification we offer." },
+    ],
+    details: "Thoroughly cleaned and machine-sorted black sesame seeds, dried the traditional way under natural sunlight. This slower drying method is widely regarded to preserve a deeper aroma and more natural oil character compared to machine drying. Dust-free, stone-free, and ready for immediate use in food production. Vacuum packing available on request for export and long-distance shipments.",
+  },
+  {
+    id: "cleaned-sesame-machine-dried",
+    category: "sesame",
+    badge: "Machine-Dried",
+    badgeColor: "#0a7a4a",
+    emoji: "⚙️",
+    image: blackwhitesesami,
+    name: "Cleaned Black Sesame — Machine-Dried (Dryer)",
+    tagline: "Dryer-processed · Consistent, fast turnaround",
+    shortDesc: "Machine-sorted, dust-free black sesame dried using a controlled dryer (dayar). Faster, weather-independent drying with consistent moisture control.",
+    accentColor: "#0a7a4a",
+    lightColor: "#e6f7f0",
+    price: "Contact for pricing",
+    minOrder: "5 kg retail · 50 kg wholesale",
+    specs: [
+      { label: "Drying Method",  value: "Machine Dryer (Dayar)" },
+      { label: "Moisture",       value: "≤ 5.5%" },
+      { label: "Purity",         value: "≥ 99.9%" },
+      { label: "Foreign Matter", value: "< 0.1%" },
+      { label: "Oil Content",    value: "52–56%" },
+      { label: "Shelf Life",     value: "12 months (sealed)" },
+    ],
+    variants: ["Cleaned & Sorted", "Vacuum Packed (on request)", "Bulk 50 kg sacks"],
+    uses: ["Direct food production", "High-end confectionery", "Export-quality products", "Sesame oil (cold press)", "Specialty bakery"],
+    highlights: [
+      { icon: "⚙️", title: "Dryer Processed", value: "Controlled machine drying, unaffected by weather." },
+      { icon: "⏱️", title: "Consistent Moisture", desc: "Precise moisture control batch after batch." },
+      { icon: "💎", title: "Premium Grade", desc: "Highest purity specification we offer." },
+    ],
+    details: "Thoroughly cleaned and machine-sorted black sesame seeds, dried using a controlled mechanical dryer (dayar) rather than sun exposure. This method is weather-independent and delivers faster, more consistent moisture reduction — ideal for manufacturers who need reliable turnaround regardless of season. Dust-free, stone-free, and ready for immediate use in food production. Vacuum packing available on request for export and long-distance shipments.",
+  },
+
+  /* ── JAGGERY ── */
+    {
+    id: "hard-jaggery",
+    category: "jaggery",
+    badge: "For Machine Production",
+    badgeColor: "#7a4a00",
+    emoji: "🧱",
+    image: jaggery,
+    name: "Hard Jaggery",
+    tagline: "Firm blocks · Machine-processing friendly",
+    shortDesc: "Dense, firm-set jaggery blocks made for customers using machines for production. Holds shape well and breaks cleanly for automated processing.",
+    accentColor: "#7a4a00",
+    lightColor: "#fff4e6",
+    price: "Contact for pricing",
+    minOrder: "5 kg retail · 50 kg wholesale",
+    specs: [
+      { label: "Type",           value: "Hard-Set Jaggery" },
+      { label: "Best For",       value: "Machine Production" },
+      { label: "Source",         value: "Fresh Sugarcane Juice" },
+      { label: "Moisture",       value: "≤ 6%" },
+      { label: "Sucrose",        value: "≥ 68%" },
+      { label: "Shelf Life",     value: "12 months (sealed)" },
+    ],
+    variants: ["250 g blocks", "500 g blocks", "1 kg blocks", "5 kg packs", "50 kg wholesale sacks"],
+    uses: ["Machine-based sweet production", "Industrial confectionery lines", "Sesame brittle (machine cut)", "Bulk food manufacturing", "Export supply"],
+    highlights: [
+      { icon: "🏭", title: "Machine-Ready", desc: "Firm texture designed for automated crushing and processing." },
+      { icon: "⚖️", title: "Batch Tested", desc: "Moisture and sucrose tested for every batch." },
+      { icon: "🤝", title: "Direct Pricing", desc: "Buy direct — no middlemen, best rate guaranteed." },
+    ],
+    details: "Our hard jaggery is boiled and set to a firm, dense consistency specifically suited for customers who process jaggery using machines. Its low moisture and hard set make it easy to crush, grind, or cut mechanically without clumping. A reliable choice for industrial-scale sweet and confectionery production.",
+  },
+  {
+    id: "soft-jaggery",
+    category: "jaggery",
+    badge: "For Mortar Production",
+    badgeColor: "#0a7a4a",
+    emoji: "🥣",
+    image: jaggery,
+    name: "Soft Jaggery",
+    tagline: "Soft-set · Ideal for mortar (වංගෙඩිය) processing",
+    shortDesc: "Softer, pliable jaggery made for customers who process using a traditional mortar (වංගෙඩිය). Breaks down easily without machine assistance.",
+    accentColor: "#0a7a4a",
+    lightColor: "#e6f7f0",
+    price: "Contact for pricing",
+    minOrder: "5 kg retail · 50 kg wholesale",
+    specs: [
+      { label: "Type",           value: "Soft-Set Jaggery" },
+      { label: "Best For",       value: "Mortar (වංගෙඩිය) Production" },
+      { label: "Source",         value: "Fresh Sugarcane Juice" },
+      { label: "Moisture",       value: "≤ 9%" },
+      { label: "Sucrose",        value: "≥ 63%" },
+      { label: "Shelf Life",     value: "10 months (sealed)" },
+    ],
+    variants: ["250 g blocks", "500 g blocks", "1 kg blocks", "5 kg packs", "50 kg wholesale sacks"],
+    uses: ["Traditional mortar (වංගෙඩිය) processing", "Home-style sweet making", "Coconut candy", "Artisan confectionery", "Small-batch production"],
+    highlights: [
+      { icon: "🥣", title: "Mortar-Friendly", desc: "Soft set breaks down easily by hand with a mortar." },
+      { icon: "🌿", title: "No Additives", desc: "No chemicals, artificial colour, or preservatives." },
+      { icon: "🤝", title: "Direct Pricing", desc: "Buy direct — no middlemen, best rate guaranteed." },
+    ],
+    details: "Our soft jaggery is boiled to a softer, more pliable set — the traditional choice for producers who process jaggery by hand using a mortar (වංගෙඩිය). It crushes easily without the firmness of hard jaggery, making it ideal for home-style and artisan sweet-making where machine processing isn't used.",
+  },
+  {
+    id: "special-jaggery",
+    category: "jaggery",
+    badge: "Watalappan & Desserts",
+    badgeColor: "#1e4fd8",
+    emoji: "🍮",
+    image: jaggery,
+    name: "Special Jaggery",
+    tagline: "Rich & aromatic · Watalappan grade",
+    shortDesc: "A special-grade jaggery perfect for making Watalappan, traditional sweets, and other desserts that need a deeper, richer molasses flavour.",
+    accentColor: "#1e4fd8",
+    lightColor: "#e8eeff",
+    price: "Contact for pricing",
+    minOrder: "5 kg retail · 50 kg wholesale",
+    specs: [
+      { label: "Type",           value: "Special Grade" },
+      { label: "Best For",       value: "Watalappan & Desserts" },
       { label: "Source",         value: "Fresh Sugarcane Juice" },
       { label: "Moisture",       value: "≤ 8%" },
       { label: "Sucrose",        value: "≥ 65%" },
       { label: "Shelf Life",     value: "12 months (sealed)" },
+    ],
+    variants: ["250 g blocks", "500 g blocks", "1 kg blocks", "5 kg packs", "50 kg wholesale sacks"],
+    uses: ["Watalappan", "Traditional Sri Lankan sweets", "Desserts & puddings", "Bakery fillings", "Festive sweet preparations"],
+    highlights: [
+      { icon: "🍮", title: "Watalappan Grade", desc: "Rich flavour profile suited for Sri Lanka's classic dessert." },
+      { icon: "🌿", title: "No Additives", desc: "No chemicals, artificial colour, or preservatives." },
+      { icon: "🤝", title: "Direct Pricing", desc: "Buy direct — no middlemen, best rate guaranteed." },
+    ],
+    details: "Our special jaggery is selected and prepared for its deep, aromatic molasses character — the quality demanded by Watalappan and other traditional Sri Lankan desserts. Its rich flavour and smooth melt make it a favourite among dessert makers who need consistent results batch after batch.",
+  },
+  {
+    id: "kithul-jaggery",
+    category: "jaggery",
+    badge: "Premium",
+    badgeColor: "#8a3a6a",
+    emoji: "🌴",
+    image: jaggery,
+    name: "Kithul Jaggery",
+    tagline: "Premium · Traditional Sri Lankan flavour",
+    shortDesc: "Premium Kithul jaggery made from Kithul palm sap, ideal for traditional Sri Lankan foods and desserts with an authentic, distinctive taste.",
+    accentColor: "#8a3a6a",
+    lightColor: "#f8e8f2",
+    price: "Contact for pricing",
+    minOrder: "5 kg retail · 50 kg wholesale",
+    specs: [
+      { label: "Type",           value: "Kithul Palm Jaggery" },
+      { label: "Best For",       value: "Traditional Sri Lankan Foods" },
+      { label: "Source",         value: "Kithul Palm Sap" },
+      { label: "Moisture",       value: "≤ 8%" },
+      { label: "Shelf Life",     value: "12 months (sealed)" },
       { label: "Additives",      value: "None — 100% natural" },
     ],
     variants: ["250 g blocks", "500 g blocks", "1 kg blocks", "5 kg packs", "50 kg wholesale sacks"],
-    uses: ["Sesame sweets & brittle", "Coconut candy", "Herbal beverages", "Ayurvedic preparations", "Artisan baking"],
+    uses: ["Traditional Sri Lankan sweets", "Kithul treacle-based desserts", "Festive preparations", "Premium confectionery", "Gifting & specialty retail"],
     highlights: [
-      { icon: "🌿", title: "No Additives", desc: "No chemicals, artificial colour, or preservatives." },
-      { icon: "⚖️", title: "Batch Tested", desc: "Moisture and sucrose tested for every batch." },
+      { icon: "🌴", title: "Kithul Palm Sourced", desc: "Made from authentic Kithul palm sap, not sugarcane." },
+      { icon: "✨", title: "Premium Quality", desc: "A distinctive, prized flavour for specialty products." },
       { icon: "🤝", title: "Direct Pricing", desc: "Buy direct — no middlemen, best rate guaranteed." },
     ],
-    details: "Crafted from freshly pressed sugarcane juice, boiled and set without any chemical processing. Unlike refined sugar, our jaggery retains its natural minerals — iron, magnesium, and potassium — and carries a deep molasses flavour irreplaceable in traditional recipes. The primary sweetener used in sesame brittle, coconut candy, and a wide range of Sri Lankan and South Asian confectionery. Supplied from trusted farm partners who maintain consistent quality across seasons.",
+    details: "Kithul jaggery is made from the sap of the Kithul palm rather than sugarcane, giving it a distinctive, prized flavour deeply rooted in Sri Lankan culinary tradition. A premium product favoured for authentic sweets, desserts, and specialty confectionery where genuine Kithul character matters.",
   },
 
   /* ── PACKAGING ── */
@@ -219,6 +345,37 @@ const PRODUCTS = [
       { icon: "✂️", title: "Custom Cut", desc: "Non-standard sizes cut on request for your line." },
     ],
     details: "Soft food-grade tissue sheets purpose-built for wrapping sesame sweets, brittle, and traditional confectionery. Plain white finish keeps branding consistent. Available in standard and half-sheet sizes — custom cut dimensions available on request for high-volume manufacturers. Sold in bundles of 500 or 1,000 sheets.",
+  },
+      {
+    id: "oil-paper-sheets",
+    category: "packaging",
+    badge: "Cut to Size",
+    badgeColor: "#0e7a8a",
+    emoji: "🧾",
+    image: oilPaperImg,
+    name: "Oil Paper Sheets",
+    tagline: "Grease-resistant · Custom cutoff sizes",
+    shortDesc: "Food-safe oil paper sheets that resist grease and oil seepage — perfect for wrapping fried snacks, oily sweets, and sesame confectionery. Available in cutoff sizes to match your production line.",
+    accentColor: "#0e7a8a",
+    lightColor: "#e6f6f8",
+    price: "Sold per bundle",
+    minOrder: "1 bundle",
+    specs: [
+      { label: "Grade",         value: "Food-safe / Grease-proof" },
+      { label: "Type",          value: "Oil / Grease-resistant paper" },
+      { label: "Sizes",         value: "Standard + Custom cutoff" },
+      { label: "Finish",        value: "Smooth, non-stick" },
+      { label: "Use",           value: "Wrapping oily/fried items" },
+      { label: "Min. Order",    value: "1 bundle" },
+    ],
+    variants: ["Standard cutoff size", "Half-sheet cutoff", "Custom cutoff (on request)", "Bundle of 500", "Bundle of 1,000"],
+    uses: ["Wrapping fried snacks", "Oily sweets & confectionery", "Sesame brittle wrapping", "Bakery grease-proof lining", "Food stall packaging"],
+    highlights: [
+      { icon: "🛢️", title: "Grease-Resistant", desc: "Blocks oil seepage to keep packaging and hands clean." },
+      { icon: "✂️", title: "Cutoff Sizes", desc: "Supplied pre-cut to the sizes your line actually needs." },
+      { icon: "📦", title: "Bundle Pricing", desc: "Economical 500 and 1,000 sheet bundles." },
+    ],
+    details: "Our oil paper sheets are designed to resist grease and oil seepage, making them ideal for wrapping fried snacks, oily sweets, and sesame-based confectionery where standard tissue or kraft paper would stain through. Supplied in cutoff sizes so you get exactly the dimensions your production line requires, without wastage from oversized standard rolls. Custom cutoff sizes are available on request for specialised packaging needs.",
   },
   {
     id: "packaging-papers",
@@ -469,35 +626,28 @@ export default function ShopPage({ onBack }) {
         /* ══════════════════════════════
            HERO — FIXED
         ══════════════════════════════ */
-        .shop-hero {
-          position: relative;
-          isolation: isolate;               /* NEW: creates stacking context */
-          min-height: 920px;               /* NEW: guarantees height even if content is sparse */
-          padding: 80px 48px 64px;
-          overflow: hidden;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
-
-        /* Background image — truly fills the hero */
-        .shop-hero-bg {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-        //   filter: brightness(0.30) saturate(1.1) blur(1px);
-          transform: scale(1.06);   /* prevents blur edge bleed */
-          z-index: -2;              /* below overlay and content */
-          pointer-events: none;
-          display: block;
-          background: rgba(255,255,255,0.08);
-          backdrop-filter: blur(8px);
-        }
+.shop-hero {
+  min-height: unset;
+  height: 100vh;          /* fallback for old browsers */
+  height: 100dvh;         /* real fix for mobile address bar */
+  max-height: 100vh;
+  max-height: 100dvh;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;        /* ← ADD THIS: guarantees no scroll even if content overflows */
+  position: relative;      /* ← ADD THIS: .shop-hero-bg uses position:absolute, needs a positioned parent */
+}
+.shop-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;    /* ← shows the FULL image, no cropping */
+  object-position: center;
+  background: #0a0e28;   /* fills the letterbox bars left/right or top/bottom */
+}
 
         /* Dark overlay on top of bg image */
         .shop-hero-overlay {
@@ -784,7 +934,7 @@ export default function ShopPage({ onBack }) {
           background: #fff;
           border-radius: 20px;
           width: 100%; max-width: 820px;
-          max-height: 90vh; overflow-y: auto;
+          max-height: 85vh; overflow-y: auto;
           position: relative;
           animation: panelIn 0.25s cubic-bezier(0.34,1.4,0.64,1);
           box-shadow: 0 32px 80px rgba(10,14,40,0.35);
@@ -927,23 +1077,23 @@ export default function ShopPage({ onBack }) {
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
-          .shop-hero {
-            padding: 52px 24px 48px;
-            min-height: 460px;
-          }
-          .shop-hero-stats {
-            flex-wrap: wrap;
-            gap: 20px 0;
-            justify-content: center;
-          }
-          .shop-hero-stat {
-            padding: 0 24px;
-            /* Remove right border when wrapping — use bottom divider feel */
-            border-right: 1px solid rgba(255,255,255,0.12);
-          }
-          /* Every 2nd item on wrap loses its right border to avoid orphan dividers */
-          .shop-hero-stat:nth-child(2n) { border-right: none; }
-          .shop-hero-stat:last-child { border-right: none; }
+  .shop-hero {
+    height: auto;
+    max-height: none;
+    aspect-ratio: 4 / 5;      /* match your mobile image's real ratio — measure it and set this */
+    padding: 24px;
+    
+  }
+  .shop-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* now safe — box ratio == image ratio, so no unwanted crop */
+    object-position: center;
+    
+  }
+}
           .shop-filter-bar { padding: 0 24px; overflow-x: auto; }
           .shop-filter-tab { padding: 16px 14px; font-size: 12px; }
           .shop-search-wrap { display: none; }
@@ -957,97 +1107,19 @@ export default function ShopPage({ onBack }) {
           .modal-body { padding: 20px 24px 24px; }
         }
         @media (max-width: 560px) {
-          .shop-hero { padding: 40px 20px 40px; min-height: 400px; }
-          .shop-hero-title { font-size: 32px; }
-          .shop-hero-sub { font-size: 14px; margin-bottom: 36px; }
-          .shop-hero-stat { padding: 0 18px; }
-          .shop-hero-stat-num { font-size: 24px; }
-          .shop-grid { grid-template-columns: 1fr; }
-          .modal-cta { flex-direction: column; }
+          .shop-hero { padding: 6px; max-height: 710px; }
         }
+          
       `}</style>
 
       <div className="shop-root">
 
         {/* ══ HERO ══ */}
-        <div className="shop-hero">
-          {/* Layer 1: background photo */}
-          <img src={heroBg} alt="" className="shop-hero-bg" aria-hidden="true" />
-
-          {/* Layer 2: dark overlay (separate element, not ::after pseudo) */}
-          {/* <div className="shop-hero-overlay" aria-hidden="true" /> */}
-
-          {/* Layer 3: all content — naturally stacks above layers 1 & 2 via isolation */}
-        {onBack && (
-        <button className="shop-hero-back" onClick={onBack}>← Back to Home</button>
-        )}
-
-        <div style={{
-        background: "rgba(0,0,0,0.62)",
-        borderRadius: "18px",
-        padding: "40px 48px",
-        backdropFilter: "blur(2px)",
-        width: "100%",
-        maxWidth: "720px",
-        }}>
-        <div className="shop-hero-eyebrow">Aththanayaka Supermart</div>
-
-        <h1 className="shop-hero-title">
-            Our <em>Products</em>
-        </h1>
-
-        <p className="shop-hero-sub">
-            Premium sesame seeds, natural jaggery, and packaging supplies
-            sourced with care, supplied for every scale of production.
-            Trusted by manufacturers, confectioners, and retailers across Sri Lanka.
-        </p>
-
-        {/* ── FEATURE PILLS ── */}
-        <div style={{
-            display: "flex", flexWrap: "wrap", gap: "10px",
-            justifyContent: "center", marginBottom: "40px"
-        }}>
-            {[
-            "Sun-Dried & Natural",
-            "Batch Lab Tested",
-            "Retail to Wholesale",
-            "🇱🇰 Sourced from Sri Lanka",
-            "No Additives",
-            "Island-wide Supply",
-            ].map(pill => (
-            <span key={pill} style={{
-                background: "rgba(255,255,255,0.10)",
-                border: "1px solid rgba(255,255,255,0.22)",
-                color: "rgba(255,255,255,0.82)",
-                borderRadius: "100px",
-                padding: "6px 16px",
-                fontSize: "12px",
-                fontWeight: 500,
-                letterSpacing: "0.3px",
-                backdropFilter: "blur(4px)",
-            }}>{pill}</span>
-            ))}
-        </div>
-
-        <div className="shop-hero-stats">
-            <div className="shop-hero-stat">
-            <div className="shop-hero-stat-num">3</div>
-            <div className="shop-hero-stat-lbl">Sesame Grades</div>
-            </div>
-            <div className="shop-hero-stat">
-            <div className="shop-hero-stat-num">99%</div>
-            <div className="shop-hero-stat-lbl">Purity Rated</div>
-            </div>
-            <div className="shop-hero-stat">
-            <div className="shop-hero-stat-num">30+</div>
-            <div className="shop-hero-stat-lbl">Years Trusted</div>
-            </div>
-            <div className="shop-hero-stat">
-            <div className="shop-hero-stat-num">1000 kg</div>
-            <div className="shop-hero-stat-lbl">Max Bulk Order</div>
-            </div>
-        </div>
-        </div>
+       <div className="shop-hero">
+          <picture>
+            <source media="(max-width: 900px)" srcSet={heroBgMobile} />
+            <img src={heroBg} alt="" className="shop-hero-bg" aria-hidden="true" />
+          </picture>
         </div>
 
         {/* ── FILTER BAR ── */}
