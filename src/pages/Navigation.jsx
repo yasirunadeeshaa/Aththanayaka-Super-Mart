@@ -389,15 +389,36 @@ export default function Navbar({ onShopNow }) {
         }
 
         @media (max-width: 960px) {
-          .nb-links-track { display: none; }
-          .nb-cta { display: none; }
-          .nb-ham { display: flex; }
-        }
-        @media (max-width: 540px) {
-          .nb-inner { padding: 0 20px; height: 60px; }
-          .nb-logo-name { font-size: 16px; }
-          .nb-logo-icon { width: 38px; height: 38px; }
-        }
+  .nb-links-track { display: none; }
+  .nb-cta { display: none; }
+  .nb-ham { display: flex; }
+
+  /* Hide search + cart icons on mobile — decluttered actions row */
+  .nb-icon-btn { display: flex; }
+
+  /* Keep actions row tight and right-aligned */
+  .nb-actions {
+    gap: 8px;
+  }
+}
+@media (max-width: 540px) {
+  .nb-inner { padding: 0 20px; height: 60px; }
+  .nb-logo-name { font-size: 16px; }
+  .nb-logo-icon { width: 38px; height: 38px; }
+
+  /* Hamburger: fixed size, clearly tappable, sits at the far right */
+  .nb-ham {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;   /* never gets squeezed by lang toggle or logo */
+  }
+
+  /* Shrink the language toggle so it doesn't crowd the hamburger */
+  .nb-lang-btn {
+    padding: 5px 8px;
+    font-size: 10.5px;
+  }
+}
       `}</style>
 
       <header
