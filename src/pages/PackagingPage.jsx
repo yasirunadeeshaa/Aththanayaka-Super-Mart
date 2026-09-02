@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FiPackage,
@@ -7,6 +8,7 @@ import {
   FiDisc,
   FiTag,
   FiShoppingBag,
+  FiChevronDown,
 } from "react-icons/fi";
 import polytheneImg from "../assets/polythene.webp";
 import tissueImg from "../assets/tissue.jpg";
@@ -108,6 +110,8 @@ const SECONDARY_ITEMS = [
 /* ─── MAIN ITEM CARD (hero style, like sesame product card) ─── */
 function MainItemCard({ item }) {
   const { Icon } = item;
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div className="pkg-main-card" style={{ "--pkg-accent": item.color, "--pkg-light": item.light }}>
       {/* Image area */}
@@ -133,12 +137,23 @@ function MainItemCard({ item }) {
 
       {/* Coloured header */}
       <div className="pkg-main-header" style={{ background: item.color }}>
-        <div className="pkg-main-name">{item.name}</div>
-        <div className="pkg-main-tagline">{item.tagline}</div>
+        <div>
+          <div className="pkg-main-name">{item.name}</div>
+          <div className="pkg-main-tagline">{item.tagline}</div>
+        </div>
+        <button
+          type="button"
+          className="pkg-main-toggle"
+          onClick={() => setExpanded(e => !e)}
+          aria-expanded={expanded}
+          aria-label={expanded ? "Hide product details" : "Show product details"}
+        >
+          <FiChevronDown className={`pkg-toggle-icon${expanded ? " open" : ""}`} />
+        </button>
       </div>
 
       {/* Body */}
-      <div className="pkg-main-body">
+      <div className={`pkg-main-body${expanded ? " pkg-open" : ""}`}>
         <p className="pkg-main-desc">{item.desc}</p>
 
         <div className="pkg-section-label">Available Sizes / Variants</div>
@@ -156,6 +171,43 @@ function MainItemCard({ item }) {
 
         <div className="pkg-section-label" style={{ marginTop: 16 }}>Sold As</div>
         <div className="pkg-main-unit">{item.unit}</div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── SECONDARY ITEM CARD (icon + name + dropdown on mobile) ─── */
+function SecondaryItemCard({ item }) {
+  const { Icon } = item;
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="pkg-sec-card" style={{ "--pkg-sec-accent": item.color, "--pkg-sec-light": item.light }}>
+      <div className="pkg-sec-top">
+        <div className="pkg-sec-icon-chip">
+          <Icon size={20} strokeWidth={2} />
+        </div>
+        <div className="pkg-sec-name">{item.name}</div>
+        <button
+          type="button"
+          className="pkg-sec-toggle"
+          onClick={() => setExpanded(e => !e)}
+          aria-expanded={expanded}
+          aria-label={expanded ? "Hide details" : "Show details"}
+        >
+          <FiChevronDown className={`pkg-sec-toggle-icon${expanded ? " open" : ""}`} />
+        </button>
+      </div>
+
+      <div className={`pkg-sec-body${expanded ? " pkg-open" : ""}`}>
+        <p className="pkg-sec-desc">{item.desc}</p>
+        <div className="pkg-sec-label">Variants</div>
+        <div className="pkg-sec-variants">
+          {item.variants.map(v => (
+            <span key={v} className="pkg-sec-chip">{v}</span>
+          ))}
+        </div>
+        <div className="pkg-sec-unit">Unit: <span>{item.unit}</span></div>
       </div>
     </div>
   );
@@ -308,7 +360,10 @@ export default function PackagingPage() {
         .pkg-main-img-badge svg { display: block; }
 
         /* Header */
-        .pkg-main-header { padding: 16px 24px 14px; }
+        .pkg-main-header {
+          padding: 16px 24px 14px;
+          display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        }
         .pkg-main-name {
           font-family: 'DM Serif Display', serif;
           font-size: 19px; color: white; margin-bottom: 3px;
@@ -316,6 +371,23 @@ export default function PackagingPage() {
         .pkg-main-tagline {
           font-size: 12px; color: rgba(255,255,255,0.75); font-weight: 400;
         }
+
+        /* Mobile "view details" toggle button (main item cards) */
+        .pkg-main-toggle {
+          display: none;
+          flex-shrink: 0;
+          width: 32px; height: 32px;
+          border-radius: 8px;
+          border: none;
+          background: rgba(255,255,255,0.16);
+          color: white;
+          align-items: center; justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .pkg-main-toggle:hover { background: rgba(255,255,255,0.28); }
+        .pkg-toggle-icon { display: block; transition: transform 0.3s ease; }
+        .pkg-toggle-icon.open { transform: rotate(180deg); }
 
         /* Body */
         .pkg-main-body { padding: 20px 24px 24px; flex: 1; display: flex; flex-direction: column; }
@@ -365,6 +437,26 @@ export default function PackagingPage() {
           box-shadow: 0 10px 36px rgba(30,79,216,0.12);
           transform: translateY(-3px);
         }
+
+        /* Header row: icon + name + mobile dropdown toggle */
+        .pkg-sec-top { }
+
+        /* Mobile "show details" toggle button (secondary cards) */
+        .pkg-sec-toggle {
+          display: none;
+          flex-shrink: 0;
+          width: 30px; height: 30px;
+          border-radius: 8px;
+          border: 1.5px solid color-mix(in srgb, var(--pkg-sec-accent) 25%, transparent);
+          background: var(--pkg-sec-light);
+          color: var(--pkg-sec-accent);
+          align-items: center; justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+        .pkg-sec-toggle:hover { background: var(--pkg-sec-accent); color: white; }
+        .pkg-sec-toggle-icon { display: block; transition: transform 0.3s ease; }
+        .pkg-sec-toggle-icon.open { transform: rotate(180deg); }
 
         /* Icon chip — soft tinted ring, fills with colour on hover */
         .pkg-sec-icon-chip {
@@ -456,13 +548,26 @@ export default function PackagingPage() {
         @media (max-width: 560px) {
           .pkg-secondary-grid { grid-template-columns: 1fr; }
         }
+
+        /* ── MOBILE: dropdown-style main item details ── */
+        @media (max-width: 640px) {
+          .pkg-main-toggle { display: flex; }
+          .pkg-main-body { display: none; }
+          .pkg-main-body.pkg-open { display: flex; }
+
+          .pkg-sec-top { display: flex; align-items: center; gap: 12px; }
+          .pkg-sec-icon-chip { margin-bottom: 0; }
+          .pkg-sec-name { margin-bottom: 0; flex: 1; }
+          .pkg-sec-toggle { display: flex; }
+          .pkg-sec-body { display: none; margin-top: 14px; }
+          .pkg-sec-body.pkg-open { display: block; }
+        }
       `}</style>
 
       <div id="packaging" className="pkg-root">
 
         {/* ── HERO ── */}
         <div className="pkg-hero">
-          <Link to="/products" className="pkg-hero-back">← Back to Products</Link>
           <div className="pkg-hero-eyebrow">Aththanayaka Supermart</div>
           <h1 className="pkg-hero-title">Packaging <em>Supplies</em></h1>
           <p className="pkg-hero-sub">Everything you need to package, brand, and deliver your sesame products tissue sheets, polythene covers, papers, sealing rolls and more.</p>
@@ -486,25 +591,9 @@ export default function PackagingPage() {
         <div className="pkg-secondary-wrap">
           <div className="pkg-secondary-eyebrow">Also Available</div>
           <div className="pkg-secondary-grid">
-            {SECONDARY_ITEMS.map(item => {
-              const { Icon } = item;
-              return (
-                <div className="pkg-sec-card" key={item.name} style={{ "--pkg-sec-accent": item.color, "--pkg-sec-light": item.light }}>
-                  <div className="pkg-sec-icon-chip">
-                    <Icon size={20} strokeWidth={2} />
-                  </div>
-                  <div className="pkg-sec-name">{item.name}</div>
-                  <p className="pkg-sec-desc">{item.desc}</p>
-                  <div className="pkg-sec-label">Variants</div>
-                  <div className="pkg-sec-variants">
-                    {item.variants.map(v => (
-                      <span key={v} className="pkg-sec-chip">{v}</span>
-                    ))}
-                  </div>
-                  <div className="pkg-sec-unit">Unit: <span>{item.unit}</span></div>
-                </div>
-              );
-            })}
+            {SECONDARY_ITEMS.map(item => (
+              <SecondaryItemCard key={item.name} item={item} />
+            ))}
           </div>
         </div>
 

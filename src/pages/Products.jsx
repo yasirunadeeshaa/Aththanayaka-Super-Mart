@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FiBox, FiCheckCircle } from "react-icons/fi";
+import { FiBox, FiCheckCircle, FiChevronDown } from "react-icons/fi";
 import { FaHandshake } from "react-icons/fa";
 import {
   GiHoneypot,
@@ -186,6 +186,8 @@ function Slideshow() {
 
 /* ─── SESAME CARD ─── */
 function ProductCard({ product }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div className="ss-card" style={{ "--accent": product.color, "--light": product.light }}>
       <div className="ss-card-image-wrap">
@@ -197,8 +199,17 @@ function ProductCard({ product }) {
           <div className="ss-card-name">{product.name}</div>
           <div className="ss-card-tagline">{product.tagline}</div>
         </div>
+        <button
+          type="button"
+          className="ss-card-toggle"
+          onClick={() => setExpanded(e => !e)}
+          aria-expanded={expanded}
+          aria-label={expanded ? "Hide product details" : "Show product details"}
+        >
+          <FiChevronDown className={`ss-toggle-icon${expanded ? " open" : ""}`} />
+        </button>
       </div>
-      <div className="ss-card-body">
+      <div className={`ss-card-body${expanded ? " ss-open" : ""}`}>
         <p className="ss-card-desc">{product.desc}</p>
         <div className="ss-card-section-label">Common Uses</div>
         <ul className="ss-uses">{product.uses.map(u => <li key={u}>{u}</li>)}</ul>
@@ -221,9 +232,40 @@ function ProductCard({ product }) {
   );
 }
 
+/* ─── JAGGERY VARIANT CARD ─── */
+function JaggeryVariantCard({ variant }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="jg-variant-card">
+      <div className="jg-variant-header" style={{ background: variant.color }}>
+        <div className="jg-variant-name">{variant.name}</div>
+        <button
+          type="button"
+          className="jg-variant-toggle"
+          onClick={() => setExpanded(e => !e)}
+          aria-expanded={expanded}
+          aria-label={expanded ? "Hide variant details" : "Show variant details"}
+        >
+          <FiChevronDown className={`jg-toggle-icon${expanded ? " open" : ""}`} />
+        </button>
+      </div>
+      <div className={`jg-variant-body${expanded ? " jg-open" : ""}`}>
+        <p className="jg-variant-desc">{variant.desc}</p>
+        <div className="jg-variant-sizes">
+          {variant.sizes.map(s => (
+            <span key={s} className="jg-variant-size" style={{ color: variant.color, borderColor: variant.color, background: variant.light }}>{s}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── MAIN PAGE ─── */
 export default function ProductsPage() {
   const waMsg = encodeURIComponent("Hi! I'm interested in *Organic Jaggery*. Please share pricing and availability.");
+  const [jgOpen, setJgOpen] = useState(false);
 
   return (
     <>
@@ -296,16 +338,37 @@ export default function ProductsPage() {
           display: flex; align-items: center; justify-content: center;
           box-shadow: 0 2px 12px rgba(0,0,0,0.18); font-size: 22px;
         }
-        .ss-card-header { padding: 16px 24px 14px; }
+        .ss-card-header {
+          padding: 16px 24px 14px;
+          display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        }
         .ss-card-name { font-family: 'DM Serif Display', serif; font-size: 19px; color: white; margin-bottom: 3px; }
         .ss-card-tagline { font-size: 12px; color: rgba(255,255,255,0.75); font-weight: 400; }
+
+        /* Mobile "view details" toggle button (product cards) */
+        .ss-card-toggle {
+          display: none;
+          flex-shrink: 0;
+          width: 32px; height: 32px;
+          border-radius: 8px;
+          border: none;
+          background: rgba(255,255,255,0.16);
+          color: white;
+          align-items: center; justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .ss-card-toggle:hover { background: rgba(255,255,255,0.28); }
+        .ss-toggle-icon { display: block; transition: transform 0.3s ease; }
+        .ss-toggle-icon.open { transform: rotate(180deg); }
+
         .ss-card-body { padding: 20px 24px 24px; flex: 1; display: flex; flex-direction: column; }
-        .ss-card-desc { font-size: 13px; color: #5a6a8a; line-height: 1.7; font-weight: 300; margin-bottom: 16px; }
         .ss-card-section-label {
           font-size: 10px; font-weight: 700; letter-spacing: 2px;
           text-transform: uppercase; color: #8a9abf;
           margin-bottom: 7px; margin-top: 14px;
         }
+        .ss-card-desc { font-size: 13px; color: #5a6a8a; line-height: 1.7; font-weight: 300; margin-bottom: 16px; }
         .ss-uses { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 4px; }
         .ss-uses li { font-size: 12.5px; color: #3a4a6a; padding-left: 16px; position: relative; }
         .ss-uses li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; }
@@ -491,12 +554,47 @@ export default function ProductsPage() {
 
         .jg-variants { display: flex; flex-direction: column; gap: 14px; }
         .jg-variant-card { border-radius: 12px; overflow: hidden; border: 1px solid #e8eef8; box-shadow: 0 2px 8px rgba(122,74,0,0.04); }
-        .jg-variant-header { padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; }
+        .jg-variant-header { padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
         .jg-variant-name { font-family: 'DM Serif Display', serif; font-size: 16px; color: white; }
+
+        /* Mobile "view details" toggle button (jaggery variant cards) */
+        .jg-variant-toggle {
+          display: none;
+          flex-shrink: 0;
+          width: 30px; height: 30px;
+          border-radius: 8px;
+          border: none;
+          background: rgba(255,255,255,0.16);
+          color: white;
+          align-items: center; justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .jg-variant-toggle:hover { background: rgba(255,255,255,0.28); }
+        .jg-toggle-icon { display: block; transition: transform 0.3s ease; }
+        .jg-toggle-icon.open { transform: rotate(180deg); }
+
         .jg-variant-body { background: white; padding: 14px 18px; }
         .jg-variant-desc { font-size: 13px; color: #5a6a8a; line-height: 1.6; font-weight: 300; margin-bottom: 12px; }
         .jg-variant-sizes { display: flex; flex-wrap: wrap; gap: 7px; }
         .jg-variant-size { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 100px; border: 1.5px solid; }
+
+        /* Mobile "view full jaggery details" dropdown toggle */
+        .jg-details-toggle {
+          display: none;
+          width: 100%;
+          align-items: center; justify-content: center; gap: 8px;
+          max-width: 1180px; margin: 0 auto 28px;
+          padding: 13px 20px;
+          background: #fff4e6;
+          border: 1.5px solid #e8d5b0;
+          border-radius: 12px;
+          color: #7a4a00;
+          font-size: 13px; font-weight: 600; letter-spacing: 0.2px;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .jg-details-toggle:hover { background: #ffe9cc; }
 
         .jg-why-list { display: flex; flex-direction: column; gap: 12px; }
         .jg-why-item {
@@ -561,6 +659,21 @@ export default function ProductsPage() {
         @media (max-width: 520px) {
           .jg-uses-grid { grid-template-columns: 1fr; }
         }
+
+        /* ── MOBILE: dropdown-style product / variant details ── */
+        @media (max-width: 640px) {
+          .ss-card-toggle { display: flex; }
+          .ss-card-body { display: none; }
+          .ss-card-body.ss-open { display: flex; }
+
+          .jg-variant-toggle { display: flex; }
+          .jg-variant-body { display: none; }
+          .jg-variant-body.jg-open { display: block; }
+
+          .jg-details-toggle { display: flex; }
+          .jg-collapsible { display: none; }
+          .jg-collapsible.jg-open { display: block; }
+        }
       `}</style>
 
       <div className="ss-root">
@@ -598,47 +711,47 @@ export default function ProductsPage() {
             <div className="jg-divider-line" />
           </div>
 
+          <button
+            type="button"
+            className="jg-details-toggle"
+            onClick={() => setJgOpen(o => !o)}
+            aria-expanded={jgOpen}
+          >
+            <span>{jgOpen ? "Hide Full Details" : "View Full Details"}</span>
+            <FiChevronDown className={`jg-toggle-icon${jgOpen ? " open" : ""}`} />
+          </button>
+
           <div className="jg-body">
 
             {/* LEFT */}
             <div className="jg-left">
               <Slideshow />
 
-              <div className="jg-quick-info">
-                <div className="jg-quick-info-title">At a Glance</div>
-                {JG_QUICK.map(r => (
-                  <div key={r.label} className="jg-quick-row">
-                    <span>{r.label}</span>
-                    <strong>{r.value}</strong>
-                  </div>
-                ))}
-              </div>
-
-              {/* Variants */}
-              <div className="jg-info-section" style={{ marginTop: 28 }}>
-                <div className="jg-info-label">Available Variants</div>
-                <div className="jg-variants">
-                  {JG_VARIANTS.map(v => (
-                    <div key={v.name} className="jg-variant-card">
-                      <div className="jg-variant-header" style={{ background: v.color }}>
-                        <div className="jg-variant-name">{v.name}</div>
-                      </div>
-                      <div className="jg-variant-body">
-                        <p className="jg-variant-desc">{v.desc}</p>
-                        <div className="jg-variant-sizes">
-                          {v.sizes.map(s => (
-                            <span key={s} className="jg-variant-size" style={{ color: v.color, borderColor: v.color, background: v.light }}>{s}</span>
-                          ))}
-                        </div>
-                      </div>
+              <div className={`jg-collapsible${jgOpen ? " jg-open" : ""}`}>
+                <div className="jg-quick-info">
+                  <div className="jg-quick-info-title">At a Glance</div>
+                  {JG_QUICK.map(r => (
+                    <div key={r.label} className="jg-quick-row">
+                      <span>{r.label}</span>
+                      <strong>{r.value}</strong>
                     </div>
                   ))}
+                </div>
+
+                {/* Variants */}
+                <div className="jg-info-section" style={{ marginTop: 28 }}>
+                  <div className="jg-info-label">Available Variants</div>
+                  <div className="jg-variants">
+                    {JG_VARIANTS.map(v => (
+                      <JaggeryVariantCard key={v.name} variant={v} />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* RIGHT */}
-            <div className="jg-right">
+            <div className={`jg-right jg-collapsible${jgOpen ? " jg-open" : ""}`}>
 
               <div className="jg-info-section">
                 <div className="jg-info-label">About This Product</div>

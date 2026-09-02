@@ -143,6 +143,11 @@ export default function WholesalePage() {
           .ws-how { padding: 48px 24px; }
           .ws-cta { padding: 0 24px; margin: 48px auto; }
         }
+
+        /* ── MOBILE: hide the "How to Place a Wholesale Order" process section ── */
+        @media (max-width: 640px) {
+          .ws-how { display: none; }
+        }
       `}</style>
 
       <div id="wholesale" className="ws-root">

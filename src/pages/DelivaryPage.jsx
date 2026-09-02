@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -13,6 +14,7 @@ import {
   FiClock,
   FiCreditCard,
   FiNavigation,
+  FiChevronDown,
 } from "react-icons/fi";
 import { FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -22,6 +24,44 @@ L.Icon.Default.mergeOptions({
   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
+
+/* ─── DELIVERY / VISIT OPTION CARD (with mobile dropdown) ─── */
+function DeliveryOptionCard({ icon, title, desc, details, children }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="dv-option">
+      <button
+        type="button"
+        className="dv-option-toggle"
+        onClick={() => setExpanded(e => !e)}
+        aria-expanded={expanded}
+        aria-label={expanded ? "Hide details" : "Show details"}
+      >
+        <FiChevronDown className={`dv-toggle-icon${expanded ? " open" : ""}`} />
+      </button>
+
+      <span className="dv-option-icon-wrap">{icon}</span>
+      <div className="dv-option-title">{title}</div>
+
+      <div className={`dv-option-body${expanded ? " dv-open" : ""}`}>
+        <p className="dv-option-desc">{desc}</p>
+        <div className="dv-details">
+          {details.map(d => (
+            <div key={d.label} className="dv-detail">
+              <span className="dv-detail-icon-wrap">{d.icon}</span>
+              <div>
+                <div className="dv-detail-label">{d.label}</div>
+                <div className="dv-detail-val">{d.val}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 export default function DeliveryPage() {
   const WHATSAPP = "94726969743";
@@ -70,11 +110,37 @@ export default function DeliveryPage() {
           gap: 0; max-width: 1100px; margin: 48px auto 0; padding: 0 48px;
         }
         .dv-option {
+          position: relative;
           background: white; border: 1px solid #e8eef8;
           padding: 48px 44px;
         }
         .dv-option:first-child { border-radius: 16px 0 0 16px; border-right: none; }
         .dv-option:last-child { border-radius: 0 16px 16px 0; background: #1a1a2e; border-color: #1a1a2e; }
+
+        /* Mobile "show details" dropdown toggle for option cards */
+        .dv-option-toggle {
+          display: none;
+          position: absolute;
+          top: 44px; right: 40px;
+          width: 34px; height: 34px;
+          border-radius: 9px;
+          border: none;
+          align-items: center; justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .dv-option:first-child .dv-option-toggle {
+          background: #eef2fd;
+          color: #1e4fd8;
+        }
+        .dv-option:first-child .dv-option-toggle:hover { background: #dfe7fb; }
+        .dv-option:last-child .dv-option-toggle {
+          background: rgba(255,255,255,0.12);
+          color: white;
+        }
+        .dv-option:last-child .dv-option-toggle:hover { background: rgba(255,255,255,0.22); }
+        .dv-toggle-icon { display: block; transition: transform 0.3s ease; }
+        .dv-toggle-icon.open { transform: rotate(180deg); }
 
         /* Option Header Icons (Truck / Shop) */
         .dv-option-icon-wrap {
@@ -390,6 +456,14 @@ export default function DeliveryPage() {
           .dv-map-section { padding: 0 24px; }
           .dv-hero { padding: 48px 24px 40px; }
         }
+
+        /* ── MOBILE: dropdown for delivery / visit option details ── */
+        @media (max-width: 640px) {
+          .dv-option { padding: 40px 32px; }
+          .dv-option-toggle { display: flex; top: 40px; right: 28px; }
+          .dv-option-body { display: none; }
+          .dv-option-body.dv-open { display: block; }
+        }
       `}</style>
 
       <div id="delivery" className="dv-root">
@@ -401,52 +475,34 @@ export default function DeliveryPage() {
         </div>
 
         <div className="dv-options">
-          <div className="dv-option">
-            <span className="dv-option-icon-wrap"><FiTruck size={26} strokeWidth={1.75} /></span>
-            <div className="dv-option-title">Home Delivery</div>
-            <p className="dv-option-desc">We deliver sesame seeds, jaggery and packaging supplies directly to your location. Call or WhatsApp us to arrange delivery after confirming your order.</p>
-            <div className="dv-details">
-              {[
-                { icon: <FiMapPin size={16} strokeWidth={2} />, label: "Coverage", val: "Available — contact us to confirm your area" },
-                { icon: <FiDollarSign size={16} strokeWidth={2} />, label: "Delivery Charges", val: "Discussed based on location & order size" },
-                { icon: <FiCalendar size={16} strokeWidth={2} />, label: "Delivery Time", val: "Agreed upon order confirmation" },
-                { icon: <FiPackage size={16} strokeWidth={2} />, label: "Order Minimum", val: "No strict minimum — contact us" },
-              ].map(d => (
-                <div key={d.label} className="dv-detail">
-                  <span className="dv-detail-icon-wrap">{d.icon}</span>
-                  <div>
-                    <div className="dv-detail-label">{d.label}</div>
-                    <div className="dv-detail-val">{d.val}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <DeliveryOptionCard
+            icon={<FiTruck size={26} strokeWidth={1.75} />}
+            title="Home Delivery"
+            desc="We deliver sesame seeds, jaggery and packaging supplies directly to your location. Call or WhatsApp us to arrange delivery after confirming your order."
+            details={[
+              { icon: <FiMapPin size={16} strokeWidth={2} />, label: "Coverage", val: "Available — contact us to confirm your area" },
+              { icon: <FiDollarSign size={16} strokeWidth={2} />, label: "Delivery Charges", val: "Discussed based on location & order size" },
+              { icon: <FiCalendar size={16} strokeWidth={2} />, label: "Delivery Time", val: "Agreed upon order confirmation" },
+              { icon: <FiPackage size={16} strokeWidth={2} />, label: "Order Minimum", val: "No strict minimum — contact us" },
+            ]}
+          >
             <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi! I'd like to arrange *delivery* for my order. Can you help?")}`} target="_blank" rel="noreferrer" className="dv-btn-wa"><FaWhatsapp size={20} /> Arrange Delivery</a>
             <a href={`tel:${PHONE}`} className="dv-btn-call"><FiPhone size={18} strokeWidth={2} /> Call</a>
-          </div>
+          </DeliveryOptionCard>
 
-          <div className="dv-option">
-            <span className="dv-option-icon-wrap"><FiShoppingBag size={26} strokeWidth={1.75} /></span>
-            <div className="dv-option-title">Visit Our Shop</div>
-            <p className="dv-option-desc">You're always welcome to visit us in person. See the products, pick exactly what you need, and take it with you. No appointment needed.</p>
-            <div className="dv-details">
-              {[
-                { icon: <FiMapPin size={16} strokeWidth={2} />, label: "Address", val: ADDRESS },
-                { icon: <FiClock size={16} strokeWidth={2} />, label: "Open Hours", val: "Tue–Sun: 9:00 AM – 6:00 PM" },
-                { icon: <FiPhoneCall size={16} strokeWidth={2} />, label: "Before You Visit", val: "Call ahead to confirm stock availability" },
-                { icon: <FiCreditCard size={16} strokeWidth={2} />, label: "Payment", val: "Cash accepted · Bank transfer available" },
-              ].map(d => (
-                <div key={d.label} className="dv-detail">
-                  <span className="dv-detail-icon-wrap">{d.icon}</span>
-                  <div>
-                    <div className="dv-detail-label">{d.label}</div>
-                    <div className="dv-detail-val">{d.val}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <DeliveryOptionCard
+            icon={<FiShoppingBag size={26} strokeWidth={1.75} />}
+            title="Visit Our Shop"
+            desc="You're always welcome to visit us in person. See the products, pick exactly what you need, and take it with you. No appointment needed."
+            details={[
+              { icon: <FiMapPin size={16} strokeWidth={2} />, label: "Address", val: ADDRESS },
+              { icon: <FiClock size={16} strokeWidth={2} />, label: "Open Hours", val: "Tue–Sun: 9:00 AM – 6:00 PM" },
+              { icon: <FiPhoneCall size={16} strokeWidth={2} />, label: "Before You Visit", val: "Call ahead to confirm stock availability" },
+              { icon: <FiCreditCard size={16} strokeWidth={2} />, label: "Payment", val: "Cash accepted · Bank transfer available" },
+            ]}
+          >
             <a href={MAPS_URL} target="_blank" rel="noreferrer" className="dv-btn-map"><FiNavigation size={18} strokeWidth={2} /> Open in Maps</a>
-          </div>
+          </DeliveryOptionCard>
         </div>
 
         <div className="dv-hours">
