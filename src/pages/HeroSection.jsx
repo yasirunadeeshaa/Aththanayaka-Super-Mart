@@ -10,7 +10,7 @@ import cleansesami from "../../src/assets/cleansesami.webp";
 import jaggery from "../../src/assets/jaggery.avif";
 import logoWatermark from "../../src/assets/logo-watermark.png";
 
-import mobileHeroImg  from "../../src/assets/productbackgroundrotate2.png";
+import mobileHeroImg  from "../../src/assets/heromobilebackground.png";
 
 const PRODUCTS = {
   en: [
