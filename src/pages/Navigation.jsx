@@ -159,7 +159,7 @@ export default function Navbar({ onShopNow }) {
         }
         .nb-logo-icon {
           width: 44px; height: 44px;
-          border-radius: 10px;
+          border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
           overflow: hidden;
           flex-shrink: 0;
@@ -405,7 +405,8 @@ export default function Navbar({ onShopNow }) {
   .nb-inner { padding: 0 20px; height: 60px; }
   .nb-logo-name { font-size: 16px; }
   .nb-logo-icon { width: 38px; height: 38px; }
-
+  .nb-icon-btn { display: none; }
+  .nb-icon-btn2 { display: flex; }
   /* Hamburger: fixed size, clearly tappable, sits at the far right */
   .nb-ham {
     width: 40px;
@@ -502,7 +503,7 @@ export default function Navbar({ onShopNow }) {
               </button>
             </div>
 
-            <Link to="/search" className="nb-icon-btn" title="Search">🔍</Link>
+            <Link to="/search" className="nb-icon-btn nb-icon-btn2" title="Search">🔍</Link>
             <Link to="/cart" className="nb-icon-btn" title="Cart">
               🛒
               <span className="nb-badge">3</span>
