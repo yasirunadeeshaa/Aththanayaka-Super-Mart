@@ -456,7 +456,7 @@ const T = {
   wholesale:        { en: "Wholesale Orders",          si: "තොග ඇණවුම්" },
   contact:          { en: "Contact",                  si: "සම්බන්ධ වන්න" },
   address: {
-    en: "No. 48, Hnadapangoda Road, Horana, Sri Lanka",
+    en: "No. 48, Handapangoda Road, Horana, Sri Lanka",
     si: "අංක 48, හදපන්ගොඩ පාර, හොරණ, ශ්‍රී ලංකාව",
   },
   hours: { en: "Tue – Sun, 9.00 AM – 7.00 PM", si: "අඟහරුවාදා සිට ඉරිදා දක්වා, පෙ.ව. 9.00 – ප.ව. 7.00" },

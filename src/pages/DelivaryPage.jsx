@@ -20,8 +20,8 @@ import { FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+  iconRetinaUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
@@ -68,9 +68,9 @@ export default function DeliveryPage() {
   const PHONE = "+94 78 686 9743";
   const LANDLINE = "+94 34 225 6054";
   const ADDRESS = "No 48, Horana Road Handapangoda, Sri Lanka";
-  const MAPS_URL = "https://maps.app.goo.gl/EeovDF4ANUDnX9gz8";
-  const LAT = 6.7902992;
-  const LNG = 80.1374571;
+  const MAPS_URL = "https://maps.app.goo.gl/oYRTqs9MGc33bHQe9";
+  const LAT = 6.790216;
+  const LNG = 80.1374214;
 
   return (
     <>
@@ -88,7 +88,6 @@ export default function DeliveryPage() {
           border-bottom: 1px solid #dde3ef;
           padding: 56px 48px 44px;
           text-align: center;
-          background: #fff;
         }
         .dv-hero-eyebrow {
           font-size: 11px; font-weight: 700; letter-spacing: 3px;
@@ -588,7 +587,7 @@ export default function DeliveryPage() {
             <div className="dv-map-frame">
               <MapContainer
                 center={[LAT, LNG]}
-                zoom={16}
+                zoom={17}
                 scrollWheelZoom={false}
                 style={{ height: "100%", width: "100%", minHeight: "440px" }}
               >
