@@ -15,7 +15,7 @@ import {
 const STATS = [
   { Icon: FiCalendar, num: "30", suffix: "+", label: "Years in Business" },
   { Icon: FiUsers,    num: "100", suffix: "+", label: "Regular Customers" },
-  { Icon: GiWheat,    num: "4",  suffix: "",  label: "Sesame Varieties" },
+  { Icon: GiWheat,    num: "9",  suffix: "",  label: "Sesame Varieties" },
   { Icon: FiMapPin,   num: "100",suffix: "%", label: "Sri Lankan Sourced" },
 ];
 
