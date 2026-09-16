@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FiBox, FiCheckCircle, FiChevronDown } from "react-icons/fi";
+import { FiBox, FiCheckCircle, FiChevronDown, FiArrowRight } from "react-icons/fi";
 import { FaHandshake } from "react-icons/fa";
 import {
   GiHoneypot,
@@ -14,14 +14,17 @@ import {
 const WHATSAPP = "94XXXXXXXXX";
 const PHONE = "+94 XX XXX XXXX";
 
-import blacksesami from "../../src/assets/sasemi6.jpg";
-import whiteseasami from "../../src/assets/sasemi15.jpg";
-import blackwhitesesami from "../../src/assets/sasemi7.jpg";
+import blacksesami from "../../src/assets/black sesame.png";
+import whiteseasami from "../../src/assets/white sesame.png";
+import indianSesame from "../../src/assets/Indian sesame.png";
+import sunDriedCleanSesame from "../../src/assets/Sun dried sesame.png";
+import machineDriedCleanSesame from "../../src/assets/machine dryed sesame.png";
 
 import jaggery from "../../src/assets/jaggery.avif";
-import jaggery2 from "../../src/assets/jageery1.webp";
-import jaggery3 from "../../src/assets/jaggery2.jpg";
-import jaggery4 from "../../src/assets/jaggery3.avif";
+import jaggery2 from "../../src/assets/jaggery2.png";
+import jaggery3 from "../../src/assets/jaggery3.png";
+import jaggery4 from "../../src/assets/jaggery4.png";
+import jaggery5 from "../../src/assets/jaggery5.png";
 
 /* ─── SESAME PRODUCTS ─── */
 const PRODUCTS = [
@@ -45,7 +48,7 @@ const PRODUCTS = [
   },
   {
     id: "white",
-    color: "#1e4fd8",
+    color: "#333333",
     accent: "#2d63f0",
     light: "#e8eeff",
     name: "White Sesame Seeds",
@@ -62,23 +65,59 @@ const PRODUCTS = [
     ],
   },
   {
-    id: "cleaned",
-    color: "#0a7a4a",
-    accent: "#0d9a60",
-    light: "#e6f7f0",
-    name: "Cleaned Black Sesame",
-    tagline: "Ready-to-use, sorted & processed",
-    image: blackwhitesesami,
-    desc: "Thoroughly cleaned and machine-sorted black sesame seeds. Dust-free, stone-free, and ready for immediate use in food production. Saves processing time and reduces waste.",
-    uses: ["Direct food production", "High-end confectionery", "Export-quality products", "Sesame oil (cold press)"],
-    available: ["Cleaned & Sorted", "Vacuum Packed (on request)"],
+    id: "indian-sesame",
+    color: "#1a1a2e",
+    accent: "#c2410c",
+    light: "#fff1e6",
+    name: "Indian Sesame Seeds",
+    tagline: "Imported · Bold, earthy flavor",
+    image: indianSesame,
+    desc: "Premium sesame seeds sourced from India, known for their rich earthy aroma and robust flavor profile. Carefully selected and quality-checked, ideal for producers looking for a distinct regional character in their sesame products.",
+    uses: ["Traditional confectionery", "Sesame oil extraction", "Bakery & snack toppings", "Export blending"],
+    available: ["Raw / Uncleaned", "Sorted & Cleaned"],
     specs: [
-      { label: "Moisture", value: "≤ 5.5%" },
-      { label: "Purity", value: "≥ 99.9%" },
-      { label: "Foreign Matter", value: "< 0.1%" },
+      { label: "Origin", value: "India" },
+      { label: "Moisture", value: "≤ 6.5%" },
+      { label: "Purity", value: "≥ 99%" },
       { label: "Min. Order", value: "5 kg (retail) / 50 kg (wholesale)" },
     ],
   },
+    {
+      id: "cleaned-sesame-sun-dried",
+      color: "#0e7a8a",
+      accent: "#7a4a00",
+      light: "#fff4e6",
+      name: "Cleaned & Peeled Black Sesame  Sun-Dried",
+      tagline: "Naturally sun-dried · Production-ready",
+      image: sunDriedCleanSesame,
+      desc: "Machine-sorted, dust-free black sesame dried naturally under the sun. Slower drying preserves aroma and natural oil character. Dust-free, stone-free, and ready for immediate use in food production.",
+      uses: ["Direct food production", "High-end confectionery", "Export-quality products", "Sesame oil (cold press)"],
+      available: ["Cleaned & Sorted", "Vacuum Packed (on request)"],
+      specs: [
+        { label: "Drying Method", value: "Natural Sun-Dried" },
+        { label: "Moisture", value: "≤ 5.5%" },
+        { label: "Purity", value: "≥ 99.9%" },
+        { label: "Min. Order", value: "5 kg (retail) / 50 kg (wholesale)" },
+      ],
+    },
+    {
+      id: "cleaned-sesame-machine-dried",
+      color: "#0a7a4a",
+      accent: "#0a7a4a",
+      light: "#e6f7f0",
+      name: "Cleaned & Peeled Black Sesame  Machine-Dried",
+      tagline: "Dryer-processed · Consistent, fast turnaround",
+      image: machineDriedCleanSesame,
+      desc: "Machine-sorted, dust-free black sesame dried using a controlled dryer (dayar). Faster, weather-independent drying with consistent moisture control. Dust-free, stone-free, and ready for immediate use in food production.",
+      uses: ["Direct food production", "High-end confectionery", "Export-quality products", "Sesame oil (cold press)"],
+      available: ["Cleaned & Sorted", "Vacuum Packed (on request)"],
+      specs: [
+        { label: "Drying Method", value: "Machine Dryer (Dayar)" },
+        { label: "Moisture", value: "≤ 5.5%" },
+        { label: "Purity", value: "≥ 99.9%" },
+        { label: "Min. Order", value: "5 kg (retail) / 50 kg (wholesale)" },
+      ],
+    },
 ];
 
 /* ─── JAGGERY DATA ─── */
@@ -88,16 +127,20 @@ const JG_SLIDES = [
     caption: "Farm-fresh organic jaggery blocks",
   },
   {
-    url: jaggery4,
+    url: jaggery2,
     caption: "Naturally processed, no additives",
   },
   {
     url: jaggery3,
-    caption: "Rich golden colour — pure sugarcane",
+    caption: "Firm, durable jaggery with a rich natural sweetness and authentic flavour, ideal for machine-based production, traditional sweets, food manufacturing, and commercial use.",
   },
   {
-    url: jaggery2,
-    caption: "Available in block and granule form",
+    url: jaggery4,
+    caption: "Soft and easy-to-crush jaggery with rich natural sweetness, perfect for traditional sweets, sesame products, and homemade recipes.",
+  },
+  {
+    url: jaggery5,
+    caption: "Naturally sweet and rich jaggery with authentic flavour, ideal for traditional Sri Lankan sweets, desserts, and everyday food preparation.",
   },
 ];
 
@@ -309,16 +352,24 @@ export default function ProductsPage() {
         }
         .ss-intro p { font-size: 16px; color: #5a6a8a; line-height: 1.85; font-weight: 300; }
 
-        /* ── SESAME GRID ── */
         .ss-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
           gap: 24px;
-          padding: 40px 48px 48px;
-          max-width: 1280px; margin: 0 auto;
+          margin: 0 auto;
         }
 
-        /* ── SESAME CARD ── */
+        .ss-grid-row1 {
+          grid-template-columns: repeat(3, 1fr);
+          max-width: 1400px;
+          padding: 40px 48px 24px;
+        }
+
+        .ss-grid-row2 {
+          grid-template-columns: repeat(2, 1fr);
+          max-width: 1100px;
+          padding: 0 48px 48px;
+        }
+
         .ss-card {
           background: white; border-radius: 16px; overflow: hidden;
           border: 1px solid #e8eef8;
@@ -326,8 +377,13 @@ export default function ProductsPage() {
           transition: box-shadow 0.3s, transform 0.3s;
           display: flex; flex-direction: column;
         }
+        .ss-grid-row2 .ss-card-image-wrap {
+          height: 260px;
+          background: #f7f9ff;
+        }
+       
         .ss-card:hover { box-shadow: 0 12px 40px rgba(30,79,216,0.14); transform: translateY(-4px); }
-        .ss-card-image-wrap { position: relative; height: 190px; overflow: hidden; }
+        .ss-card-image-wrap { position: relative; height: 250px; overflow: hidden; }
         .ss-card-image { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
         .ss-card:hover .ss-card-image { transform: scale(1.05); }
         .ss-card-image-overlay { position: absolute; inset: 0; opacity: 0.45; mix-blend-mode: multiply; }
@@ -383,6 +439,63 @@ export default function ProductsPage() {
         .ss-spec-row:last-child { border-bottom: none; }
         .ss-spec-row strong { font-weight: 600; font-size: 12.5px; }
 
+        .ss-viewall-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 14px;
+          padding: 8px 48px 64px;
+          text-align: center;
+        }
+        .ss-viewall-hint {
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          color: #8a9abf;
+        }
+        .ss-viewall-btn {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 15px 30px 15px 34px;
+          background: linear-gradient(135deg, #1e4fd8 0%, #1a1a2e 130%);
+          color: white;
+          font-size: 14.5px;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+          border-radius: 100px;
+          text-decoration: none;
+          overflow: hidden;
+          box-shadow: 0 6px 20px rgba(30,79,216,0.28);
+          transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .ss-viewall-btn::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, #2d63f0 0%, #1e4fd8 130%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        .ss-viewall-btn span,
+        .ss-viewall-icon {
+          position: relative;
+          z-index: 1;
+        }
+        .ss-viewall-icon {
+          transition: transform 0.3s ease;
+        }
+        .ss-viewall-btn:hover {
+          box-shadow: 0 10px 28px rgba(30,79,216,0.4);
+          transform: translateY(-3px);
+        }
+        .ss-viewall-btn:hover::before { opacity: 1; }
+        .ss-viewall-btn:hover .ss-viewall-icon {
+          transform: translateX(5px);
+        }
+
         /* ══════════════════════════════════════
            JAGGERY SECTION
         ══════════════════════════════════════ */
@@ -433,7 +546,7 @@ export default function ProductsPage() {
         /* Two-column layout */
         .jg-body {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
           gap: 0;
           max-width: 1180px;
           margin: 0 auto;
@@ -453,8 +566,14 @@ export default function ProductsPage() {
           aspect-ratio: 4/3;
           background: #e8d5b0;
           box-shadow: 0 8px 40px rgba(122,74,0,0.15);
+          height: 370px;
         }
-        .jg-slide-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.35s ease; }
+        .jg-slide-img {
+          width: 100%; height: 100%;
+          object-fit: contain;
+          display: block;
+          transition: opacity 0.35s ease;
+        }
         .jg-slide-img.fading { opacity: 0; }
         .jg-slide-overlay {
           position: absolute; inset: 0;
@@ -649,12 +768,29 @@ export default function ProductsPage() {
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
           .jg-section-wrapper { padding: 48px 24px; }
-          .jg-body { grid-template-columns: 1fr; }
-          .jg-left { position: static; padding-right: 0; margin-bottom: 40px; }
-          .jg-right { padding-left: 0; border-left: none; border-top: 1px solid #e8eef8; padding-top: 36px; }
+          .jg-body { grid-template-columns: minmax(0, 1fr); }
+          .jg-left {
+            position: static;
+            padding-right: 0;
+            margin-bottom: 40px;
+            width: 100%;
+          }
+          .jg-right {
+            padding-left: 0;
+            border-left: none;
+            border-top: 1px solid #e8eef8;
+            padding-top: 36px;
+          }
+          .jg-slide-img-wrap {
+            height: 210px;          /* let aspect-ratio drive it */
+            aspect-ratio: 4 / 3;
+          }
+          .jg-slideshow { max-width: 100%; }
           .ss-hero { padding: 40px 24px 36px; }
           .ss-intro { padding: 0 24px; }
-          .ss-grid { padding: 32px 24px 40px; }
+          .ss-grid-row1,
+          .ss-grid-row2 { grid-template-columns: repeat(2, 1fr); padding: 32px 24px 40px; }
+          .ss-viewall-wrap { padding: 4px 24px 48px; }
         }
         @media (max-width: 520px) {
           .jg-uses-grid { grid-template-columns: 1fr; }
@@ -665,6 +801,9 @@ export default function ProductsPage() {
           .ss-card-toggle { display: flex; }
           .ss-card-body { display: none; }
           .ss-card-body.ss-open { display: flex; }
+
+          .ss-grid-row1,
+          .ss-grid-row2 { grid-template-columns: 1fr; }
 
           .jg-variant-toggle { display: flex; }
           .jg-variant-body { display: none; }
@@ -689,9 +828,23 @@ export default function ProductsPage() {
           <p>Whether you're producing sesame sweets, extracting oil, or supplying retail — we offer the right product for your exact need. All varieties available in retail and wholesale quantities.</p>
         </div>
 
-        {/* ── SESAME CARDS ── */}
-        <div id="products" className="ss-grid">
-          {PRODUCTS.map(p => <ProductCard key={p.id} product={p} />)}
+        {/* ── SESAME CARDS — ROW 1 (wider) ── */}
+        <div id="products" className="ss-grid ss-grid-row1">
+          {PRODUCTS.slice(0, 3).map(p => <ProductCard key={p.id} product={p} />)}
+        </div>
+
+        {/* ── SESAME CARDS — ROW 2 (original width) ── */}
+        <div className="ss-grid ss-grid-row2">
+          {PRODUCTS.slice(3, 5).map(p => <ProductCard key={p.id} product={p} />)}
+        </div>
+
+        {/* ── VIEW ALL PRODUCTS CTA ── */}
+        <div className="ss-viewall-wrap">
+          <p className="ss-viewall-hint">Looking for something specific?</p>
+          <Link to="/shop" className="ss-viewall-btn">
+            <span>Explore Full Catalog</span>
+            <FiArrowRight className="ss-viewall-icon" />
+          </Link>
         </div>
 
         {/* ══════════════════════════════════════
