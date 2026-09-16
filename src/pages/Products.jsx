@@ -16,7 +16,7 @@ const PHONE = "+94 XX XXX XXXX";
 
 import blacksesami from "../../src/assets/black sesame.png";
 import whiteseasami from "../../src/assets/white sesame.png";
-import indianSesame from "../../src/assets/Indian sesame.png";
+import indianSesame from "../../src/assets/indian sesame.png";
 import sunDriedCleanSesame from "../../src/assets/Sun dried sesame.png";
 import machineDriedCleanSesame from "../../src/assets/machine dryed sesame.png";
 
