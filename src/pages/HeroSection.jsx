@@ -12,6 +12,18 @@ import logoWatermark from "../../src/assets/logo-watermark.png";
 
 import mobileHeroImg  from "../../src/assets/heromobilebackground.png";
 
+const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/place/Aththanayaka+Super+Mart/@6.6549119,80.1042159,54733m/data=!3m1!1e3!4m12!1m5!8m4!1e1!2s110414459283226678910!3m1!1e1!3m5!1s0x3ae3b3aa191b88fb:0x13e05bd0f2230b98!8m2!3d6.790216!4d80.1374214!16s%2Fg%2F11zxdpwdk7?hl=en-GB&entry=ttu";
+function GoogleGIcon({ size = 24 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
+      <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+      <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+      <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+      <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571.001-.001.002-.001.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+    </svg>
+  );
+}
+
 const PRODUCTS = {
   en: [
     { image: blackwhitesesami, tag: "Black & White Sesame",  name: "Black & White Sesame Seeds",     desc: "A perfect blend of black and white sesame for a unique, rich taste." },
@@ -61,7 +73,7 @@ const T = {
     si: "උසස් තත්ත්වයේ තල, හකුරු, මූලික ද්‍රව්‍ය සහ නිෂ්පාදන අවශ්‍යතා ගුණාත්මකභාවය සහ සැලකිල්ල සමඟ ලබාදෙයි. තල ආශ්‍රිත ආහාර නිෂ්පාදනය සඳහා ඔබට අවශ්‍ය සියල්ල තෝරාගත් අමුද්‍රව්‍ය සහ විශ්වාසනීය සැපයුම් සමඟ සෑම නිෂ්පාදනයකම නැවුම් බව, ස්ථාවරත්වය සහ විශිෂ්ටත්වය අප විසින් සහතික කරයි.",
   },
   descShort: {
-    en: "Premium sesame ingredients, raw materials, and production essentials — sourced with quality and care.",
+    en: "Premium sesame ingredients, raw materials, and production essentials sourced with quality and care.",
     si: "උසස් තත්ත්වයේ තල, හකුරු සහ නිෂ්පාදන අවශ්‍යතා ගුණාත්මකභාවය සමඟ ලබාදෙයි.",
   },
   readMore:  { en: "Read more", si: "තව කියවන්න" },
@@ -69,6 +81,7 @@ const T = {
   shopNow:   { en: "Shop Now", si: "දැන් බලන්න" },
   shopNowSub:{ en: "See products", si: "නිෂ්පාදන බලන්න" },
   followUs: { en: "Follow us", si: "අප සමඟ සම්බන්ධ වන්න" },
+  googleBtn: { en: "Search for us", si: "මගින් සම්බන්ධ වන්න" },
   ctaReassure: { en: "Free island-wide delivery on orders over Rs. 200,000", si: "රු. 200,000+ ඇණවුම් සඳහා දිවයින පුරා නොමිලේ බෙදාහැරීම" },
   stat1num:  { en: "10+",          si: "10+" },
   stat1lbl:  { en: "Products",     si: "නිෂ්පාදන" },
@@ -417,6 +430,31 @@ export default function Hero({ onShopNow }) {
           height: 24px;
           flex-shrink: 0;
         }
+
+        .h-btn-google {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 13.5px;
+          font-weight: 600;
+          color: #3c4043;
+          background: #fff;
+          border: 1.5px solid #dadce0;
+          padding: 11px 22px;
+          border-radius: 100px;
+          cursor: pointer;
+          text-decoration: none;
+          min-height: 44px;
+          transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .h-btn-google:hover {
+          background: #f8f9fa;
+          border-color: #c6c9cc;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(60,64,67,0.15);
+        }
+        .h-btn-google:active { transform: translateY(0); }
+
         .h-reassure { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:700;
           color:#1538a8; background:rgba(30,79,216,0.08); border:1px solid rgba(30,79,216,0.18);
           padding:7px 14px; border-radius:100px; }
@@ -701,6 +739,15 @@ export default function Hero({ onShopNow }) {
                   <FaFacebook className="h-btn-follow-icon" aria-hidden="true" />
                   {t("followUs", lang)}
                 </a>
+                <a
+                href={GOOGLE_BUSINESS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-btn-google"
+              >
+                <GoogleGIcon size={24} />
+                {t("googleBtn", lang)}
+              </a>
               </div>
               <div className="h-reassure">{t("ctaReassure", lang)}</div>
             </div>
