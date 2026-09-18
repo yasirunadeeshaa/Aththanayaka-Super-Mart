@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi";
 import {
   FiPackage,
   FiLayers,
@@ -12,6 +13,7 @@ import {
 } from "react-icons/fi";
 import polytheneImg from "../assets/polythene.webp";
 import tissueImg from "../assets/tissue.jpg";
+import oiltissueImg from "../assets/oilPaper.png";
 import papersImg from "../assets/pati.webp";
 
 // Fallback placeholder colors used until real images are added
@@ -36,13 +38,26 @@ const MAIN_ITEMS = [
   {
     id: "tissue",
     Icon: FiLayers,
-    name: "Tissue Sheets",
+    name: "Tissue Paper Sheets",
     tagline: "Food-grade wrapping sheets, sold by bundle",
     color: "#0a7a4a",
     accent: "#0d9a60",
     light: "#e6f7f0",
     image: tissueImg,
-    desc: "Soft food-grade tissue sheets for wrapping sesame sweets, brittle, and traditional confectionery. Available in plain white. Sold as bundles — ideal for both small producers and high-volume manufacturing.",
+    desc: "Soft food-grade tissue sheets for wrapping sesame sweets, brittle, and traditional confectionery. Available in plain white. Sold as bundles ideal for both small producers and high-volume manufacturing.",
+    variants: ["Standard sheet size", "Half-sheet", "Custom cut (on request)", "Bundle of 500 sheets", "Bundle of 1,000 sheets"],
+    unit: "Per bundle · Custom bundle sizes on request",
+  },
+  {
+    id: "oilPapers",
+    Icon: FiLayers,
+    name: "Oil Absorbent Papers",
+    tagline: "Highly absorbent papers for oil spill containment",
+    color: "#0e7a8a",
+    accent: "#0d9a60",
+    light: "#e6f7f0",
+    image: oiltissueImg,
+    desc: "Soft food-grade oil tissue sheets for wrapping sesame sweets, brittle, and traditional confectionery. Available in plain white. Sold as bundles ideal for both small producers and high-volume manufacturing.",
     variants: ["Standard sheet size", "Half-sheet", "Custom cut (on request)", "Bundle of 500 sheets", "Bundle of 1,000 sheets"],
     unit: "Per bundle · Custom bundle sizes on request",
   },
@@ -268,20 +283,14 @@ export default function PackagingPage() {
         .pkg-banner strong { font-weight: 600; }
 
         /* ── SECTION LABEL ── */
-        .pkg-section-eyebrow {
-          font-size: 11px; font-weight: 700; letter-spacing: 3px;
-          text-transform: uppercase; color: #8a9ac0;
-          padding: 48px 48px 0;
-          max-width: 1280px; margin: 0 auto;
-        }
 
         /* ══ MAIN ITEMS ROW ══ */
         .pkg-main-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 24px;
           padding: 20px 48px 0;
-          max-width: 1280px;
+          max-width: 1680px;
           margin: 0 auto;
         }
 
@@ -426,6 +435,63 @@ export default function PackagingPage() {
           gap: 18px;
         }
 
+        .ss-viewall-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 14px;
+          padding: 8px 48px 64px;
+          text-align: center;
+        }
+        .ss-viewall-hint {
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          color: #8a9abf;
+        }
+        .ss-viewall-btn {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 15px 30px 15px 34px;
+          background: linear-gradient(135deg, #1e4fd8 0%, #1a1a2e 130%);
+          color: white;
+          font-size: 14.5px;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+          border-radius: 100px;
+          text-decoration: none;
+          overflow: hidden;
+          box-shadow: 0 6px 20px rgba(30,79,216,0.28);
+          transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .ss-viewall-btn::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, #2d63f0 0%, #1e4fd8 130%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        .ss-viewall-btn span,
+        .ss-viewall-icon {
+          position: relative;
+          z-index: 1;
+        }
+        .ss-viewall-icon {
+          transition: transform 0.3s ease;
+        }
+        .ss-viewall-btn:hover {
+          box-shadow: 0 10px 28px rgba(30,79,216,0.4);
+          transform: translateY(-3px);
+        }
+        .ss-viewall-btn:hover::before { opacity: 1; }
+        .ss-viewall-btn:hover .ss-viewall-icon {
+          transform: translateX(5px);
+        }
+
         /* Secondary card */
         .pkg-sec-card {
           background: white; border-radius: 14px;
@@ -540,10 +606,10 @@ export default function PackagingPage() {
           .pkg-secondary-grid { grid-template-columns: repeat(2, 1fr); }
           .pkg-hero { padding: 40px 24px 36px; }
           .pkg-banner { margin: 28px 24px 0; }
-          .pkg-section-eyebrow { padding: 36px 24px 0; }
           .pkg-main-grid { padding: 16px 24px 0; }
           .pkg-secondary-wrap { padding: 36px 24px 48px; }
           .pkg-cta-bar { margin: 0 24px 48px; padding: 28px 24px; }
+          .ss-viewall-wrap { padding: 4px 24px 48px; }
         }
         @media (max-width: 560px) {
           .pkg-secondary-grid { grid-template-columns: 1fr; }
@@ -569,7 +635,7 @@ export default function PackagingPage() {
         {/* ── HERO ── */}
         <div className="pkg-hero">
           <div className="pkg-hero-eyebrow">Aththanayaka Supermart</div>
-          <h1 className="pkg-hero-title">Packaging <em>Supplies</em></h1>
+          <h1 className="pkg-hero-title">Packaging <em>Materials</em></h1>
           <p className="pkg-hero-sub">Everything you need to package, brand, and deliver your sesame products tissue sheets, polythene covers, papers, sealing rolls and more.</p>
         </div>
 
@@ -580,7 +646,6 @@ export default function PackagingPage() {
         </div>
 
         {/* ══ MAIN ITEMS ══ */}
-        <div className="pkg-section-eyebrow">Main Products</div>
         <div className="pkg-main-grid">
           {MAIN_ITEMS.map(item => (
             <MainItemCard key={item.id} item={item} />
@@ -595,6 +660,15 @@ export default function PackagingPage() {
               <SecondaryItemCard key={item.name} item={item} />
             ))}
           </div>
+        </div>
+
+        {/* ── VIEW ALL PRODUCTS CTA ── */}
+        <div className="ss-viewall-wrap">
+          <p className="ss-viewall-hint">Looking for something specific?</p>
+          <Link to="/shop" className="ss-viewall-btn">
+            <span>Explore More Packaging Materials</span>
+            <FiArrowRight className="ss-viewall-icon" />
+          </Link>
         </div>
 
       </div>
