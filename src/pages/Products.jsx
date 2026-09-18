@@ -21,10 +21,10 @@ import sunDriedCleanSesame from "../../src/assets/Sun dried sesame.png";
 import machineDriedCleanSesame from "../../src/assets/machine dryed sesame.png";
 
 import jaggery from "../../src/assets/jaggery.avif";
-import jaggery2 from "../../src/assets/jaggery2.png";
-import jaggery3 from "../../src/assets/jaggery3.png";
-import jaggery4 from "../../src/assets/jaggery4.png";
-import jaggery5 from "../../src/assets/jaggery5.png";
+import jaggery2 from "../../src/assets/jaggery2.jpeg";
+import jaggery3 from "../../src/assets/jaggery3.jpeg";
+import jaggery4 from "../../src/assets/jaggery4.jpeg";
+import jaggery5 from "../../src/assets/jaggery5.jpeg";
 
 /* ─── SESAME PRODUCTS ─── */
 const PRODUCTS = [
@@ -842,7 +842,7 @@ export default function ProductsPage() {
         <div className="ss-viewall-wrap">
           <p className="ss-viewall-hint">Looking for something specific?</p>
           <Link to="/shop" className="ss-viewall-btn">
-            <span>Explore Full Catalog</span>
+            <span>Explore More Products</span>
             <FiArrowRight className="ss-viewall-icon" />
           </Link>
         </div>
