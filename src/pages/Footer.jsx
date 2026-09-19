@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import { useLang } from "../LanguageContext.jsx";
-import logo from "../assets/circlelogo.png"; // <- change to your logo file name
+
+import logo from "../assets/circlelogo.png";
+import visaLogo from "../assets/payments/VisaLogo.wine.png";
+import masterLogo from "../assets/payments/masterlogo.jpg";
+import bankTransferLogo from "../assets/payments/BankTransfer.png";
+import mobileWalletLogo from "../assets/payments/mobileWallet.jpg";
+import cashLogo from "../assets/payments/cash.png";
+import chequeLogo from "../assets/payments/cheque.png";
+import codLogo from "../assets/payments/cashondelivery.png";
 
 const T = {
   blurb: {
@@ -39,6 +47,16 @@ const T = {
   cod:             { en: "Cash on Delivery", si: "ගෙදරටම ගෙවීම" },
   bankTransfer:    { en: "Bank Transfer",    si: "බැංකු මාරුව" },
 };
+
+const PAYMENTS = [
+  { src: visaLogo, alt: "Visa" },
+  { src: masterLogo, alt: "Mastercard" },
+  { src: bankTransferLogo, alt: "Bank Transfer" },
+  { src: mobileWalletLogo, alt: "Mobile Wallet" },
+  { src: cashLogo, alt: "Cash" },
+  { src: chequeLogo, alt: "Cheque" },
+  { src: codLogo, alt: "Cash on Delivery" },
+];
 
 const t = (key, lang) => T[key]?.[lang] ?? T[key]?.en ?? key;
 
@@ -320,27 +338,11 @@ export default function Footer() {
           <div className="ft-payments">
             <span className="ft-payments-label">{t("paymentsHeading", lang)}</span>
             <div className="ft-payments-icons">
-              <span className="ft-pay-badge">
-                <img src="/src/assets/payments/VisaLogo.wine.png" alt="Visa" />
-              </span>
-              <span className="ft-pay-badge">
-                <img src="/src/assets/payments/masterlogo.jpg" alt="Mastercard" />
-              </span>
-              <span className="ft-pay-badge">
-                <img src="/src/assets/payments/BankTransfer.png" alt="Bank Transfer" />
-              </span>
-              <span className="ft-pay-badge">
-                <img src="/src/assets/payments/mobileWallet.jpg" alt="Mobile Wallet" />
-              </span>
-              <span className="ft-pay-badge">
-                <img src="/src/assets/payments/cash.png" alt="Cash" />
-              </span>
-              <span className="ft-pay-badge">
-                <img src="/src/assets/payments/cheque.png" alt="Cheque" />
-              </span>
-              <span className="ft-pay-badge">
-                <img src="/src/assets/payments/cashondelivery.png" alt="Cash on Delivery" />
-              </span>
+              {PAYMENTS.map((p) => (
+                <span className="ft-pay-badge" key={p.alt}>
+                  <img src={p.src} alt={p.alt} />
+                </span>
+              ))}
             </div>
           </div>
         </div>
