@@ -1,435 +1,6 @@
-// import { Link } from "react-router-dom";
-
-// const footerLinks = {
-//   Shop: [
-//     { label: "Fresh Produce", to: "/products?cat=produce" },
-//     { label: "Dairy & Eggs", to: "/products?cat=dairy" },
-//     { label: "Bakery", to: "/products?cat=bakery" },
-//     { label: "Beverages", to: "/products?cat=beverages" },
-//     { label: "Household", to: "/products?cat=household" },
-//   ],
-//   Company: [
-//     { label: "About Us", to: "/about" },
-//     { label: "Careers", to: "/careers" },
-//     { label: "Press", to: "/press" },
-//     { label: "Blog", to: "/blog" },
-//   ],
-//   Support: [
-//     { label: "Contact Us", to: "/contact" },
-//     { label: "FAQs", to: "/faqs" },
-//     { label: "Returns Policy", to: "/returns" },
-//     { label: "Delivery Info", to: "/delivery" },
-//   ],
-// };
-
-// export default function Footer() {
-//   const year = new Date().getFullYear();
-
-//   return (
-//     <>
-//       <style>{`
-//         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap');
-
-//         .footer-root {
-//           background: #060e06;
-//           position: relative;
-//           overflow: hidden;
-//         }
-
-//         /* Decorative top border */
-//         .footer-topline {
-//           height: 1px;
-//           background: linear-gradient(90deg, transparent, rgba(197,168,74,0.4) 30%, rgba(232,213,163,0.6) 50%, rgba(197,168,74,0.4) 70%, transparent);
-//         }
-
-//         /* Background texture */
-//         .footer-grain {
-//           position: absolute;
-//           inset: 0;
-//           opacity: 0.03;
-//           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-//           background-size: 200px;
-//           pointer-events: none;
-//         }
-
-//         .footer-upper {
-//           position: relative;
-//           max-width: 1200px;
-//           margin: 0 auto;
-//           padding: 72px 32px 56px;
-//           display: grid;
-//           grid-template-columns: 2fr 1fr 1fr 1fr;
-//           gap: 48px;
-//         }
-
-//         .footer-brand {}
-
-//         .footer-logo {
-//           display: flex;
-//           align-items: center;
-//           gap: 12px;
-//           text-decoration: none;
-//           margin-bottom: 20px;
-//         }
-
-//         .footer-logo-icon {
-//           width: 44px;
-//           height: 44px;
-//           background: linear-gradient(135deg, #c5a84a, #e8d5a3);
-//           border-radius: 8px;
-//           display: flex;
-//           align-items: center;
-//           justify-content: center;
-//           font-size: 22px;
-//           flex-shrink: 0;
-//         }
-
-//         .footer-logo-name {
-//           font-family: 'Playfair Display', serif;
-//           font-size: 20px;
-//           font-weight: 700;
-//           color: #e8d5a3;
-//         }
-
-//         .footer-logo-sub {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 10px;
-//           font-weight: 300;
-//           letter-spacing: 3px;
-//           text-transform: uppercase;
-//           color: rgba(255,255,255,0.4);
-//           display: block;
-//           margin-top: 2px;
-//         }
-
-//         .footer-tagline {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 14px;
-//           font-weight: 300;
-//           line-height: 1.8;
-//           color: rgba(255,255,255,0.4);
-//           margin-bottom: 28px;
-//           max-width: 280px;
-//         }
-
-//         /* Newsletter */
-//         .footer-newsletter {
-//           display: flex;
-//           gap: 0;
-//           max-width: 320px;
-//         }
-
-//         .footer-newsletter input {
-//           flex: 1;
-//           font-family: 'Lato', sans-serif;
-//           font-size: 13px;
-//           padding: 12px 16px;
-//           background: rgba(255,255,255,0.05);
-//           border: 1px solid rgba(255,255,255,0.1);
-//           border-right: none;
-//           color: #fff;
-//           outline: none;
-//           border-radius: 2px 0 0 2px;
-//           transition: border-color 0.3s;
-//         }
-
-//         .footer-newsletter input::placeholder {
-//           color: rgba(255,255,255,0.25);
-//         }
-
-//         .footer-newsletter input:focus {
-//           border-color: rgba(197,168,74,0.4);
-//         }
-
-//         .footer-newsletter button {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 11px;
-//           font-weight: 700;
-//           letter-spacing: 1.5px;
-//           text-transform: uppercase;
-//           padding: 12px 16px;
-//           background: linear-gradient(135deg, #c5a84a, #e8d5a3);
-//           color: #0a120a;
-//           border: none;
-//           cursor: pointer;
-//           border-radius: 0 2px 2px 0;
-//           transition: opacity 0.2s;
-//           white-space: nowrap;
-//         }
-
-//         .footer-newsletter button:hover { opacity: 0.85; }
-
-//         .footer-nl-label {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 10px;
-//           font-weight: 700;
-//           letter-spacing: 2px;
-//           text-transform: uppercase;
-//           color: rgba(255,255,255,0.3);
-//           margin-bottom: 10px;
-//         }
-
-//         /* Link columns */
-//         .footer-col {}
-
-//         .footer-col-title {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 10px;
-//           font-weight: 700;
-//           letter-spacing: 3px;
-//           text-transform: uppercase;
-//           color: #c5a84a;
-//           margin-bottom: 20px;
-//         }
-
-//         .footer-col ul {
-//           list-style: none;
-//           margin: 0;
-//           padding: 0;
-//           display: flex;
-//           flex-direction: column;
-//           gap: 12px;
-//         }
-
-//         .footer-col ul li a {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 14px;
-//           font-weight: 300;
-//           color: rgba(255,255,255,0.45);
-//           text-decoration: none;
-//           transition: color 0.25s;
-//           display: inline-block;
-//         }
-
-//         .footer-col ul li a:hover {
-//           color: #e8d5a3;
-//         }
-
-//         /* Contact strip */
-//         .footer-contact-strip {
-//           position: relative;
-//           max-width: 1200px;
-//           margin: 0 auto;
-//           padding: 28px 32px;
-//           border-top: 1px solid rgba(255,255,255,0.05);
-//           border-bottom: 1px solid rgba(255,255,255,0.05);
-//           display: flex;
-//           gap: 48px;
-//           flex-wrap: wrap;
-//         }
-
-//         .contact-item {
-//           display: flex;
-//           align-items: center;
-//           gap: 12px;
-//         }
-
-//         .contact-icon {
-//           width: 36px;
-//           height: 36px;
-//           border: 1px solid rgba(197,168,74,0.25);
-//           border-radius: 50%;
-//           display: flex;
-//           align-items: center;
-//           justify-content: center;
-//           font-size: 14px;
-//           flex-shrink: 0;
-//         }
-
-//         .contact-label {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 10px;
-//           font-weight: 700;
-//           letter-spacing: 2px;
-//           text-transform: uppercase;
-//           color: rgba(255,255,255,0.3);
-//           margin-bottom: 2px;
-//         }
-
-//         .contact-value {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 14px;
-//           font-weight: 400;
-//           color: rgba(255,255,255,0.6);
-//         }
-
-//         /* Bottom bar */
-//         .footer-bottom {
-//           position: relative;
-//           max-width: 1200px;
-//           margin: 0 auto;
-//           padding: 24px 32px;
-//           display: flex;
-//           align-items: center;
-//           justify-content: space-between;
-//           flex-wrap: gap;
-//           gap: 16px;
-//         }
-
-//         .footer-copy {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 12px;
-//           font-weight: 300;
-//           color: rgba(255,255,255,0.25);
-//           letter-spacing: 0.5px;
-//         }
-
-//         .footer-copy strong {
-//           font-weight: 700;
-//           color: rgba(197,168,74,0.6);
-//         }
-
-//         .footer-legal {
-//           display: flex;
-//           gap: 24px;
-//           flex-wrap: wrap;
-//         }
-
-//         .footer-legal a {
-//           font-family: 'Lato', sans-serif;
-//           font-size: 11px;
-//           font-weight: 400;
-//           letter-spacing: 1px;
-//           color: rgba(255,255,255,0.2);
-//           text-decoration: none;
-//           transition: color 0.2s;
-//         }
-
-//         .footer-legal a:hover { color: rgba(255,255,255,0.5); }
-
-//         /* Social icons */
-//         .footer-socials {
-//           display: flex;
-//           gap: 12px;
-//           margin-top: 24px;
-//         }
-
-//         .social-icon {
-//           width: 36px;
-//           height: 36px;
-//           border: 1px solid rgba(255,255,255,0.1);
-//           border-radius: 2px;
-//           display: flex;
-//           align-items: center;
-//           justify-content: center;
-//           font-size: 15px;
-//           color: rgba(255,255,255,0.4);
-//           text-decoration: none;
-//           transition: all 0.25s;
-//         }
-
-//         .social-icon:hover {
-//           border-color: rgba(197,168,74,0.4);
-//           color: #e8d5a3;
-//           background: rgba(197,168,74,0.05);
-//         }
-
-//         @media (max-width: 900px) {
-//           .footer-upper {
-//             grid-template-columns: 1fr 1fr;
-//             gap: 40px;
-//           }
-//           .footer-brand {
-//             grid-column: 1 / -1;
-//           }
-//         }
-
-//         @media (max-width: 540px) {
-//           .footer-upper {
-//             grid-template-columns: 1fr;
-//           }
-//           .footer-bottom {
-//             flex-direction: column;
-//             align-items: flex-start;
-//           }
-//           .footer-contact-strip {
-//             flex-direction: column;
-//             gap: 20px;
-//           }
-//         }
-//       `}</style>
-
-//       <footer className="footer-root">
-//         <div className="footer-topline" />
-//         <div className="footer-grain" />
-
-//         <div className="footer-upper">
-//           {/* Brand column */}
-//           <div className="footer-brand">
-//             <Link to="/" className="footer-logo">
-//               <div className="footer-logo-icon">🛒</div>
-//               <div>
-//                 <div className="footer-logo-name">Aththanayaka</div>
-//                 <span className="footer-logo-sub">Supermart</span>
-//               </div>
-//             </Link>
-//             <p className="footer-tagline">
-//               Serving the community with quality products and honest prices for over a decade. Your trusted neighbourhood supermart.
-//             </p>
-//             <div className="footer-nl-label">Stay updated</div>
-//             <div className="footer-newsletter">
-//               <input type="email" placeholder="Your email address" />
-//               <button>Subscribe</button>
-//             </div>
-//             <div className="footer-socials">
-//               {[["📘", "/"], ["📸", "/"], ["🐦", "/"], ["▶️", "/"]].map(([icon, href], i) => (
-//                 <a key={i} href={href} className="social-icon">{icon}</a>
-//               ))}
-//             </div>
-//           </div>
-
-//           {/* Link columns */}
-//           {Object.entries(footerLinks).map(([heading, links]) => (
-//             <div className="footer-col" key={heading}>
-//               <div className="footer-col-title">{heading}</div>
-//               <ul>
-//                 {links.map((link) => (
-//                   <li key={link.to}>
-//                     <Link to={link.to}>{link.label}</Link>
-//                   </li>
-//                 ))}
-//               </ul>
-//             </div>
-//           ))}
-//         </div>
-
-//         {/* Contact strip */}
-//         <div className="footer-contact-strip">
-//           {[
-//             { icon: "📍", label: "Location", value: "No. 42, Main Street, Colombo 07" },
-//             { icon: "📞", label: "Phone", value: "+94 11 234 5678" },
-//             { icon: "✉️", label: "Email", value: "hello@aththanayaka.lk" },
-//             { icon: "🕐", label: "Hours", value: "Mon–Sat: 7AM – 10PM" },
-//           ].map((item) => (
-//             <div className="contact-item" key={item.label}>
-//               <div className="contact-icon">{item.icon}</div>
-//               <div>
-//                 <div className="contact-label">{item.label}</div>
-//                 <div className="contact-value">{item.value}</div>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-
-//         {/* Bottom bar */}
-//         <div className="footer-bottom">
-//           <p className="footer-copy">
-//             © {year} <strong>Aththanayaka Supermart</strong>. All rights reserved.
-//           </p>
-//           <div className="footer-legal">
-//             <Link to="/privacy">Privacy Policy</Link>
-//             <Link to="/terms">Terms of Service</Link>
-//             <Link to="/cookies">Cookie Policy</Link>
-//           </div>
-//         </div>
-//       </footer>
-//     </>
-//   );
-// }
-
-
 import { Link } from "react-router-dom";
 import { useLang } from "../LanguageContext.jsx";
+import logo from "../assets/circlelogo.png"; // <- change to your logo file name
 
 const T = {
   blurb: {
@@ -464,6 +35,9 @@ const T = {
   madeWith: { en: "Sesame, sourced honestly.", si: "විශ්වාසවන්ත ලෙස ලබාගත් උසස් තත්ත්වයේ තල" },
   privacy:  { en: "Privacy Policy", si: "පෞද්ගලිකත්ව ප්‍රතිපත්තිය" },
   terms:    { en: "Terms of Service", si: "සේවා කොන්දේසි" },
+  paymentsHeading: { en: "We Accept", si: "අප පිළිගනිමු" },
+  cod:             { en: "Cash on Delivery", si: "ගෙදරටම ගෙවීම" },
+  bankTransfer:    { en: "Bank Transfer",    si: "බැංකු මාරුව" },
 };
 
 const t = (key, lang) => T[key]?.[lang] ?? T[key]?.en ?? key;
@@ -523,19 +97,33 @@ export default function Footer() {
         /* MAIN GRID */
         .ft-main { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto;
           padding: 64px 80px 48px; display: grid; grid-template-columns: 1.4fr 0.85fr 0.85fr 1fr; gap: 48px; }
+        .ft-main > div { min-width: 0; }
 
-        .ft-brand-block { padding-right: 20px; }
-        .ft-logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-        .ft-logo-mark { width: 34px; height: 34px; border-radius: 9px; background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-          display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif;
-          font-size: 17px; color: #fff; flex-shrink: 0; }
-        .ft-logo-text { font-family: 'DM Serif Display', serif; font-size: 19px; color: #fff; letter-spacing: 0.2px; }
-        .ft-brand-blurb { font-size: 13px; line-height: 1.85; color: #7c87ad; font-weight: 300; max-width: 320px; margin-bottom: 22px; }
+        .ft-brand-block { text-align: center; }
+        .ft-logo { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 14px; align-items: center;}
+        .ft-logo-img { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; display: block;
+          background: #fff; border: 3px solid rgba(255,255,255,0.18); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+        .ft-logo-text { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; letter-spacing: 0.2px; line-height: 1.2; }
+        .ft-brand-blurb { font-size: 13px; line-height: 1.85; color: #7c87ad; font-weight: 300; max-width: 320px; margin-bottom: 0; }
         .ft-socials { display: flex; gap: 10px; }
-        .ft-social-btn { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.05);
+        .ft-social-btn { width: 40px; height: 40px; border-radius: 8px; background: #fff;
           border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
-          color: #aab4d4; text-decoration: none; transition: all 0.25s; font-size: 15px; }
-        .ft-social-btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; transform: translateY(-2px); }
+          text-decoration: none; transition: transform 0.25s, box-shadow 0.25s; }
+        .ft-social-btn svg { width: 22px; height: 22px; display: block; }
+        .ft-social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
+
+        /* SOCIALS + PAYMENTS ROW (two columns under the main grid) */
+        .ft-extra { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto;
+          padding: 0 80px 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+        .ft-payments { display: flex; align-items: center; justify-content: flex-end; gap: 16px; flex-wrap: wrap; }
+        .ft-payments-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+          color: #5d6890; }
+        .ft-payments-icons { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .ft-pay-badge { display: inline-flex; align-items: center; justify-content: center;
+          background: #fff; border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 6px; height: 44px; width: 55px;
+          padding: 0; overflow: hidden; transition: all 0.25s; }
+        .ft-pay-badge img { width: 100%; height: 100%; object-fit: contain; padding: 4px; display: block; }
 
         .ft-col-heading { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
           color: #fff; margin-bottom: 20px; }
@@ -550,7 +138,7 @@ export default function Footer() {
           display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
         .ft-contact-icon i { font-size: 14px; color: #6b9df5; }
         .ft-contact-val { font-size: 13px; color: #aab4d4; line-height: 1.55; font-weight: 400; }
-        .ft-contact-val a { color: inherit; text-decoration: none; }
+        .ft-contact-val a { color: inherit; text-decoration: none; overflow-wrap: anywhere; }
         .ft-contact-val a:hover { color: #fff; }
 
         /* TICKER-STYLE DIVIDER STRIP (echoes hero ticker language) */
@@ -576,15 +164,27 @@ export default function Footer() {
           .ft-brand-block { grid-column: 1 / -1; }
           .ft-news-inner { padding: 40px 48px; }
           .ft-strip { padding: 16px 48px; }
+          .ft-extra { padding: 0 48px 32px; }
           .ft-bottom { padding: 22px 48px 26px; }
         }
         @media (max-width: 680px) {
           .ft-news-inner { flex-direction: column; align-items: stretch; }
           .ft-news-text { max-width: 100%; }
-          .ft-news-form { max-width: 100%; }
-          .ft-main { grid-template-columns: 1fr; padding: 48px 24px 32px; gap: 36px; }
+          .ft-news-form { max-width: 100%; min-width: 0; }
           .ft-news-inner { padding: 36px 24px; }
-          .ft-strip { padding: 14px 24px; gap: 8px; }
+
+          /* Brand on top, Shop + Business side by side, Contact full width below */
+          .ft-main { grid-template-columns: 1fr 1fr; padding: 44px 24px 28px; gap: 32px 20px; }
+          .ft-brand-block { grid-column: 1 / -1; padding-right: 0; }
+          .ft-brand-block .ft-brand-blurb { max-width: 100%; }
+          .ft-logo-img { width: 88px; height: 88px; }
+          .ft-main > div:last-child { grid-column: 1 / -1; }
+          .ft-col-heading { margin-bottom: 16px; }
+          .ft-link-list { gap: 12px; }
+
+          .ft-strip { padding: 14px 24px; gap: 8px 14px; }
+          .ft-extra { grid-template-columns: 1fr; padding: 0 24px 28px; gap: 22px; }
+          .ft-payments { justify-content: flex-start; flex-direction: column; align-items: flex-start; gap: 12px; }
           .ft-bottom { padding: 20px 24px 24px; flex-direction: column; align-items: flex-start; }
           .ft-bottom-right { gap: 18px; flex-wrap: wrap; }
         }
@@ -623,16 +223,10 @@ export default function Footer() {
         <div className="ft-main">
           <div className="ft-brand-block">
             <div className="ft-logo">
-              <div className="ft-logo-mark">A</div>
+              <img className="ft-logo-img" src={logo} alt="Aththanayaka Supermart logo" />
               <div className="ft-logo-text">Aththanayaka Supermart</div>
             </div>
             <p className="ft-brand-blurb">{t("blurb", lang)}</p>
-            <div className="ft-socials">
-              <a href="#" className="ft-social-btn" aria-label="Facebook"><i className="ti ti-brand-facebook" /></a>
-              <a href="#" className="ft-social-btn" aria-label="Instagram"><i className="ti ti-brand-instagram" /></a>
-              <a href="#" className="ft-social-btn" aria-label="WhatsApp"><i className="ti ti-brand-whatsapp" /></a>
-              <a href="#" className="ft-social-btn" aria-label="YouTube"><i className="ti ti-brand-youtube" /></a>
-            </div>
           </div>
 
           <div>
@@ -665,7 +259,7 @@ export default function Footer() {
               </div>
               <div className="ft-contact-row">
                 <div className="ft-contact-icon"><i className="ti ti-phone" /></div>
-                <div className="ft-contact-val"><a href="tel:+94786869743">+94 78 686 9743</a></div>
+                <div className="ft-contact-val"><a href="tel:+94342256054">+94 34 225 6054</a></div>
               </div>
               <div className="ft-contact-row">
                 <div className="ft-contact-icon"><i className="ti ti-mail" /></div>
@@ -675,6 +269,78 @@ export default function Footer() {
                 <div className="ft-contact-icon"><i className="ti ti-clock" /></div>
                 <div className="ft-contact-val">{t("hours", lang)}</div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* SOCIALS + PAYMENTS ROW */}
+        <div className="ft-extra">
+          <div className="ft-socials">
+            <a href="#" className="ft-social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#1877F2" d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
+              </svg>
+            </a>
+            <a href="#" className="ft-social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ft-ig-grad" x1="0" y1="1" x2="1" y2="0">
+                    <stop offset="0" stopColor="#FED576" />
+                    <stop offset="0.26" stopColor="#F47133" />
+                    <stop offset="0.61" stopColor="#BC3081" />
+                    <stop offset="1" stopColor="#4C63D2" />
+                  </linearGradient>
+                </defs>
+                <rect x="0.5" y="0.5" width="23" height="23" rx="6.5" fill="url(#ft-ig-grad)" />
+                <rect x="5" y="5" width="14" height="14" rx="4.5" fill="none" stroke="#fff" strokeWidth="1.8" />
+                <circle cx="12" cy="12" r="3.4" fill="none" stroke="#fff" strokeWidth="1.8" />
+                <circle cx="16.6" cy="7.4" r="1.1" fill="#fff" />
+              </svg>
+            </a>
+            <a href="https://wa.me/94726969743" className="ft-social-btn" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+            </a>
+            <a href="https://www.google.com/maps/place/Aththanayaka+Super+Mart/@6.6549119,80.1042159,54733m/data=!3m1!1e3!4m12!1m5!8m4!1e1!2s110414459283226678910!3m1!1e1!3m5!1s0x3ae3b3aa191b88fb:0x13e05bd0f2230b98!8m2!3d6.790216!4d80.1374214!16s%2Fg%2F11zxdpwdk7?hl=en-GB&entry=ttu" className="ft-social-btn" aria-label="Google">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+              </svg>
+            </a>
+            <a href="tel:+94786869743" className="ft-social-btn" aria-label="Call us">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#1e4fd8" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+              </svg>
+            </a>
+          </div>
+
+          <div className="ft-payments">
+            <span className="ft-payments-label">{t("paymentsHeading", lang)}</span>
+            <div className="ft-payments-icons">
+              <span className="ft-pay-badge">
+                <img src="/src/assets/payments/VisaLogo.wine.png" alt="Visa" />
+              </span>
+              <span className="ft-pay-badge">
+                <img src="/src/assets/payments/masterlogo.jpg" alt="Mastercard" />
+              </span>
+              <span className="ft-pay-badge">
+                <img src="/src/assets/payments/BankTransfer.png" alt="Bank Transfer" />
+              </span>
+              <span className="ft-pay-badge">
+                <img src="/src/assets/payments/mobileWallet.jpg" alt="Mobile Wallet" />
+              </span>
+              <span className="ft-pay-badge">
+                <img src="/src/assets/payments/cash.png" alt="Cash" />
+              </span>
+              <span className="ft-pay-badge">
+                <img src="/src/assets/payments/cheque.png" alt="Cheque" />
+              </span>
+              <span className="ft-pay-badge">
+                <img src="/src/assets/payments/cashondelivery.png" alt="Cash on Delivery" />
+              </span>
             </div>
           </div>
         </div>
