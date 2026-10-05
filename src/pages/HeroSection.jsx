@@ -307,6 +307,12 @@ export default function Hero({ onShopNow }) {
           display: flex; flex-direction: column;
           font-family: 'DM Sans', sans-serif;
           margin-left: calc(-50vw + 50%);
+          --nav-h: 80px; /* set this to your real navbar height */
+  width: 100vw;
+  min-height: 100vh;
+  min-height: 100svh;   /* correct height on mobile browsers */
+  height: auto;         /* was: height: 100vh */
+  overflow-x: clip;     /* was: overflow: hidden; clips sideways only */
         }
           .h-content {
   position: relative;
@@ -319,7 +325,6 @@ export default function Hero({ onShopNow }) {
           .h-mobile-hero-img { display: none; }
         /* Below desktop the stacked layout needs its natural height back —
            fixed 100vh only applies at web/desktop sizes, per request. */
-        @media (max-width:960px) { .hero-root { height:auto; min-height:100vh; } }
         .h-grain { position:absolute; inset:0; pointer-events:none; z-index:2; opacity:0.028;
           background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
           background-size:180px 180px; }
@@ -356,8 +361,8 @@ export default function Hero({ onShopNow }) {
           line-height:0.92; letter-spacing:-1px; user-select:none; text-align:center; }
         .h-watermark span { display:block; white-space:nowrap; }
         .h-inner { position:relative; z-index:3; width:100%; max-width:1640px; margin:0 auto;
-          padding:110px 80px 60px 80px; display:grid; grid-template-columns:56% 44%;
-          grid-template-areas: "header visual" "body visual" "stats visual";
+          padding: calc(var(--nav-h) + 24px) 80px 60px 80px; display:grid; grid-template-columns:56% 44%;
+          grid-template-areas: "header visual" "body visual" "stats visual"; overflow: visible;
           column-gap:0; row-gap:0; flex:1; min-height:0; overflow:hidden; align-content:center; }
         .h-area-header { grid-area:header; align-self:end; }
         .h-area-body { grid-area:body; align-self:start; }
@@ -504,7 +509,7 @@ export default function Hero({ onShopNow }) {
         .h-fl-sub-chem { color:#1e4fd8; font-weight:600; }
         .h-fl-sub-sm { font-size:12px; color:#526080; margin-top:2px; font-family:'DM Sans',sans-serif; font-weight:300; }
         .h-fl-stars { color:#f0a500; font-size:11px; letter-spacing:1px; margin-bottom:2px; }
-        .pc-card { position:relative; width:390px; height:510px; border-radius:22px; overflow:hidden;
+        .pc-card { position:relative; width: auto;; height: clamp(380px, 62vh, 510px); border-radius:22px; overflow:hidden; aspect-ratio: 390 / 510;
           box-shadow:0 2px 8px rgba(30,79,216,0.06),0 16px 48px rgba(30,79,216,0.16),0 40px 80px rgba(30,79,216,0.09); z-index:3; }
         .pc-img-wrap { position:absolute; inset:0; transition:opacity 0.32s ease; }
         .pc-img-wrap.pc-fading { opacity:0; }
@@ -629,6 +634,15 @@ export default function Hero({ onShopNow }) {
           .h-buyer-row{flex-direction:column;}
           .h-buyer-btn{width:100%;text-align:center;}
         }
+          @media (min-width: 961px) and (max-height: 800px) {
+            .h-inner { padding-top: calc(var(--nav-h) + 8px); padding-bottom: 24px; }
+            .h-title { font-size: clamp(32px, 3.6vw, 54px); margin-bottom: 14px; }
+            .h-desc  { font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+            .h-eyebrow { margin-bottom: 12px; }
+            .h-buyer { margin-bottom: 16px; }
+            .h-actions { margin-bottom: 14px; }
+            .h-stat-num { font-size: 26px; }
+          }
       `}</style>
 
       <section className="hero-root" lang={lang} ref={heroRef}>
