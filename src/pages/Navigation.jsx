@@ -15,6 +15,7 @@ const NAV_LINKS = {
     { label: "Jaggery", to: "jaggery", type: "scroll", path: "/products" },
     { label: "Packaging Supplies", to: "packaging", type: "scroll", path: "/packaging" },
     { label: "Whole Sale", to: "wholesale", type: "scroll", path: "/wholesale" },
+    { label: "Reviews", to: "reviews", type: "scroll", path: "/reviews" },
     { label: "Delivery & Visit", to: "delivery", type: "scroll", path: "/delivery" },
     { label: "Location", to: "location", type: "scroll", path: "/delivery" },
     { label: "Contact", to: "/delivery", type: "route" },
@@ -27,6 +28,7 @@ const NAV_LINKS = {
     { label: "හකුරු", to: "jaggery", type: "scroll", path: "/products" },
     { label: "ඇසුරුම් ද්‍රව්‍ය", to: "about", type: "scroll", path: "/about" },
     { label: "තොග ඇණවුම්", to: "wholesale", type: "scroll", path: "/wholesale" },
+    { label: "ඇගයීම්", to: "reviews", type: "scroll", path: "/reviews" },
     { label: "බෙදාහැරීම", to: "delivery", type: "scroll", path: "/delivery" },
     { label: "අපගේ ස්ථානය", to: "location", type: "scroll", path: "/delivery" },
     { label: "සම්බන්ධ වන්න", to: "/delivery", type: "route" },
@@ -126,6 +128,11 @@ export default function Navbar({ onShopNow }) {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+        /* Single source of truth for the navbar height. The Hero uses
+           var(--nav-h) so its content always starts below the nav. */
+        :root { --nav-h: 68px; }
+        @media (max-width: 540px) { :root { --nav-h: 60px; } }
+
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html, body, #root {
           width: 100%;
@@ -146,7 +153,7 @@ export default function Navbar({ onShopNow }) {
           width: 100%;
           margin: 0 auto;
           padding: 0 48px;
-          height: 68px;
+          height: var(--nav-h);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -220,6 +227,7 @@ export default function Navbar({ onShopNow }) {
           letter-spacing: 0.4px;
           color: inherit;
           text-decoration: none;
+          white-space: nowrap;
           padding: 8px 16px;
           border-radius: 8px;
           transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -388,38 +396,48 @@ export default function Navbar({ onShopNow }) {
           flex-shrink: 0;
         }
 
+        /* Tighter desktop nav so 10 links fit on laptop screens */
+        @media (max-width: 1400px) {
+          .nb-inner { padding: 0 24px; gap: 12px; }
+          .nb-links { gap: 0; }
+          .nb-links a { font-size: 13px; padding: 8px 10px; }
+        }
+
+        /* Switch to the hamburger earlier (was 960px) */
+        @media (max-width: 1180px) {
+          .nb-links-track { display: none; }
+          .nb-cta { display: none; }
+          .nb-ham { display: flex; }
+        }
+
         @media (max-width: 960px) {
-  .nb-links-track { display: none; }
-  .nb-cta { display: none; }
-  .nb-ham { display: flex; }
+          /* Hide search + cart icons on mobile — decluttered actions row */
+          .nb-icon-btn { display: flex; }
 
-  /* Hide search + cart icons on mobile — decluttered actions row */
-  .nb-icon-btn { display: flex; }
+          /* Keep actions row tight and right-aligned */
+          .nb-actions {
+            gap: 8px;
+          }
+        }
+        @media (max-width: 540px) {
+          .nb-inner { padding: 0 20px; }
+          .nb-logo-name { font-size: 16px; }
+          .nb-logo-icon { width: 38px; height: 38px; }
+          .nb-icon-btn { display: none; }
+          .nb-icon-btn2 { display: flex; }
+          /* Hamburger: fixed size, clearly tappable, sits at the far right */
+          .nb-ham {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;   /* never gets squeezed by lang toggle or logo */
+          }
 
-  /* Keep actions row tight and right-aligned */
-  .nb-actions {
-    gap: 8px;
-  }
-}
-@media (max-width: 540px) {
-  .nb-inner { padding: 0 20px; height: 60px; }
-  .nb-logo-name { font-size: 16px; }
-  .nb-logo-icon { width: 38px; height: 38px; }
-  .nb-icon-btn { display: none; }
-  .nb-icon-btn2 { display: flex; }
-  /* Hamburger: fixed size, clearly tappable, sits at the far right */
-  .nb-ham {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;   /* never gets squeezed by lang toggle or logo */
-  }
-
-  /* Shrink the language toggle so it doesn't crowd the hamburger */
-  .nb-lang-btn {
-    padding: 5px 8px;
-    font-size: 10.5px;
-  }
-}
+          /* Shrink the language toggle so it doesn't crowd the hamburger */
+          .nb-lang-btn {
+            padding: 5px 8px;
+            font-size: 10.5px;
+          }
+        }
       `}</style>
 
       <header
