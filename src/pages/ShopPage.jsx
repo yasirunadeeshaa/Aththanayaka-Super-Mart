@@ -627,26 +627,16 @@ export default function ShopPage({ onBack }) {
            HERO — FIXED
         ══════════════════════════════ */
 .shop-hero {
-  min-height: unset;
-  height: 100vh;          /* fallback for old browsers */
-  height: 100dvh;         /* real fix for mobile address bar */
-  max-height: 100vh;
-  max-height: 100dvh;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;        /* ← ADD THIS: guarantees no scroll even if content overflows */
-  position: relative;      /* ← ADD THIS: .shop-hero-bg uses position:absolute, needs a positioned parent */
-}
-.shop-hero-bg {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: contain;    /* ← shows the FULL image, no cropping */
-  object-position: center;
-  background: #0a0e28;   /* fills the letterbox bars left/right or top/bottom */
+  line-height: 0;          /* removes the small gap under the image */
+  background: #0a0e28;
+}
+.shop-hero picture { display: block; }
+.shop-hero-bg {
+  display: block;
+  width: 100%;
+  height: auto;            /* height comes from the image's real ratio */
 }
 
         /* Dark overlay on top of bg image */
@@ -1076,36 +1066,20 @@ export default function ShopPage({ onBack }) {
         .shop-cta-call:hover { background: rgba(255,255,255,0.18); }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 900px) {
-  .shop-hero {
-    height: auto;
-    max-height: none;
-    aspect-ratio: 4 / 5;      /* match your mobile image's real ratio — measure it and set this */
-    padding: 24px;
-    
-  }
-  .shop-hero-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;         /* now safe — box ratio == image ratio, so no unwanted crop */
-    object-position: center;
-    
-  }
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .shop-filter-bar { padding: 0 24px; overflow-x: auto; }
+  .shop-filter-tab { padding: 16px 14px; font-size: 12px; }
+  .shop-search-wrap { display: none; }
+  .shop-grid { padding: 20px 24px 48px; gap: 18px; }
+  .shop-section-label { padding: 32px 24px 0; }
+  .shop-cta { margin: 0 24px 48px; padding: 32px 28px; }
+  .modal-highlights { grid-template-columns: 1fr; }
+  .modal-cols { grid-template-columns: 1fr; }
+  .modal-panel { border-radius: 16px; }
+  .modal-header { padding: 24px 24px 20px; }
+  .modal-body { padding: 20px 24px 24px; }
 }
-          .shop-filter-bar { padding: 0 24px; overflow-x: auto; }
-          .shop-filter-tab { padding: 16px 14px; font-size: 12px; }
-          .shop-search-wrap { display: none; }
-          .shop-grid { padding: 20px 24px 48px; gap: 18px; }
-          .shop-section-label { padding: 32px 24px 0; }
-          .shop-cta { margin: 0 24px 48px; padding: 32px 28px; }
-          .modal-highlights { grid-template-columns: 1fr; }
-          .modal-cols { grid-template-columns: 1fr; }
-          .modal-panel { border-radius: 16px; }
-          .modal-header { padding: 24px 24px 20px; }
-          .modal-body { padding: 20px 24px 24px; }
-        }
         @media (max-width: 560px) {
           .shop-hero { padding: 6px; max-height: 710px; }
         }
