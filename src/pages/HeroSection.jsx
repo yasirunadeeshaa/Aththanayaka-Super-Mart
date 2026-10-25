@@ -577,7 +577,7 @@ export default function Hero({ onShopNow }) {
           /* Explicit stacking order per request: header, then the product image,
              then description/CTA, then the floating cards, then the stat cards. */
           .h-inner{grid-template-columns:1fr;
-            grid-template-areas: "mobileimg" "header" "visual" "body" "floats" "stats";
+            grid-template-areas: "header" "visual" "body" "stats";
             padding-top:24px; row-gap:32px; align-content:start;}
 
   .h-mobile-hero-img {
@@ -599,7 +599,7 @@ export default function Hero({ onShopNow }) {
           
           .pc-card{width:100%;max-width:390px;height:auto;border-radius:20px;overflow:hidden;
             box-shadow:0 1px 2px rgba(0,0,0,0.04),0 8px 32px rgba(30,79,216,0.1),0 24px 64px rgba(30,79,216,0.06);
-            background:#fff;border:1px solid rgba(30,79,216,0.1);padding:24px;}
+            background:#fff;border:1px solid rgba(30,79,216,0.1);padding:24px; aspect-ratio:auto;}
           .pc-img-wrap{position:relative;height:170px;border-radius:12px;margin-bottom:18px;background:#f4f7ff;}
           .pc-img{border-radius:12px;} .pc-img-overlay{display:none;}
           .pc-info{position:static;padding:0;}
@@ -613,9 +613,7 @@ export default function Hero({ onShopNow }) {
           /* Floats were absolutely positioned relative to the visual cell, which
              only made sense next to the card at desktop size. On mobile they
              become their own stacked block in the "floats" grid area. */
-          .h-floats-area{grid-area:floats;position:static;display:flex;flex-direction:column;gap:12px;pointer-events:auto;}
-          .h-float{position:static;width:100%;max-width:none;top:auto;right:auto;bottom:auto;left:auto;
-            animation:none;text-align:left;}
+          .h-floats-area{ display:none; }
 
           /* Description is shortened on mobile with a Read more/Show less toggle
              instead of always showing the full paragraph. */
@@ -626,7 +624,7 @@ export default function Hero({ onShopNow }) {
         }
         @media (max-width:640px) {
           .h-inner{padding:2px 20px 48px;} .h-cats{padding:14px 20px;}
-          .h-stats{flex-wrap:wrap;gap:16px 20px;}
+          .h-stats{flex-wrap:wrap;gap:1px 10px;}
           .h-stat{border-right:none;padding-right:0;margin-right:0;}
           .h-actions-row{flex-direction:column;align-items:stretch;gap:12px;}
           .h-btn-primary{width:100%;align-items:center;text-align:center;}
