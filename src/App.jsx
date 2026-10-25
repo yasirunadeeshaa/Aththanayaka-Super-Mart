@@ -78,7 +78,7 @@ function BusinessSchema() {
 const PAGE_META = {
   home: {
     path: '/',
-    title: 'Aththanayaka Super Mart — Sesame Seeds, Jaggery & Packaging Supplies in Sri Lanka',
+    title: 'Aththanayaka Super Mart - Sesame Seeds, Jaggery & Packaging Supplies in Sri Lanka',
     description:
       "Sri Lanka's trusted supplier of black & white sesame seeds, organic jaggery, and packaging materials for sesame product manufacturers. Retail, wholesale and delivery available.",
   },
